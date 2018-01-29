@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_in.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/res/anim-v21/design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_out.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/res/anim-v21/design_bottom_sheet_slide_out.xml"
+    }
+]

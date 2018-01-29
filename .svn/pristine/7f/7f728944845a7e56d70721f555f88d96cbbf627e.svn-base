@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="lizhiyu.com.closeeye.fragment.ChoiceFragment">
+    
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/choice_topView">
+        
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/choice_topViewBg"
+            android:background="@mipmap/choice_topview_bg"
+            app:layout_constraintStart_toStartOf="@id/choice_topView"
+            app:layout_constraintEnd_toEndOf="@id/choice_topView"
+            app:layout_constraintTop_toTopOf="@id/choice_topView"
+            app:layout_constraintBottom_toBottomOf="@id/choice_topView"
+            />
+        
+    </android.support.constraint.ConstraintLayout>
+
+    <ListView
+        android:id="@+id/choice_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>

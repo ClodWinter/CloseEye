@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/86d54c1ec4a1e6d11b3761d30eed6af66abf545e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_904ad005346ec995e65da6e2d18b3f1748fde011/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/efd1227280c496d0eb686ef57aef4197092a6d09/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8f4c7ad7c49d49bb430044918f09b85d3dcdef36/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/5bbafe8b070d14e7dfb1cb7aeddcf0bf3ccb5ecb/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_9df2903034bdf4785d256fab48d1a35728986cf4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/86a97c5711a55ad6db9e2ef8ea166779dbb03410/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_929fb55fde7f5d45827f67ac667564bd208bd73a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/ba2761b2be42ac0e1a605147092b992f567e7eae/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6a25a1b2f7c1b7e5271b4a461199c3ed403e6a37/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_30ab0d73d61d6b644888758c742f90a9552b2c99/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ed3806ef4ade5c151a593278a82369b4320eea85">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_7b75cd25a72455e9bca3df1bd9d52a50d3411acf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/702d975e762d27c32bf8e39f6aef1b1088584108/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ad5542f5145bc481ccb3ac1ea3a1e2438d1b950d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_072b748c2cd60499af44c4ca9e27d2751ad2dbf8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/2c07c18de90ee451f8e5f46c4a095a06acafe41f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7344297f04f7cdccd8438ad9fed9522cd5de80fc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/54fe249c8dc48b7ca60d433ae3811914cf42f750/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_04bd3f33c72690b6aece7580115a6d941bcb6863/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/a713b1555814f8fdb4a881560e49af0185c52b9b/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4b7c60d42a7e2bec5055cdd79c5235da6618a35b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/678cec13407452c12fbed7aa6329756d66786d0a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6f99637839fb60f80bffa16dfc5b75bd816b53c7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/.android/build-cache/ceb0a15fbc5584f8caf106e6aecddeb7132d3413/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_85ad3e6a83a5690751cf131c91c29f77ed9a5380/classes.dex" />
+    </item>
+
+</items>

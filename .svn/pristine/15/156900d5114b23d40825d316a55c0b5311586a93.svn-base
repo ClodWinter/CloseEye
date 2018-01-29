@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/res/drawable-anydpi-v21/design_ic_visibility.xml"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/drawable-anydpi-v21/design_ic_visibility_off.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/res/drawable-anydpi-v21/design_ic_visibility_off.xml"
+    }
+]

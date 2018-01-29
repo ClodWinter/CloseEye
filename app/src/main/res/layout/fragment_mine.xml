@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="cn.lizhiyu.closeeye.fragment.MineFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/list_item_divider"
+        android:dividerHeight="1dp"
+        android:id="@+id/mine_listView">
+
+
+    </ListView>
+
+</FrameLayout>

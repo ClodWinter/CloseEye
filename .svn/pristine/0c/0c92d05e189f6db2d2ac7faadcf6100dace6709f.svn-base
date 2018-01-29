@@ -1,0 +1,97 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:2:1-21:12
+	package
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:3:5-35
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+application
+ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:5:5-19:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/lizhiyu/.android/build-cache/9d505cecc61d7677939e7a6b9abfc8036bfff3da/output/AndroidManifest.xml:9:5-20
+MERGED from [com.ashokvarma.android:bottom-navigation-bar:1.4.1] /Users/lizhiyu/.android/build-cache/8b3d91cdaec9c067a02d99e9d2d67eafdec262c4/output/AndroidManifest.xml:11:5-13:38
+MERGED from [com.android.support:design:25.3.0] /Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/lizhiyu/.android/build-cache/efd1227280c496d0eb686ef57aef4197092a6d09/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/lizhiyu/.android/build-cache/678cec13407452c12fbed7aa6329756d66786d0a/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/lizhiyu/.android/build-cache/2c07c18de90ee451f8e5f46c4a095a06acafe41f/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.0] /Users/lizhiyu/.android/build-cache/86a97c5711a55ad6db9e2ef8ea166779dbb03410/output/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.0] /Users/lizhiyu/.android/build-cache/86d54c1ec4a1e6d11b3761d30eed6af66abf545e/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.0] /Users/lizhiyu/.android/build-cache/54fe249c8dc48b7ca60d433ae3811914cf42f750/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.0] /Users/lizhiyu/.android/build-cache/5bbafe8b070d14e7dfb1cb7aeddcf0bf3ccb5ecb/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.0] /Users/lizhiyu/.android/build-cache/a713b1555814f8fdb4a881560e49af0185c52b9b/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.0] /Users/lizhiyu/.android/build-cache/ba2761b2be42ac0e1a605147092b992f567e7eae/output/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.0] /Users/lizhiyu/.android/build-cache/702d975e762d27c32bf8e39f6aef1b1088584108/output/AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:8:9-41
+	android:supportsRtl
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:10:9-35
+	android:roundIcon
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:9:9-54
+	android:allowBackup
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:6:9-35
+	android:icon
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:7:9-43
+	android:theme
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:11:9-59
+activity#lizhiyu.com.closeeye.activity.MainActivity
+ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:12:19-56
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml:16:27-74
+uses-sdk
+INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/lizhiyu/.android/build-cache/9d505cecc61d7677939e7a6b9abfc8036bfff3da/output/AndroidManifest.xml:5:5-7:41
+MERGED from [com.ashokvarma.android:bottom-navigation-bar:1.4.1] /Users/lizhiyu/.android/build-cache/8b3d91cdaec9c067a02d99e9d2d67eafdec262c4/output/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:design:25.3.0] /Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/lizhiyu/.android/build-cache/efd1227280c496d0eb686ef57aef4197092a6d09/output/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/lizhiyu/.android/build-cache/678cec13407452c12fbed7aa6329756d66786d0a/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/lizhiyu/.android/build-cache/2c07c18de90ee451f8e5f46c4a095a06acafe41f/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.0] /Users/lizhiyu/.android/build-cache/ceb0a15fbc5584f8caf106e6aecddeb7132d3413/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.0] /Users/lizhiyu/.android/build-cache/86a97c5711a55ad6db9e2ef8ea166779dbb03410/output/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.0] /Users/lizhiyu/.android/build-cache/86d54c1ec4a1e6d11b3761d30eed6af66abf545e/output/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.0] /Users/lizhiyu/.android/build-cache/54fe249c8dc48b7ca60d433ae3811914cf42f750/output/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.0] /Users/lizhiyu/.android/build-cache/5bbafe8b070d14e7dfb1cb7aeddcf0bf3ccb5ecb/output/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.3.0] /Users/lizhiyu/.android/build-cache/a713b1555814f8fdb4a881560e49af0185c52b9b/output/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.3.0] /Users/lizhiyu/.android/build-cache/ba2761b2be42ac0e1a605147092b992f567e7eae/output/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.3.0] /Users/lizhiyu/.android/build-cache/702d975e762d27c32bf8e39f6aef1b1088584108/output/AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.0] /Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.0] /Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.0] /Users/lizhiyu/.android/build-cache/efd1227280c496d0eb686ef57aef4197092a6d09/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.0] /Users/lizhiyu/.android/build-cache/678cec13407452c12fbed7aa6329756d66786d0a/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.0] /Users/lizhiyu/.android/build-cache/2c07c18de90ee451f8e5f46c4a095a06acafe41f/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.0] /Users/lizhiyu/.android/build-cache/ceb0a15fbc5584f8caf106e6aecddeb7132d3413/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.0] /Users/lizhiyu/.android/build-cache/86a97c5711a55ad6db9e2ef8ea166779dbb03410/output/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.0] /Users/lizhiyu/.android/build-cache/86d54c1ec4a1e6d11b3761d30eed6af66abf545e/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.0] /Users/lizhiyu/.android/build-cache/54fe249c8dc48b7ca60d433ae3811914cf42f750/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.0] /Users/lizhiyu/.android/build-cache/5bbafe8b070d14e7dfb1cb7aeddcf0bf3ccb5ecb/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.0] /Users/lizhiyu/.android/build-cache/a713b1555814f8fdb4a881560e49af0185c52b9b/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.0] /Users/lizhiyu/.android/build-cache/ba2761b2be42ac0e1a605147092b992f567e7eae/output/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.0] /Users/lizhiyu/.android/build-cache/702d975e762d27c32bf8e39f6aef1b1088584108/output/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.0] /Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.0] /Users/lizhiyu/.android/build-cache/ac2e53fcce7e24eb65269b070db5df11daa27711/output/AndroidManifest.xml:26:9-47

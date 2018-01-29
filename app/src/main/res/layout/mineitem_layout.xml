@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:minHeight="56dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constrain">
+    
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/mineitem_icon"
+        android:src="@mipmap/home"
+        app:layout_constraintLeft_toLeftOf="@id/constrain"
+        app:layout_constraintTop_toTopOf="@id/constrain"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="13dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="联系我们"
+        android:id="@+id/mineitem_text"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="@+id/mineitem_icon"
+        app:layout_constraintTop_toTopOf="@id/constrain"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="13dp"/>
+
+</android.support.constraint.ConstraintLayout>

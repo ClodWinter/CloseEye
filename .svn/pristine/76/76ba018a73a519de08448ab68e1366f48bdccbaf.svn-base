@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/setting.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/src/main/res/mipmap-hdpi/setting.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/story.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/res/mipmap-hdpi/story.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/place.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/res/mipmap-hdpi/place.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/place.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/src/main/res/mipmap-hdpi/place.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/setting.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/res/mipmap-hdpi/setting.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/home.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/src/main/res/mipmap-hdpi/home.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher_round.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/story.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/src/main/res/mipmap-hdpi/story.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/ic_launcher.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/mipmap-hdpi/home.png",
+        "source": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/src/main/res/mipmap-hdpi/home.png"
+    }
+]

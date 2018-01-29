@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_light.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/bb4b9c64cd363b553dd8616f31fafcd771410ba2/output/res/color-v11/abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/color-v11/abc_background_cache_hint_selector_material_dark.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/bb4b9c64cd363b553dd8616f31fafcd771410ba2/output/res/color-v11/abc_background_cache_hint_selector_material_dark.xml"
+    }
+]

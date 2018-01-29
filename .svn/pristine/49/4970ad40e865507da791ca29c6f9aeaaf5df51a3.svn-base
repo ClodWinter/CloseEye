@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_in.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/4cbde5313a0a634c0f054dcf4294de01f182b783/output/res/anim-v21/design_bottom_sheet_slide_in.xml"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/CloseEye/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_out.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/4cbde5313a0a634c0f054dcf4294de01f182b783/output/res/anim-v21/design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_out.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/4cbde5313a0a634c0f054dcf4294de01f182b783/output/res/anim-v21/design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_in.xml",
+        "source": "/Users/lizhiyu/.android/build-cache/4cbde5313a0a634c0f054dcf4294de01f182b783/output/res/anim-v21/design_bottom_sheet_slide_in.xml"
+    }
+]

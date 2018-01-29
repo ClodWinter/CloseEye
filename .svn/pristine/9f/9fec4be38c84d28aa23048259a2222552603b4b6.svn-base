@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0dcd87da4c0e9fb75602f288b1266a1b2c8d8185/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd868e5d1946810a9bdafa1b8ff7430643277629">
+        <dex dex="/Users/lizhiyu/Documents/Android Code/OldJustOne/CloseEye/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_f57cf7eebbbe710be014e515bea425bc3ee619b6/classes.dex" />
+    </item>
+
+</items>
