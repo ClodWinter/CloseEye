@@ -3,6 +3,7 @@ package cn.lizhiyu.closeeye.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.app.Fragment;
@@ -30,6 +31,10 @@ public class MineFragment extends Fragment
     private List<MineItemModel> listModel;
 
     private ListView listView;
+
+    private RecyclerView recyclerView;
+
+    private RecyclerView.LayoutManager rLayoutManager;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -130,6 +135,8 @@ public class MineFragment extends Fragment
         View view =  inflater.inflate(R.layout.fragment_mine, container, false);
 
         initData();
+
+        recyclerView = (RecyclerView)view.findViewById(R.id.head_recycler1);
 
         listView = (ListView)view.findViewById(R.id.mine_listView);
 
