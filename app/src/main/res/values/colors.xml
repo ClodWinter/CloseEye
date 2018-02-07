@@ -20,4 +20,7 @@
     <color name="transparent">#00000000</color>
     <color name="yellow">#ffffff00</color>
     <color name="blueBg">#3F78E9</color>
+    <color name="f1f2f3">#f1f2f3</color>
+    <color name="e3e3e3">#e3e3e3</color>
+    <color name="textColor">#333333</color>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mine_head"
     android:layout_width="match_parent"
-    android:layout_height="330dp">
+    android:layout_height="370dp">
 
 
     <android.support.constraint.ConstraintLayout
@@ -69,16 +69,43 @@
     <LinearLayout
         android:id="@+id/mine_head_layout1"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="70dp"
+        android:layout_height="80dp"
         android:background="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mine_headconstraint">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/head_recycler1"
+            android:id="@+id/head_recyclerHeadCount"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="horizontal">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/mine_divider1"
+        android:background="@color/f1f2f3"
+        app:layout_constraintTop_toBottomOf="@id/mine_head_layout1"
+        />
+    
+    <LinearLayout
+        android:id="@+id/mine_head_layout2"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mine_divider1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/head_recyclerHeadMessage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="horizontal">
@@ -88,17 +115,12 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/mine_head_layout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/green"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mine_head_layout1">
-
-    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:id="@+id/mine_divider2"
+        android:background="@color/f1f2f3"
+        app:layout_constraintTop_toBottomOf="@id/mine_head_layout2"
+        />
 
 </android.support.constraint.ConstraintLayout>

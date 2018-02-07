@@ -21,7 +21,7 @@
         android:layout_height="30dp"
         android:text="联系我们"
         android:id="@+id/mineitem_text"
-        android:textColor="@color/gray"
+        android:textColor="@color/textColor"
         android:gravity="center"
         app:layout_constraintLeft_toRightOf="@+id/mineitem_icon"
         app:layout_constraintTop_toTopOf="@id/constrain"

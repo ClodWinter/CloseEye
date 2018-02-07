@@ -6,11 +6,11 @@ package cn.lizhiyu.closeeye.model;
 
 public class MineRecylerModel
 {
-    int id;
+    public int id;
 
-    String number;
+    public String number;
 
-    String Title;
+    public String title;
 
     public int getId() {
         return id;
@@ -21,7 +21,7 @@ public class MineRecylerModel
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setId(int id) {
@@ -33,6 +33,6 @@ public class MineRecylerModel
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 }

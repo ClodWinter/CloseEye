@@ -1,8 +1,11 @@
 package cn.lizhiyu.closeeye.fragment;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +19,11 @@ import java.util.List;
 
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.MineArrayAdapter;
+import cn.lizhiyu.closeeye.adapter.MineMessageAdapter;
+import cn.lizhiyu.closeeye.adapter.MineNumerAdapter;
 import cn.lizhiyu.closeeye.model.MineItemModel;
+import cn.lizhiyu.closeeye.model.MineMessageModel;
+import cn.lizhiyu.closeeye.model.MineRecylerModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,9 +39,15 @@ public class MineFragment extends Fragment
 
     private ListView listView;
 
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewNumer;
 
     private RecyclerView.LayoutManager rLayoutManager;
+
+    private MineNumerAdapter recyclerAdapterNumer;
+
+    private RecyclerView recyclerViewMessage;
+
+    private MineMessageAdapter recyclerAdapterMessage;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -116,6 +129,78 @@ public class MineFragment extends Fragment
 
     }
 
+    private ArrayList<MineRecylerModel> getMineHeadRecyclerList()
+    {
+        ArrayList list = new ArrayList<MineRecylerModel>();
+
+        MineRecylerModel modelFocus = this.createHeadRecylerModel("0","关注",1);
+
+        MineRecylerModel modelFans = this.createHeadRecylerModel("0","粉丝",2);
+
+        MineRecylerModel modelCollection = this.createHeadRecylerModel("0","关注",3);
+
+        MineRecylerModel modelArticle = this.createHeadRecylerModel("0","文章",4);
+
+        list.add(modelFocus);
+
+        list.add(modelFans);
+
+        list.add(modelCollection);
+
+        list.add(modelArticle);
+
+        return list;
+    }
+
+    private ArrayList<MineMessageModel> getMineHeadMessageList()
+    {
+        ArrayList list = new ArrayList<MineMessageModel>();
+
+        MineMessageModel modelReply = this.createMineMessageModel(R.mipmap.place,"回复我的",1);
+
+        MineMessageModel modelNoti = this.createMineMessageModel(R.mipmap.place,"@我的",1);
+
+        MineMessageModel modelMineMessage = this.createMineMessageModel(R.mipmap.place,"私信",1);
+
+        MineMessageModel modelSysMessage = this.createMineMessageModel(R.mipmap.place,"系统通知",1);
+
+        list.add(modelReply);
+
+        list.add(modelNoti);
+
+        list.add(modelMineMessage);
+
+        list.add(modelSysMessage);
+
+        return list;
+    }
+
+    private MineMessageModel createMineMessageModel(int src,String title,int id)
+    {
+        MineMessageModel model = new MineMessageModel();
+
+        model.src = src;
+
+        model.title = title;
+
+        model.id = id;
+
+        return model;
+    }
+
+    private MineRecylerModel createHeadRecylerModel(String number, String title, int id)
+    {
+        MineRecylerModel model = new MineRecylerModel();
+
+        model.number = number;
+
+        model.title = title;
+
+        model.id = id;
+
+        return model;
+    }
+
     private MineItemModel createModel(int icon,String text)
     {
         MineItemModel model = new MineItemModel();
@@ -128,6 +213,9 @@ public class MineFragment extends Fragment
 
     }
 
+
+    @TargetApi(Build.VERSION_CODES.M)
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -136,19 +224,37 @@ public class MineFragment extends Fragment
 
         initData();
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.head_recycler1);
-
         listView = (ListView)view.findViewById(R.id.mine_listView);
 
         MineArrayAdapter arrayAdapter = new MineArrayAdapter(getActivity(),R.layout.mineitem_layout,listModel);
 
         listView.setAdapter(arrayAdapter);
 
+        listView.setDivider(null);
+
         View viewHead = inflater.inflate(R.layout.layout_minehead,container,false);
 
         listView.addHeaderView(viewHead);
 
-        RecyclerView recyclerView = (RecyclerView) viewHead.findViewById(R.id.head_recycler1);
+        recyclerViewNumer = (RecyclerView)viewHead.findViewById(R.id.head_recyclerHeadCount);
+
+        rLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+
+        recyclerAdapterNumer = new MineNumerAdapter(getMineHeadRecyclerList());
+
+        recyclerViewNumer.setAdapter(recyclerAdapterNumer);
+
+        recyclerViewNumer.setLayoutManager(rLayoutManager);
+
+        recyclerViewMessage = (RecyclerView)viewHead.findViewById(R.id.head_recyclerHeadMessage);
+
+        rLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+
+        recyclerAdapterMessage = new MineMessageAdapter(getMineHeadMessageList());
+
+        recyclerViewMessage.setAdapter(recyclerAdapterMessage);
+
+        recyclerViewMessage.setLayoutManager(rLayoutManager);
 
         return view;
     }
