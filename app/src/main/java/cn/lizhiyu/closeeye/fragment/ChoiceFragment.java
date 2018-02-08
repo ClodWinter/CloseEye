@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.Parcelable;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
+import cn.lizhiyu.closeeye.adapter.AutoBannerPagerAdapter;
 import cn.lizhiyu.closeeye.adapter.ChoiceArrayAdapter;
 import cn.lizhiyu.closeeye.model.ChoiceItemModel;
 
@@ -29,6 +32,10 @@ public class ChoiceFragment extends Fragment {
 
     private ArrayList arrayChoice;
 
+    private ArrayList arrayBanner;
+
+    private AutoBannerViewPager autoBannerViewPager;
+
     private OnFragmentInteractionListener mListener;
 
     public ChoiceFragment()
@@ -39,8 +46,6 @@ public class ChoiceFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static ChoiceFragment newInstance(List list)
     {
-        Log.d("TTTTT", "newInstance: ");
-
         ChoiceFragment fragment = new ChoiceFragment();
 
         Bundle bundle = new Bundle();
@@ -53,8 +58,6 @@ public class ChoiceFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
-        Log.d("TTTTT", "onCreate: ");
-
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null)
@@ -83,7 +86,16 @@ public class ChoiceFragment extends Fragment {
             arrayChoice.add(model);
         }
 
-        Log.d("lzy", "initData: "+ arrayChoice.size());
+        arrayBanner = new ArrayList();
+
+        arrayBanner.add(R.mipmap.choice_topview_bg);
+
+        arrayBanner.add(R.mipmap.choiceitem_cover);
+
+        arrayBanner.add(R.mipmap.launch);
+
+        arrayBanner.add(R.mipmap.mine_headbg);
+
     }
 
     public ChoiceItemModel createModel(String title,int coverImage)
@@ -108,6 +120,20 @@ public class ChoiceFragment extends Fragment {
         ChoiceArrayAdapter arrayAdapter = new ChoiceArrayAdapter(getActivity(),R.layout.choiceitem_layout,arrayChoice);
 
         listView.setAdapter(arrayAdapter);
+
+        AutoBannerPagerAdapter autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
+
+        autoBannerPagerAdapter.updateDatas(arrayBanner);
+
+        autoBannerViewPager = (AutoBannerViewPager) view.findViewById(R.id.choice_autonBanner);
+
+        autoBannerViewPager.setAdapter(autoBannerPagerAdapter);
+
+        autoBannerViewPager.setShowTime(5000);
+
+        autoBannerViewPager.setDirection(AutoBannerViewPager.Direction.Left);
+
+        autoBannerViewPager.start();
 
         return view;
     }

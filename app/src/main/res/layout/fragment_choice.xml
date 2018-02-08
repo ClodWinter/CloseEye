@@ -19,13 +19,33 @@
             app:expandedTitleGravity="left"
             app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
 
-            <ImageView
+
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="1.0"
-                android:src="@mipmap/choice_topview_bg"
-                android:scaleType="centerCrop"/>
+                android:background="@color/white"
+                >
+
+                <cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/choice_autonBanner"
+                    >
+
+                </cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager>
+                
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:background="@color/red"
+                    ></LinearLayout>
+
+
+            </android.support.constraint.ConstraintLayout>
+
 
             <!--<android.support.v7.widget.Toolbar-->
                 <!--android:layout_width="match_parent"-->

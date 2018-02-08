@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleIndicatior">
+
+        <attr name="fillColor" format="color"></attr>
+
+        <attr name="strokeColor" format="color"></attr>
+
+        <attr name="radius" format="dimension"></attr>
+
+        <attr name="circleInterval" format="dimension"></attr>
+
+    </declare-styleable>
+    
+</resources>
