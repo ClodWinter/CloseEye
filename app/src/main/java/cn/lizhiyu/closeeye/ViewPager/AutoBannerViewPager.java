@@ -4,10 +4,12 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 
 /**
  * Created by king on 2018/2/8.
  */
+
 
 public class AutoBannerViewPager extends ViewPager
 {
@@ -23,10 +25,17 @@ public class AutoBannerViewPager extends ViewPager
         }
     };
 
+    public scrollCallBack callBack;
+
     public enum Direction
     {
         Left,
         Right
+    }
+
+    public interface scrollCallBack
+    {
+        public void scroll(int page);
     }
 
     public AutoBannerViewPager(Context context) {
@@ -65,7 +74,7 @@ public class AutoBannerViewPager extends ViewPager
                 {
                     currentIndex++;
 
-                    if (currentIndex>count)
+                    if (currentIndex>=count)
                     {
                         currentIndex = 0;
                     }
@@ -106,13 +115,15 @@ public class AutoBannerViewPager extends ViewPager
 
         addOnPageChangeListener(new OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
 
             }
 
             @Override
-            public void onPageSelected(int position) {
-
+            public void onPageSelected(int position)
+            {
+                callBack.scroll(position);
             }
 
             @Override

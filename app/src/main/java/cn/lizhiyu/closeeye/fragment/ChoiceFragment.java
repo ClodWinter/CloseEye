@@ -7,9 +7,12 @@ import android.app.Fragment;
 import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -134,6 +137,49 @@ public class ChoiceFragment extends Fragment {
         autoBannerViewPager.setDirection(AutoBannerViewPager.Direction.Left);
 
         autoBannerViewPager.start();
+
+        final LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.banner_indicator_layout);
+
+        for (int i = 0; i < arrayBanner.size(); i++)
+        {
+            ImageView imageView = new ImageView(getActivity());
+
+            imageView.setImageResource(i==0?R.drawable.banner_shape_select:R.drawable.banner_shape_normal);
+
+            linearLayout.addView(imageView);
+
+            LinearLayout.LayoutParams layoutParams=
+                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            layoutParams.leftMargin = 10;
+
+            imageView.setLayoutParams(layoutParams);
+
+        }
+
+        autoBannerViewPager.callBack = new AutoBannerViewPager.scrollCallBack() {
+            @Override
+            public void scroll(int page)
+            {
+                Log.d("tttttttt", "scroll: "+page);
+
+                for (int i = 0; i < linearLayout.getChildCount(); i++)
+                {
+                    ImageView imageView = (ImageView) linearLayout.getChildAt(i);
+
+                    imageView.setImageDrawable(null);
+
+                    if (i == page)
+                    {
+                        imageView.setBackgroundResource(R.drawable.banner_shape_select);
+                    }
+                    else {
+                        imageView.setBackgroundResource(R.drawable.banner_shape_normal);
+                    }
+                }
+            }
+        };
 
         return view;
     }

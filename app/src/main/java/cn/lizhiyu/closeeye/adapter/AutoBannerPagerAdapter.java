@@ -39,7 +39,7 @@ public class AutoBannerPagerAdapter extends PagerAdapter
     @Override
     public int getCount()
     {
-        return datas == null?0:Integer.MAX_VALUE;
+        return datas == null?0:datas.size();
     }
 
     @Override

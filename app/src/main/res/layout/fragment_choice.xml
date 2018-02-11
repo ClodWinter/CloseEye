@@ -39,9 +39,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:id="@+id/banner_indicator_layout"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:background="@color/red"
-                    ></LinearLayout>
+                    android:orientation="horizontal"
+                    android:gravity="right|center_vertical"
+                    android:layout_marginRight="10dp"
+                    />
 
 
             </android.support.constraint.ConstraintLayout>

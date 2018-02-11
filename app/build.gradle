@@ -48,5 +48,6 @@ dependencies {
     //如果需要支持DataBinding(可选)
     compile 'com.dyhdyh.adapters:adapters-databinding:1.0.0'
     compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     testCompile 'junit:junit:4.12'
 }
