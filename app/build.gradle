@@ -42,6 +42,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
+    compile 'com.alibaba:fastjson:1.1.28'
     compile 'com.android.support:support-v4:25.3.0'
     //必选
     compile 'com.dyhdyh.adapters:adapters:1.0.0'

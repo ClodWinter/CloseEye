@@ -15,13 +15,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ThreadPoolExecutor;
+
+import cn.jiguang.net.HttpRequest;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
 import cn.lizhiyu.closeeye.adapter.AutoBannerPagerAdapter;
 import cn.lizhiyu.closeeye.adapter.ChoiceArrayAdapter;
 import cn.lizhiyu.closeeye.model.ChoiceItemModel;
+import cn.lizhiyu.closeeye.model.VideoModel;
+import cn.lizhiyu.closeeye.request.BaseHttpRequest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,11 +53,15 @@ public class ChoiceFragment extends Fragment {
 
     private AutoBannerViewPager autoBannerViewPager;
 
+    private ChoiceArrayAdapter choiceArrayAdapter;
+
+    private AutoBannerPagerAdapter autoBannerPagerAdapter;
+
     private OnFragmentInteractionListener mListener;
 
     public ChoiceFragment()
     {
-        this.initData();
+
     }
 
     // TODO: Rename and change types and number of parameters
@@ -68,26 +86,59 @@ public class ChoiceFragment extends Fragment {
             Bundle bundle = getArguments();
 
             arrayChoice = bundle.getParcelableArrayList("ChoiceArray");
-
-            this.initData();
-
         }
     }
 
-    public void initData()
+    public void initData() throws IOException
     {
-        arrayChoice = new ArrayList();
+        final BaseHttpRequest request = new BaseHttpRequest();
 
-        for (int i = 0; i < 20; i++)
-        {
-            String title = "[神偷奶爸 3] 预告大合集" + i;
+        final Map<String,String> param = new HashMap<>();
 
-            int cover = R.mipmap.choiceitem_cover;
+        param.put("apikey","IdFJsLGzIdTvxCAs362MupngfDRXQACCk71LxXBOSDHbzG9Wv5AHN0qEYhWQh9HV");
 
-            ChoiceItemModel model = this.createModel(title,cover);
+        param.put("kw","搞笑");
 
-            arrayChoice.add(model);
-        }
+        param.put("pageToken","1");
+
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+                try {
+                    request.sendGetRequest("http://120.76.205.241:8000/video/duowan?", param, new BaseHttpRequest.HttpRequestCallBack() {
+                        @Override
+                        public void onRespose(String response, int httpTag)
+                        {
+                            if (httpTag == 200)
+                            {
+                                com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(response);
+
+                                com.alibaba.fastjson.JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                                arrayChoice.clear();
+
+                                arrayChoice.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),VideoModel.class));
+
+                                Log.d("on", "onRespose: ");
+
+                                autoBannerPagerAdapter.notifyDataSetChanged();
+
+                                choiceArrayAdapter.notifyDataSetChanged();
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
 
         arrayBanner = new ArrayList();
 
@@ -98,33 +149,25 @@ public class ChoiceFragment extends Fragment {
         arrayBanner.add(R.mipmap.launch);
 
         arrayBanner.add(R.mipmap.mine_headbg);
-
-    }
-
-    public ChoiceItemModel createModel(String title,int coverImage)
-    {
-        ChoiceItemModel model = new ChoiceItemModel();
-
-        model.title = title;
-
-        model.cover = coverImage;
-
-        return model;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
+        arrayBanner = new ArrayList();
+
+        arrayChoice = new ArrayList();
 
         View view = (View)inflater.inflate(R.layout.fragment_choice,container,false);
 
         ListView listView = (ListView)view.findViewById(R.id.choice_listView);
 
-        ChoiceArrayAdapter arrayAdapter = new ChoiceArrayAdapter(getActivity(),R.layout.choiceitem_layout,arrayChoice);
+        choiceArrayAdapter= new ChoiceArrayAdapter(getActivity(),R.layout.choiceitem_layout,arrayChoice);
 
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(choiceArrayAdapter);
 
-        AutoBannerPagerAdapter autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
+        autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
 
         autoBannerPagerAdapter.updateDatas(arrayBanner);
 
@@ -180,6 +223,12 @@ public class ChoiceFragment extends Fragment {
                 }
             }
         };
+
+        try {
+            initData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return view;
     }
