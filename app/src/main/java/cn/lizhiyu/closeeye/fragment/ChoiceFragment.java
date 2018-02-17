@@ -1,11 +1,16 @@
 package cn.lizhiyu.closeeye.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Handler;
+import android.os.Message;
 import android.os.Parcelable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
@@ -47,9 +53,13 @@ import cn.lizhiyu.closeeye.request.BaseHttpRequest;
  */
 public class ChoiceFragment extends Fragment {
 
+    private  View rootView;
+
     private ArrayList arrayChoice;
 
     private ArrayList arrayBanner;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private AutoBannerViewPager autoBannerViewPager;
 
@@ -58,6 +68,81 @@ public class ChoiceFragment extends Fragment {
     private AutoBannerPagerAdapter autoBannerPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case 200:
+                {
+                    autoBannerPagerAdapter.notifyDataSetChanged();
+
+                    choiceArrayAdapter.notifyDataSetChanged();
+
+                    for (int i = 0; i < arrayBanner.size(); i++)
+                    {
+                        ImageView imageView = new ImageView(getActivity());
+
+                        imageView.setImageResource(i==0?R.drawable.banner_shape_select:R.drawable.banner_shape_normal);
+
+                        indictorLayout.addView(imageView);
+
+                        LinearLayout.LayoutParams layoutParams=
+                                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                                        ViewGroup.LayoutParams.WRAP_CONTENT);
+
+                        layoutParams.leftMargin = 10;
+
+                        imageView.setLayoutParams(layoutParams);
+
+                    }
+
+                    autoBannerViewPager.callBack = new AutoBannerViewPager.scrollCallBack() {
+                        @Override
+                        public void scroll(int page)
+                        {
+                            Log.d("tttttttt", "scroll: "+page);
+
+                            for (int i = 0; i < indictorLayout.getChildCount(); i++)
+                            {
+                                ImageView imageView = (ImageView) indictorLayout.getChildAt(i);
+
+                                imageView.setImageDrawable(null);
+
+                                if (i == page)
+                                {
+                                    imageView.setBackgroundResource(R.drawable.banner_shape_select);
+                                }
+                                else {
+                                    imageView.setBackgroundResource(R.drawable.banner_shape_normal);
+                                }
+                            }
+                        }
+                    };
+
+                    break;
+                }
+
+                case -1:
+                {
+                    Toast.makeText(getActivity(),"请求失败,请稍后重试.",Toast.LENGTH_LONG).show();
+
+                    break;
+                }
+
+                default:
+
+            }
+
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    };
+
+    private LinearLayout indictorLayout;
 
     public ChoiceFragment()
     {
@@ -89,7 +174,7 @@ public class ChoiceFragment extends Fragment {
         }
     }
 
-    public void initData() throws IOException
+    public void requestChoiceData(int page)
     {
         final BaseHttpRequest request = new BaseHttpRequest();
 
@@ -110,6 +195,8 @@ public class ChoiceFragment extends Fragment {
                         @Override
                         public void onRespose(String response, int httpTag)
                         {
+                            Message message = new Message();
+
                             if (httpTag == 200)
                             {
                                 com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(response);
@@ -120,16 +207,27 @@ public class ChoiceFragment extends Fragment {
 
                                 arrayChoice.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),VideoModel.class));
 
-                                Log.d("on", "onRespose: ");
+                                Log.d("lzyssg", "onRespose: ");
 
-                                autoBannerPagerAdapter.notifyDataSetChanged();
+                                arrayBanner.clear();
 
-                                choiceArrayAdapter.notifyDataSetChanged();
+                                arrayBanner.add(R.mipmap.choice_topview_bg);
+
+                                arrayBanner.add(R.mipmap.choiceitem_cover);
+
+                                arrayBanner.add(R.mipmap.launch);
+
+                                arrayBanner.add(R.mipmap.mine_headbg);
+
+                                message.what = 200;
+
                             }
                             else
                             {
-
+                                message.what = -1;
                             }
+
+                            handler.sendMessage(message);
                         }
                     });
                 } catch (IOException e) {
@@ -139,98 +237,89 @@ public class ChoiceFragment extends Fragment {
         });
 
         thread.start();
-
-        arrayBanner = new ArrayList();
-
-        arrayBanner.add(R.mipmap.choice_topview_bg);
-
-        arrayBanner.add(R.mipmap.choiceitem_cover);
-
-        arrayBanner.add(R.mipmap.launch);
-
-        arrayBanner.add(R.mipmap.mine_headbg);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        arrayBanner = new ArrayList();
-
-        arrayChoice = new ArrayList();
-
-        View view = (View)inflater.inflate(R.layout.fragment_choice,container,false);
-
-        ListView listView = (ListView)view.findViewById(R.id.choice_listView);
-
-        choiceArrayAdapter= new ChoiceArrayAdapter(getActivity(),R.layout.choiceitem_layout,arrayChoice);
-
-        listView.setAdapter(choiceArrayAdapter);
-
-        autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
-
-        autoBannerPagerAdapter.updateDatas(arrayBanner);
-
-        autoBannerViewPager = (AutoBannerViewPager) view.findViewById(R.id.choice_autonBanner);
-
-        autoBannerViewPager.setAdapter(autoBannerPagerAdapter);
-
-        autoBannerViewPager.setShowTime(5000);
-
-        autoBannerViewPager.setDirection(AutoBannerViewPager.Direction.Left);
-
-        autoBannerViewPager.start();
-
-        final LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.banner_indicator_layout);
-
-        for (int i = 0; i < arrayBanner.size(); i++)
+        if (rootView == null)
         {
-            ImageView imageView = new ImageView(getActivity());
+            arrayBanner = new ArrayList();
 
-            imageView.setImageResource(i==0?R.drawable.banner_shape_select:R.drawable.banner_shape_normal);
+            arrayChoice = new ArrayList();
 
-            linearLayout.addView(imageView);
+            rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
 
-            LinearLayout.LayoutParams layoutParams=
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
+            ListView listView = (ListView)rootView.findViewById(R.id.choice_listView);
 
-            layoutParams.leftMargin = 10;
+            choiceArrayAdapter= new ChoiceArrayAdapter(getActivity(),R.layout.choiceitem_layout,arrayChoice);
 
-            imageView.setLayoutParams(layoutParams);
+            listView.setAdapter(choiceArrayAdapter);
 
-        }
+            autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
 
-        autoBannerViewPager.callBack = new AutoBannerViewPager.scrollCallBack() {
-            @Override
-            public void scroll(int page)
-            {
-                Log.d("tttttttt", "scroll: "+page);
+            autoBannerPagerAdapter.updateDatas(arrayBanner);
 
-                for (int i = 0; i < linearLayout.getChildCount(); i++)
+            autoBannerViewPager = (AutoBannerViewPager) rootView.findViewById(R.id.choice_autonBanner);
+
+            autoBannerViewPager.setAdapter(autoBannerPagerAdapter);
+
+            autoBannerViewPager.setShowTime(5000);
+
+            autoBannerViewPager.setDirection(AutoBannerViewPager.Direction.Left);
+
+            autoBannerViewPager.start();
+
+            indictorLayout = (LinearLayout) rootView.findViewById(R.id.banner_indicator_layout);
+
+            swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.choice_swipe);
+
+            swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+
+            swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
+
+            swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.yello);
+
+            swipeRefreshLayout.setProgressViewEndTarget(true,200);
+
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh()
                 {
-                    ImageView imageView = (ImageView) linearLayout.getChildAt(i);
+                    requestChoiceData(0);
+                }
+            });
 
-                    imageView.setImageDrawable(null);
+            AppBarLayout appBarLayout = (AppBarLayout)rootView.findViewById(R.id.choice_appbarlayout);
 
-                    if (i == page)
+            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset)
+                {
+                    if (verticalOffset >= 0)
                     {
-                        imageView.setBackgroundResource(R.drawable.banner_shape_select);
+                        swipeRefreshLayout.setEnabled(true);
                     }
                     else {
-                        imageView.setBackgroundResource(R.drawable.banner_shape_normal);
+                        swipeRefreshLayout.setEnabled(false);
                     }
                 }
-            }
-        };
+            });
 
-        try {
-            initData();
-        } catch (IOException e) {
-            e.printStackTrace();
+            this.requestChoiceData(0);
+
+        }else
+        {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+
+            if (parent != null)
+            {
+                parent.removeView(rootView);
+            }
         }
 
-        return view;
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

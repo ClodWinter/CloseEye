@@ -44,6 +44,8 @@ dependencies {
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
     compile 'com.alibaba:fastjson:1.1.28'
     compile 'com.android.support:support-v4:25.3.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
     //必选
     compile 'com.dyhdyh.adapters:adapters:1.0.0'
     //如果需要支持DataBinding(可选)

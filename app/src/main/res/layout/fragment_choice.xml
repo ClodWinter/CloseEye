@@ -1,81 +1,95 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/choice_swipe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context="cn.lizhiyu.closeeye.fragment.ChoiceFragment">
+    android:addStatesFromChildren="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <android.support.design.widget.AppBarLayout
+
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context="cn.lizhiyu.closeeye.fragment.ChoiceFragment">
 
-        <!--app:contentScrim="@color/colorPrimary"  设置头部颜色及遮罩颜色-->
-        <android.support.design.widget.CollapsingToolbarLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/choice_appbarlayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:title="浮生若梦"
-            app:collapsedTitleGravity="left"
-            app:expandedTitleGravity="left"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
+            android:layout_height="200dp">
 
-
-            <android.support.constraint.ConstraintLayout
+            <!--app:contentScrim="@color/colorPrimary"  设置头部颜色及遮罩颜色-->
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="1.0"
-                android:background="@color/white"
-                >
+                app:title="浮生若梦"
+                app:collapsedTitleGravity="left"
+                app:expandedTitleGravity="left"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed">
 
-                <cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager
+
+                <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/choice_autonBanner"
+                    app:layout_collapseMode="parallax"
+                    app:layout_collapseParallaxMultiplier="1.0"
+                    android:background="@color/white"
                     >
 
-                </cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager>
-                
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:id="@+id/banner_indicator_layout"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:orientation="horizontal"
-                    android:gravity="right|center_vertical"
-                    android:layout_marginRight="10dp"
-                    />
+                    <cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/choice_autonBanner"
+                        >
+
+                    </cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:id="@+id/banner_indicator_layout"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:orientation="horizontal"
+                        android:gravity="right|center_vertical"
+                        android:layout_marginRight="10dp"
+                        />
 
 
-            </android.support.constraint.ConstraintLayout>
+                </android.support.constraint.ConstraintLayout>
 
 
-            <!--<android.support.v7.widget.Toolbar-->
+                <!--<android.support.v7.widget.Toolbar-->
                 <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="?attr/actionBarSize"></android.support.v7.widget.Toolbar>-->
 
-        </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.CollapsingToolbarLayout>
 
 
-    </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <cn.lizhiyu.closeeye.CustomView.NestedListView
-                android:id="@+id/choice_listView"
-                android:background="@color/darkgray"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"></cn.lizhiyu.closeeye.CustomView.NestedListView>
+                android:layout_height="match_parent">
 
-        </LinearLayout>
+                <cn.lizhiyu.closeeye.CustomView.NestedListView
+                    android:id="@+id/choice_listView"
+                    android:background="@color/darkgray"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></cn.lizhiyu.closeeye.CustomView.NestedListView>
 
-    </android.support.v4.widget.NestedScrollView>
+            </LinearLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
