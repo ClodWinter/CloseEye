@@ -10,12 +10,16 @@ import android.os.Message;
 import android.os.Parcelable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -51,9 +55,19 @@ import cn.lizhiyu.closeeye.request.BaseHttpRequest;
  * Use the {@link ChoiceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ChoiceFragment extends Fragment {
+public class ChoiceFragment extends Fragment{
 
-    private  View rootView;
+    private View rootView;
+
+    private View loadMoreView;
+
+    private NestedScrollView nestedScrollView;
+
+    private int page = 0;
+
+    private boolean isLoadmore = false;
+
+    private boolean hasNext;
 
     private ArrayList arrayChoice;
 
@@ -69,6 +83,8 @@ public class ChoiceFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private ListView listView;
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler()
     {
@@ -82,6 +98,8 @@ public class ChoiceFragment extends Fragment {
                     autoBannerPagerAdapter.notifyDataSetChanged();
 
                     choiceArrayAdapter.notifyDataSetChanged();
+
+                    indictorLayout.removeAllViews();
 
                     for (int i = 0; i < arrayBanner.size(); i++)
                     {
@@ -139,6 +157,11 @@ public class ChoiceFragment extends Fragment {
             }
 
             swipeRefreshLayout.setRefreshing(false);
+
+            if (isLoadmore)
+            {
+                loadComplete(false);
+            }
         }
     };
 
@@ -176,6 +199,8 @@ public class ChoiceFragment extends Fragment {
 
     public void requestChoiceData(int page)
     {
+        Log.d("lzyssg", "requestChoiceData: "+page);
+
         final BaseHttpRequest request = new BaseHttpRequest();
 
         final Map<String,String> param = new HashMap<>();
@@ -184,7 +209,7 @@ public class ChoiceFragment extends Fragment {
 
         param.put("kw","搞笑");
 
-        param.put("pageToken","1");
+        param.put("pageToken",""+page);
 
         final Thread thread = new Thread(new Runnable() {
             @Override
@@ -203,11 +228,16 @@ public class ChoiceFragment extends Fragment {
 
                                 com.alibaba.fastjson.JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                                arrayChoice.clear();
+                                hasNext = jsonObject.getBooleanValue("hasNext");
+
+                                if (!isLoadmore)
+                                {
+                                    arrayChoice.clear();
+
+                                    arrayBanner.clear();
+                                }
 
                                 arrayChoice.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),VideoModel.class));
-
-                                Log.d("lzyssg", "onRespose: ");
 
                                 arrayBanner.clear();
 
@@ -225,6 +255,8 @@ public class ChoiceFragment extends Fragment {
                             else
                             {
                                 message.what = -1;
+
+                                hasNext = false;
                             }
 
                             handler.sendMessage(message);
@@ -239,6 +271,7 @@ public class ChoiceFragment extends Fragment {
         thread.start();
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -251,7 +284,50 @@ public class ChoiceFragment extends Fragment {
 
             rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
 
-            ListView listView = (ListView)rootView.findViewById(R.id.choice_listView);
+            nestedScrollView = (NestedScrollView)rootView.findViewById(R.id.choice_scrollview);
+
+            nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    if (scrollY > oldScrollY) {
+//                        Log.i("lzyssg", "Scroll DOWN");
+                    }
+                    if (scrollY < oldScrollY) {
+//                        Log.i("lzyssg", "Scroll UP");
+                    }
+
+                    if (scrollY == 0) {
+//                        Log.i("lzyssg", "TOP SCROLL");
+                    }
+
+                    if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
+//                        Log.i("lzyssg", "BOTTOM SCROLL");
+                        //表示此时需要显示刷新视图界面进行新数据的加载(要等滑动停止)
+                        if(!isLoadmore)
+                        {
+                            //不处于加载状态的话对其进行加载
+                            isLoadmore = true;
+                            //设置刷新界面可见
+                            loadMoreView.setVisibility(View.VISIBLE);
+
+                            page ++;
+
+                            requestChoiceData(page);
+                        }
+                    }
+                }
+            });
+
+
+            listView = (ListView)rootView.findViewById(R.id.choice_listView);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+                {
+                    Log.d("lzyssg", "onItemClick: "+i+"uuu"+l);
+                }
+            });
 
             choiceArrayAdapter= new ChoiceArrayAdapter(getActivity(),R.layout.choiceitem_layout,arrayChoice);
 
@@ -287,7 +363,11 @@ public class ChoiceFragment extends Fragment {
                 @Override
                 public void onRefresh()
                 {
-                    requestChoiceData(0);
+                    isLoadmore = false;
+
+                    page = 0;
+
+                    requestChoiceData(page);
                 }
             });
 
@@ -306,6 +386,12 @@ public class ChoiceFragment extends Fragment {
                     }
                 }
             });
+
+            loadMoreView = (View)View.inflate(getActivity(),R.layout.choice_footerlayout,null);
+
+            listView.addFooterView(loadMoreView);
+
+            loadMoreView.setVisibility(View.GONE);
 
             this.requestChoiceData(0);
 
@@ -346,6 +432,18 @@ public class ChoiceFragment extends Fragment {
         mListener = null;
     }
 
+    public void loadComplete(boolean isRemove)
+    {
+        loadMoreView.setVisibility(View.VISIBLE);//设置刷新界面不可见
+
+        isLoadmore = false;//设置正在刷新标志位false
+
+        if (!hasNext)
+        {
+            listView.removeFooterView(loadMoreView);
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -360,4 +458,6 @@ public class ChoiceFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }
