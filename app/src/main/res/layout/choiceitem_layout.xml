@@ -2,34 +2,49 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:minHeight="200dp"
+    android:layout_height="202dp"
+    android:minHeight="202dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/choieitem_content">
 
     <ImageView
         android:id="@+id/choiceitem_cover"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="fitXY"
+        android:layout_height="201dp"
         android:background="@mipmap/choiceitem_cover"
-        app:layout_constraintStart_toStartOf="@id/choieitem_content"
-        app:layout_constraintEnd_toEndOf="@id/choieitem_content"
-        app:layout_constraintTop_toTopOf="@id/choieitem_content"
-        app:layout_constraintBottom_toBottomOf="@id/choieitem_content"
-        />
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/choiceitem_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:text="闭眼啊闭眼啊"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@id/choieitem_content"
         app:layout_constraintEnd_toEndOf="@id/choieitem_content"
-        app:layout_constraintTop_toTopOf="@id/choieitem_content"
-        app:layout_constraintBottom_toBottomOf="@id/choieitem_content"
+        app:layout_constraintStart_toStartOf="@id/choieitem_content"
+        app:layout_constraintTop_toTopOf="@id/choieitem_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/choiceitem_desctext"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/choiceitem_text"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         />
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/choiceitem_cover"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>

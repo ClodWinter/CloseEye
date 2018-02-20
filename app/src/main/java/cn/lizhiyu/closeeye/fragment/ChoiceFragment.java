@@ -2,6 +2,7 @@ package cn.lizhiyu.closeeye.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -41,6 +42,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 import cn.jiguang.net.HttpRequest;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
+import cn.lizhiyu.closeeye.activity.ChoiceDetailActivity;
+import cn.lizhiyu.closeeye.activity.MainActivity;
 import cn.lizhiyu.closeeye.adapter.AutoBannerPagerAdapter;
 import cn.lizhiyu.closeeye.adapter.ChoiceArrayAdapter;
 import cn.lizhiyu.closeeye.model.ChoiceItemModel;
@@ -63,7 +66,7 @@ public class ChoiceFragment extends Fragment{
 
     private NestedScrollView nestedScrollView;
 
-    private int page = 0;
+    private int page = 1;
 
     private boolean isLoadmore = false;
 
@@ -326,6 +329,12 @@ public class ChoiceFragment extends Fragment{
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
                 {
                     Log.d("lzyssg", "onItemClick: "+i+"uuu"+l);
+
+                    Intent intent = new Intent(getActivity(), ChoiceDetailActivity.class);
+
+                    startActivity(intent);
+
+                    getActivity().overridePendingTransition(R.xml.choice_animation_in,R.xml.choice_animation_none);
                 }
             });
 
@@ -365,7 +374,7 @@ public class ChoiceFragment extends Fragment{
                 {
                     isLoadmore = false;
 
-                    page = 0;
+                    page = 1;
 
                     requestChoiceData(page);
                 }
