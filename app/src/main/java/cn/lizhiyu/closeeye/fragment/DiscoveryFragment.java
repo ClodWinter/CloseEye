@@ -1,19 +1,33 @@
 package cn.lizhiyu.closeeye.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import cn.lizhiyu.closeeye.CustomView.ZYImageView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.DiscArrayAdapter;
+import cn.lizhiyu.closeeye.model.DiscItemModel;
+import cn.lizhiyu.closeeye.request.BaseHttpRequest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,7 +49,41 @@ public class DiscoveryFragment extends Fragment {
 
     private View rootView;
 
-    private ArrayList arrayDisc;
+    private boolean hasNext;
+
+    private boolean isLoadMore = false;
+
+    private DiscArrayAdapter discArrayAdapter;
+
+    private ArrayList arrayDisc = new ArrayList();
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case 200:
+                {
+                    discArrayAdapter.notifyDataSetChanged();
+
+                    break;
+                }
+
+                case -1:
+                {
+                    Toast.makeText(getActivity(),"请求失败,请稍后重试.",Toast.LENGTH_LONG).show();
+
+                    break;
+                }
+
+                default:
+                    break;
+            }
+        }
+    };
 
     private OnFragmentInteractionListener mListener;
 
@@ -79,11 +127,70 @@ public class DiscoveryFragment extends Fragment {
 
         ListView listView = (ListView)rootView.findViewById(R.id.disc_listView);
 
-        DiscArrayAdapter arrayAdapter = new DiscArrayAdapter(getActivity(),R.layout.disc_list_item,new ArrayList());
+        discArrayAdapter = new DiscArrayAdapter(getActivity(),R.layout.disc_list_item,arrayDisc);
 
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(discArrayAdapter);
+
+        requestData(1);
 
         return rootView;
+    }
+
+    public void requestData(int page)
+    {
+        final BaseHttpRequest request = new BaseHttpRequest();
+
+        final Map<String,String> param = new HashMap<>();
+
+        param.put("apikey","IdFJsLGzIdTvxCAs362MupngfDRXQACCk71LxXBOSDHbzG9Wv5AHN0qEYhWQh9HV");
+
+        param.put("catid","2509");
+
+        param.put("pageToken",""+page);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+                try {
+                    request.sendGetRequest("http://120.76.205.241:8000/post/duowan?", param, new BaseHttpRequest.HttpRequestCallBack() {
+                        @Override
+                        public void onRespose(String response, int httpTag)
+                        {
+
+                            Message message = new Message();
+
+                            if (httpTag == 200)
+                            {
+                                JSONObject jsonObject = JSONObject.parseObject(response);
+
+                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                                hasNext = jsonObject.getBoolean("hasNext");
+
+                                if (!isLoadMore)
+                                {
+                                    arrayDisc.clear();
+                                }
+
+                                arrayDisc.addAll(JSON.parseArray(jsonArray.toJSONString(), DiscItemModel.class));
+
+                                message.what = 200;
+                            }else
+                            {
+                                message.what = -1;
+                            }
+
+                            handler.sendMessage(message);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

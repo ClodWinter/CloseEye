@@ -10,37 +10,31 @@ public class DiscItemModel
 {
     private boolean hasNext;
 
-    private String retcode;
+    private int viewCount;
 
-    private String appCode;
+    private String title;
 
-    private String dataType;
+    private String url;
 
-    private String pageToken;
-
-    private List data;
-
-    private String commenterId;
-
-    private String commenterScreenName;
-
-    private String publishDateStr;
-
-    private int publishDate;
+    private List imageUrls;
 
     private int likeCount;
 
     private int commentCount;
 
-    private String url;
+    private String id;
 
-    private String referId;
+    private String posterId;
+
+    private String posterScreenName;
 
     private String content;
 
-    private List imageUrls;
+    private double publishDate;
 
-    private String id;
+    private int shareCount;
+
+    private String publishDateStr;
 
     public boolean isHasNext() {
         return hasNext;
@@ -50,76 +44,36 @@ public class DiscItemModel
         this.hasNext = hasNext;
     }
 
-    public String getRetcode() {
-        return retcode;
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public void setRetcode(String retcode) {
-        this.retcode = retcode;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
     }
 
-    public String getAppCode() {
-        return appCode;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAppCode(String appCode) {
-        this.appCode = appCode;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDataType() {
-        return dataType;
+    public String getUrl() {
+        return url;
     }
 
-    public void setDataType(String dataType) {
-        this.dataType = dataType;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getPageToken() {
-        return pageToken;
+    public List getImageUrls() {
+        return imageUrls;
     }
 
-    public void setPageToken(String pageToken) {
-        this.pageToken = pageToken;
-    }
-
-    public List getData() {
-        return data;
-    }
-
-    public void setData(List data) {
-        this.data = data;
-    }
-
-    public String getCommenterId() {
-        return commenterId;
-    }
-
-    public void setCommenterId(String commenterId) {
-        this.commenterId = commenterId;
-    }
-
-    public String getCommenterScreenName() {
-        return commenterScreenName;
-    }
-
-    public void setCommenterScreenName(String commenterScreenName) {
-        this.commenterScreenName = commenterScreenName;
-    }
-
-    public String getPublishDateStr() {
-        return publishDateStr;
-    }
-
-    public void setPublishDateStr(String publishDateStr) {
-        this.publishDateStr = publishDateStr;
-    }
-
-    public int getPublishDate() {
-        return publishDate;
-    }
-
-    public void setPublishDate(int publishDate) {
-        this.publishDate = publishDate;
+    public void setImageUrls(List imagesUrls) {
+        this.imageUrls = imagesUrls;
     }
 
     public int getLikeCount() {
@@ -138,20 +92,28 @@ public class DiscItemModel
         this.commentCount = commentCount;
     }
 
-    public String getUrl() {
-        return url;
+    public String getId() {
+        return id;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getReferId() {
-        return referId;
+    public String getPosterId() {
+        return posterId;
     }
 
-    public void setReferId(String referId) {
-        this.referId = referId;
+    public void setPosterId(String posterId) {
+        this.posterId = posterId;
+    }
+
+    public String getPosterScreenName() {
+        return posterScreenName;
+    }
+
+    public void setPosterScreenName(String posterScreenName) {
+        this.posterScreenName = posterScreenName;
     }
 
     public String getContent() {
@@ -162,19 +124,27 @@ public class DiscItemModel
         this.content = content;
     }
 
-    public List getImageUrls() {
-        return imageUrls;
+    public double getPublishDate() {
+        return publishDate;
     }
 
-    public void setImageUrls(List imageUrls) {
-        this.imageUrls = imageUrls;
+    public void setPublishDate(double publishDate) {
+        this.publishDate = publishDate;
     }
 
-    public String getId() {
-        return id;
+    public int getShareCount() {
+        return shareCount;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setShareCount(int shareCount) {
+        this.shareCount = shareCount;
+    }
+
+    public String getPublishDateStr() {
+        return publishDateStr;
+    }
+
+    public void setPublishDateStr(String publishDateStr) {
+        this.publishDateStr = publishDateStr;
     }
 }
