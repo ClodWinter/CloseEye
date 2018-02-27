@@ -1,12 +1,13 @@
 package cn.lizhiyu.closeeye.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by king on 2018/2/24.
  */
 
-public class DiscItemModel
+public class DiscItemModel implements Serializable
 {
     private boolean hasNext;
 

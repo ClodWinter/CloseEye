@@ -2,6 +2,7 @@ package cn.lizhiyu.closeeye.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +25,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +33,7 @@ import java.util.Map;
 
 import cn.lizhiyu.closeeye.CustomView.ZYImageView;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.activity.DiscDetailActivity;
 import cn.lizhiyu.closeeye.adapter.DiscArrayAdapter;
 import cn.lizhiyu.closeeye.model.DiscItemModel;
 import cn.lizhiyu.closeeye.request.BaseHttpRequest;
@@ -193,6 +197,26 @@ public class DiscoveryFragment extends Fragment {
             listView.addFooterView(loadMoreView);
 
             loadMoreView.setVisibility(View.GONE);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+                {
+                    DiscItemModel model = (DiscItemModel)arrayDisc.get(i);
+
+                    DiscDetailActivity activity = new DiscDetailActivity();
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("Obj", (Serializable)model);
+
+                    Intent intent = new Intent(getActivity(),DiscDetailActivity.class);
+
+                    intent.putExtra("model",bundle);
+
+                    startActivity(intent);
+                }
+            });
 
             listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                 @Override
