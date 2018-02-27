@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="268dp"
+    android:layout_height="340dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <cn.lizhiyu.closeeye.CustomView.ZYImageView
@@ -53,32 +53,26 @@
         android:layout_marginRight="15dp"
         />
 
-    <LinearLayout
+    <ImageView
         android:layout_width="0dp"
-        android:layout_height="140dp"
-        android:visibility="gone"
-        android:id="@+id/discitem_imageslayout"
+        android:layout_height="200dp"
+        android:id="@+id/discitem_oneimageslayout"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/discitem_title"
         app:layout_constraintLeft_toLeftOf="@id/discitem_usericon"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
-        android:background="@color/lightgreen">
+        android:background="@color/gray">
 
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/disc_item_test"/>
+    </ImageView>
 
-    </LinearLayout>
-    
     <Button
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:id="@+id/discitem_sharebtn"
         android:background="@drawable/disc_item_share"
-        app:layout_constraintTop_toBottomOf="@id/discitem_imageslayout"
+        app:layout_constraintTop_toBottomOf="@id/discitem_oneimageslayout"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
@@ -142,7 +136,7 @@
         app:layout_constraintBottom_toBottomOf="@id/discitem_praisebtn"
         android:layout_marginLeft="5dp"
         />
-    
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="6dp"

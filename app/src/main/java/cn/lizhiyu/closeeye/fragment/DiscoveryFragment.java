@@ -3,14 +3,18 @@ package cn.lizhiyu.closeeye.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,11 +54,23 @@ public class DiscoveryFragment extends Fragment {
 
     private View rootView;
 
+    private int last_index;
+
+    private int total_index;
+
     private boolean hasNext;
 
     private boolean isLoadMore = false;
 
     private DiscArrayAdapter discArrayAdapter;
+
+    private SwipeRefreshLayout swipeRefreshLayout;
+
+    private View loadMoreView;
+
+    private ListView listView;
+
+    private int page = 1;
 
     private ArrayList arrayDisc = new ArrayList();
 
@@ -82,6 +99,10 @@ public class DiscoveryFragment extends Fragment {
                 default:
                     break;
             }
+
+            swipeRefreshLayout.setRefreshing(false);
+
+            loadComplete(hasNext);
         }
     };
 
@@ -118,20 +139,99 @@ public class DiscoveryFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        rootView = (View)inflater.inflate(R.layout.fragment_discovery,container,false);
+        if (rootView == null)
+        {
+            try{
+                Object win = getActivity().getWindow();
+                Class<?> cls = win.getClass();
+                Method method = cls.getDeclaredMethod("setStatusBarIconDark",boolean.class);
+                method.invoke(win,R.color.darkgray);
+            } catch(Exception e) {
+                Log.v("ff", "statusBarIconDark,e=" + e);
+            }
 
-        ListView listView = (ListView)rootView.findViewById(R.id.disc_listView);
+            rootView = (View)inflater.inflate(R.layout.fragment_discovery,container,false);
 
-        discArrayAdapter = new DiscArrayAdapter(getActivity(),R.layout.disc_list_item,arrayDisc);
+            listView = (ListView)rootView.findViewById(R.id.disc_listView);
 
-        listView.setAdapter(discArrayAdapter);
+            discArrayAdapter = new DiscArrayAdapter(getActivity(),R.layout.disc_list_item,arrayDisc);
 
-        requestData(1);
+            listView.setAdapter(discArrayAdapter);
+
+            requestData(page);
+
+            swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.disc_swiperefresh);
+
+            swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+
+            swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
+
+            swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.yello);
+
+            swipeRefreshLayout.setProgressViewEndTarget(true,200);
+
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh()
+                {
+                    isLoadMore = false;
+
+                    page = 1;
+
+                    requestData(page);
+                }
+            });
+
+            loadMoreView = (View)View.inflate(getActivity(),R.layout.choice_footerlayout,null);
+
+            listView.addFooterView(loadMoreView);
+
+            loadMoreView.setVisibility(View.GONE);
+
+            listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(AbsListView absListView, int i) {
+                    if(last_index == total_index && (i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE))
+                    {
+                        //表示此时需要显示刷新视图界面进行新数据的加载(要等滑动停止)
+                        if(!isLoadMore)
+                        {
+                            //不处于加载状态的话对其进行加载
+                            isLoadMore = true;
+                            //设置刷新界面可见
+                            loadMoreView.setVisibility(View.VISIBLE);
+
+                            page++;
+
+                            requestData(page);
+                        }
+                    }
+                }
+
+                @Override
+                public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                    last_index = i+i1;
+                    total_index = i2;
+                    System.out.println("last:  "+last_index);
+                    System.out.println("total:  "+total_index);
+                }
+            });
+        }
+        else
+        {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+
+            if (parent != null)
+            {
+                parent.removeView(rootView);
+            }
+        }
 
         return rootView;
     }
@@ -191,6 +291,18 @@ public class DiscoveryFragment extends Fragment {
         });
 
         thread.start();
+    }
+
+    public void loadComplete(boolean isRemove)
+    {
+        loadMoreView.setVisibility(View.VISIBLE);//设置刷新界面不可见
+
+        isLoadMore = false;//设置正在刷新标志位false
+
+        if (!hasNext)
+        {
+            listView.removeFooterView(loadMoreView);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

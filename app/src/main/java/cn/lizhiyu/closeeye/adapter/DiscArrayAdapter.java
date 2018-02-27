@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,9 +65,75 @@ public class DiscArrayAdapter extends ArrayAdapter
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.disc_list_item,null);
-
         DiscItemModel model = (DiscItemModel) datas.get(position);
+
+        int imagesCount = model.getImageUrls().size();
+
+        if (imagesCount == 1)
+        {
+            return createOneItemView(model);
+        }else
+        {
+            return createMoreItemView(model);
+        }
+    }
+
+    public View createOneItemView(DiscItemModel model)
+    {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.disc_item_oneitem_layout,null);
+
+        ImageView imageViewIcon = (ImageView)view.findViewById(R.id.discitem_usericon);
+
+        TextView textViewName = (TextView)view.findViewById(R.id.discitem_username);
+
+        TextView textViewDate = (TextView)view.findViewById(R.id.discitem_date);
+
+        TextView textViewTitle = (TextView)view.findViewById(R.id.discitem_title);
+
+        ImageView imageViewOne = (ImageView) view.findViewById(R.id.discitem_oneimageslayout);
+
+        Button buttonShare = (Button)view.findViewById(R.id.discitem_sharebtn);
+
+        Button buttonReplay = (Button)view.findViewById(R.id.discitem_replaybtn);
+
+        Button buttonPraise = (Button)view.findViewById(R.id.discitem_praisebtn);
+
+        TextView textViewShareCount = (TextView)view.findViewById(R.id.discitem_sharecount);
+
+        TextView textViewReplayCount = (TextView)view.findViewById(R.id.discitem_replaycount);
+
+        TextView textViewPraiseCount = (TextView)view.findViewById(R.id.discitem_praisecount);
+
+        textViewName.setText(model.getPosterScreenName());
+
+        textViewDate.setText(model.getPublishDateStr());
+
+        textViewTitle.setText(model.getTitle());
+
+        Random rand = new Random();
+
+        int i = rand.nextInt(10);
+
+        String imageName = "user_icon_"+ i;
+
+        imageViewIcon.setImageResource(getResource(imageName));
+
+        if (model.getImageUrls() != null && model.getImageUrls().size()>0)
+        {
+            String url = (String) model.getImageUrls().get(0);
+
+            imageViewOne.setScaleType(ImageView.ScaleType.FIT_XY);
+
+            Picasso.with(getContext()).load(url).into(imageViewOne);
+
+        }
+
+        return view;
+    }
+
+    public View createMoreItemView(DiscItemModel model)
+    {
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.disc_list_item,null);
 
         ImageView imageViewIcon = (ImageView)view.findViewById(R.id.discitem_usericon);
 
@@ -108,7 +175,7 @@ public class DiscArrayAdapter extends ArrayAdapter
         {
             linearLayout.setVisibility(View.VISIBLE);
 
-            int width = getContext().getResources().getDisplayMetrics().widthPixels;
+            int width = getContext().getResources().getDisplayMetrics().widthPixels-dp2px(getContext(),30);
 
             for (int j = 0; j < model.getImageUrls().size() ; j++)
             {
@@ -120,15 +187,15 @@ public class DiscArrayAdapter extends ArrayAdapter
 
                 Picasso.with(getContext()).load(url).into(imageView);
 
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((int) (width/3.0f),dp2px(getContext(),140));
+                LinearLayout.LayoutParams layoutParams;
 
-                layoutParams.leftMargin = 10;
+                layoutParams = new LinearLayout.LayoutParams((int) (width/3.0f),dp2px(getContext(),140));
+
+                layoutParams.rightMargin = 10;
 
                 imageView.setLayoutParams(layoutParams);
 
                 linearLayout.addView(imageView);
-
-                Log.d("lzyssg",url);
             }
 
         }else
