@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 
@@ -62,5 +63,9 @@ public class DiscDetailActivity extends AppCompatActivity
         WebView webView = (WebView) findViewById(R.id.disc_detail_webview);
 
         webView.loadUrl(model.getUrl());
+
+        WebSettings webSettings = webView.getSettings();
+
+        webSettings.setUseWideViewPort(true);
     }
 }

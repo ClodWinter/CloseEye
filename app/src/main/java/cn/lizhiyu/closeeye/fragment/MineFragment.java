@@ -99,17 +99,13 @@ public class MineFragment extends Fragment
     {
         listModel = new ArrayList<MineItemModel>();
 
-        MineItemModel modelCollect = createModel(R.mipmap.home,"我的关注");
+        MineItemModel modelCollect = createModel(R.drawable.mine_history,"历史记录");
 
-        MineItemModel modelMessage = createModel(R.mipmap.home,"我的消息");
+        MineItemModel modelMessage = createModel(R.drawable.mine_feedback,"意见反馈");
 
-        MineItemModel modelCache = createModel(R.mipmap.home,"清除缓存");
+        MineItemModel modelCache = createModel(R.drawable.mine_share_app,"分享闭眼");
 
-        MineItemModel modelPush = createModel(R.mipmap.home,"通知设置");
-
-        MineItemModel modelFeedback= createModel(R.mipmap.home,"意见反馈");
-
-        MineItemModel modelAbout= createModel(R.mipmap.home,"关于我们");
+        MineItemModel modelPush = createModel(R.drawable.mine_setting,"设置与帮助");
 
         listModel.add(modelCollect);
 
@@ -118,15 +114,6 @@ public class MineFragment extends Fragment
         listModel.add(modelCache);
 
         listModel.add(modelPush);
-
-        listModel.add(modelFeedback);
-
-        listModel.add(modelAbout);
-
-        listModel.add(modelCollect);
-
-        listModel.add(modelCollect);
-
     }
 
     private ArrayList<MineRecylerModel> getMineHeadRecyclerList()
@@ -156,13 +143,13 @@ public class MineFragment extends Fragment
     {
         ArrayList list = new ArrayList<MineMessageModel>();
 
-        MineMessageModel modelReply = this.createMineMessageModel(R.mipmap.place,"回复我的",1);
+        MineMessageModel modelReply = this.createMineMessageModel(R.drawable.mine_download,"下载记录",1);
 
         MineMessageModel modelNoti = this.createMineMessageModel(R.mipmap.place,"@我的",1);
 
-        MineMessageModel modelMineMessage = this.createMineMessageModel(R.mipmap.place,"私信",1);
+        MineMessageModel modelMineMessage = this.createMineMessageModel(R.drawable.mine_mail,"私信",1);
 
-        MineMessageModel modelSysMessage = this.createMineMessageModel(R.mipmap.place,"系统通知",1);
+        MineMessageModel modelSysMessage = this.createMineMessageModel(R.drawable.mine_notifications,"系统通知",1);
 
         list.add(modelReply);
 

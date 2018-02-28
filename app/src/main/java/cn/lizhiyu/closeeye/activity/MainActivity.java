@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import cn.jpush.android.api.JPushInterface;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.mob.MobSDK;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
+        MobSDK.init(this);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
