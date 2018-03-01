@@ -145,7 +145,7 @@ public class MineFragment extends Fragment
 
         MineMessageModel modelReply = this.createMineMessageModel(R.drawable.mine_download,"下载记录",1);
 
-        MineMessageModel modelNoti = this.createMineMessageModel(R.mipmap.place,"@我的",1);
+        MineMessageModel modelNoti = this.createMineMessageModel(R.drawable.mine_manuscript,"我的投稿",1);
 
         MineMessageModel modelMineMessage = this.createMineMessageModel(R.drawable.mine_mail,"私信",1);
 

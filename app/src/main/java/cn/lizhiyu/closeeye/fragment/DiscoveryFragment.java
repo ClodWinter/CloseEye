@@ -31,9 +31,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.lizhiyu.closeeye.CustomView.ZYImageView;
+import cn.lizhiyu.closeeye.Animations.DiscListHeadTrans;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
 import cn.lizhiyu.closeeye.activity.DiscDetailActivity;
+import cn.lizhiyu.closeeye.adapter.AutoBannerPagerAdapter;
 import cn.lizhiyu.closeeye.adapter.DiscArrayAdapter;
 import cn.lizhiyu.closeeye.model.DiscItemModel;
 import cn.lizhiyu.closeeye.request.BaseHttpRequest;
@@ -79,6 +81,14 @@ public class DiscoveryFragment extends Fragment {
 
     private ArrayList arrayDisc = new ArrayList();
 
+    private View headView;
+
+    private AutoBannerPagerAdapter autoBannerPagerAdapter;
+
+    private AutoBannerViewPager autoBannerViewPager;
+
+    private ArrayList arrayListBanner = new ArrayList();
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler()
     {
@@ -90,6 +100,10 @@ public class DiscoveryFragment extends Fragment {
                 case 200:
                 {
                     discArrayAdapter.notifyDataSetChanged();
+
+                    autoBannerPagerAdapter.notifyDataSetChanged();
+
+                    autoBannerViewPager.start();
 
                     break;
                 }
@@ -238,6 +252,27 @@ public class DiscoveryFragment extends Fragment {
                 }
             });
 
+            headView = inflater.inflate(R.layout.disc_list_headview,null);
+
+            autoBannerViewPager = headView.findViewById(R.id.disc_listHead);
+
+            autoBannerPagerAdapter = new AutoBannerPagerAdapter(getContext());
+
+            autoBannerPagerAdapter.updateDatas(arrayListBanner);
+
+            autoBannerViewPager.setAdapter(autoBannerPagerAdapter);
+
+            listView.addHeaderView(headView);
+
+            autoBannerViewPager.setPageTransformer(false,new DiscListHeadTrans(autoBannerViewPager));
+
+            autoBannerViewPager.callBack = new AutoBannerViewPager.scrollCallBack() {
+                @Override
+                public void scroll(int page) {
+
+                }
+            };
+
             listView.setOnScrollListener(new AbsListView.OnScrollListener() {
                 @Override
                 public void onScrollStateChanged(AbsListView absListView, int i) {
@@ -314,8 +349,18 @@ public class DiscoveryFragment extends Fragment {
 
                                 if (!isLoadMore)
                                 {
+                                    arrayListBanner.clear();
+
                                     arrayDisc.clear();
                                 }
+
+                                arrayListBanner.add(R.mipmap.choice_topview_bg);
+
+                                arrayListBanner.add(R.mipmap.choiceitem_cover);
+
+                                arrayListBanner.add(R.mipmap.launch);
+
+                                arrayListBanner.add(R.mipmap.mine_headbg);
 
                                 arrayDisc.addAll(JSON.parseArray(jsonArray.toJSONString(), DiscItemModel.class));
 
