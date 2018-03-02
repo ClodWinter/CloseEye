@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -253,6 +254,8 @@ public class DiscoveryFragment extends Fragment {
             });
 
             headView = inflater.inflate(R.layout.disc_list_headview,null);
+
+            RelativeLayout relativeLayoutHead = headView.findViewById(R.id)
 
             autoBannerViewPager = headView.findViewById(R.id.disc_listHead);
 
