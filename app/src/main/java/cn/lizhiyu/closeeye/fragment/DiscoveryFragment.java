@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
@@ -33,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.lizhiyu.closeeye.Animations.DiscListHeadTrans;
+import cn.lizhiyu.closeeye.CustomView.DiscHeadItemView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
 import cn.lizhiyu.closeeye.activity.DiscDetailActivity;
@@ -255,7 +255,7 @@ public class DiscoveryFragment extends Fragment {
 
             headView = inflater.inflate(R.layout.disc_list_headview,null);
 
-            RelativeLayout relativeLayoutHead = headView.findViewById(R.id)
+            createHeadItem();
 
             autoBannerViewPager = headView.findViewById(R.id.disc_listHead);
 
@@ -316,6 +316,25 @@ public class DiscoveryFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    public void createHeadItem()
+    {
+        DiscHeadItemView discHeadItemViewRank = headView.findViewById(R.id.disc_head_rank);
+
+        DiscHeadItemView discHeadItemViewHot = headView.findViewById(R.id.disc_head_hot);
+
+        DiscHeadItemView discHeadItemViewKind = headView.findViewById(R.id.disc_head_kinds);
+
+        DiscHeadItemView discHeadItemViewLike = headView.findViewById(R.id.disc_head_like);
+
+        discHeadItemViewRank.imageView.setBackgroundResource(R.drawable.rank);
+
+        discHeadItemViewHot.imageView.setBackgroundResource(R.drawable.hot);
+
+        discHeadItemViewKind.imageView.setBackgroundResource(R.drawable.kinds);
+
+        discHeadItemViewLike.imageView.setBackgroundResource(R.drawable.like);
     }
 
     public void requestData(int page)

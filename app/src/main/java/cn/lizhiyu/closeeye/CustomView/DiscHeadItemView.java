@@ -15,21 +15,21 @@ import cn.lizhiyu.closeeye.R;
  * Created by king on 2018/3/2.
  */
 
-public class MineItemView extends ConstraintLayout
+public class DiscHeadItemView extends ConstraintLayout
 {
     public ImageView imageView;
 
     public TextView textView;
 
-    public MineItemView(Context context)
+
+    public DiscHeadItemView(Context context, AttributeSet attrs)
     {
-        super(context);
+        super(context, attrs);
 
-        LayoutInflater.from(context).inflate(R.layout.mineitem_layout,this);
+        LayoutInflater.from(context).inflate(R.layout.disc_head_item,this);
 
-        imageView = findViewById(R.id.mineitem_icon);
+       imageView = findViewById(R.id.disc_headitem_icon);
 
-        textView = findViewById(R.id.mineitem_text);
+        textView = findViewById(R.id.disc_headitem_title);
     }
-
 }
