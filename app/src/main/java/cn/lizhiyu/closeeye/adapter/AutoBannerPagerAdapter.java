@@ -67,4 +67,5 @@ public class AutoBannerPagerAdapter extends PagerAdapter
 
         return imageView;
     }
+
 }

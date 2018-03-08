@@ -1,6 +1,6 @@
 package cn.lizhiyu.closeeye.activity;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
             FragmentTransaction transaction = fm.beginTransaction();
 
-            Fragment fragment = (Fragment) listFragments.get(position);
+            Fragment fragment = (Fragment)listFragments.get(position);
 
             if (fragment.isAdded())
             {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
             FragmentTransaction transaction = fm.beginTransaction();
 
-            transaction.remove(fragment);
+            FragmentTransaction remove = transaction.remove(fragment);
 
             transaction.commitAllowingStateLoss();
         }

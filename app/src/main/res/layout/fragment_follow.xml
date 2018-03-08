@@ -1,14 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cyan"
     tools:context="cn.lizhiyu.closeeye.fragment.FollowFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#f9f9f9"
+        android:orientation="horizontal"
+        >
+
+        <cn.lizhiyu.closeeye.CustomView.ZYTabsView
+            android:layout_width="160dp"
+            android:layout_height="34dp"
+            android:id="@+id/follow_tabs"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"></cn.lizhiyu.closeeye.CustomView.ZYTabsView>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/follow_viewPager"
+        android:background="@color/cyan">
 
-</FrameLayout>
+    </android.support.v4.view.ViewPager>
+
+
+</LinearLayout>
