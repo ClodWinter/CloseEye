@@ -2,7 +2,9 @@ package cn.lizhiyu.closeeye.fragment;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
@@ -75,6 +77,7 @@ public class FollowFragment extends Fragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,6 +93,24 @@ public class FollowFragment extends Fragment {
             public void onClick(View view, int position)
             {
                 viewPager.setCurrentItem(position);
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+                zyTabsView.setCurrentTab(position,true);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
@@ -114,7 +135,6 @@ public class FollowFragment extends Fragment {
 
         viewPager.setAdapter(followFragmentAdapter);
 
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

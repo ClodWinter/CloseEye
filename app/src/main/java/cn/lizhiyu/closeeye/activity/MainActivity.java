@@ -1,6 +1,6 @@
 package cn.lizhiyu.closeeye.activity;
 
-import android.support.v4.app.Fragment;;
+import android.support.v4.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.graphics.Color;
@@ -23,13 +23,17 @@ import java.util.List;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.fragment.ChoiceFragment;
 import cn.lizhiyu.closeeye.fragment.DiscoveryFragment;
+import cn.lizhiyu.closeeye.fragment.FollowDynamicFragment;
 import cn.lizhiyu.closeeye.fragment.FollowFragment;
+import cn.lizhiyu.closeeye.fragment.FollowNearFragment;
 import cn.lizhiyu.closeeye.fragment.MineFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener,ChoiceFragment.OnFragmentInteractionListener
         ,DiscoveryFragment.OnFragmentInteractionListener
         ,FollowFragment.OnFragmentInteractionListener
-        ,MineFragment.OnFragmentInteractionListener{
+        ,MineFragment.OnFragmentInteractionListener
+        ,FollowNearFragment.OnFragmentInteractionListener
+        ,FollowDynamicFragment.OnFragmentInteractionListener{
 
     private BottomNavigationBar bottomNav;
 
@@ -115,11 +119,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     private void setDefaultFragment()
     {
-        FragmentManager fm = getFragmentManager();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
 
         Fragment fragment = (Fragment) listFragments.get(0);
 
-        FragmentTransaction transaction = fm.beginTransaction();
+        android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
 
         transaction.replace(R.id.home_frameLayout,fragment);
 
@@ -131,9 +135,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     {
         if (position<listFragments.size())
         {
-            FragmentManager fm = getFragmentManager();
+            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
 
-            FragmentTransaction transaction = fm.beginTransaction();
+            android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
 
             Fragment fragment = (Fragment)listFragments.get(position);
 
@@ -156,11 +160,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         {
             Fragment fragment = (Fragment)listFragments.get(position);
 
-            FragmentManager fm = getFragmentManager();
+            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
 
-            FragmentTransaction transaction = fm.beginTransaction();
+            android.support.v4.app.FragmentTransaction transaction = fm.beginTransaction();
 
-            FragmentTransaction remove = transaction.remove(fragment);
+            transaction.remove(fragment);
 
             transaction.commitAllowingStateLoss();
         }
