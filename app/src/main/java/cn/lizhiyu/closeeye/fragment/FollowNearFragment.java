@@ -4,11 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+import cn.lizhiyu.closeeye.CustomClass.FollowCardCallback;
+import cn.lizhiyu.closeeye.CustomClass.OverLayCardLayoutManager;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.adapter.FollowCardAdapter;
+import cn.lizhiyu.closeeye.model.CardConfig;
+import cn.lizhiyu.closeeye.model.FollowCardItemModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +37,12 @@ public class FollowNearFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView recyclerView;
+
+    private ArrayList arrayListCards = new ArrayList();
+
+    private View rootView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,9 +79,39 @@ public class FollowNearFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follow_near, container, false);
+        CardConfig.initConfig(getContext());
+
+        for (int i = 0; i < 10; i++)
+        {
+            FollowCardItemModel model = new FollowCardItemModel();
+
+            model.setResouce(R.mipmap.choice_topview_bg);
+
+            arrayListCards.add(model);
+        }
+
+        rootView = inflater.inflate(R.layout.fragment_follow_near, container, false);
+
+        recyclerView = rootView.findViewById(R.id.follow_near_recycler);
+
+        OverLayCardLayoutManager overLayCardLayoutManager = new OverLayCardLayoutManager();
+
+        FollowCardAdapter followCardAdapter = new FollowCardAdapter(arrayListCards);
+
+        recyclerView.setLayoutManager(overLayCardLayoutManager);
+
+        recyclerView.setAdapter(followCardAdapter);
+
+        ItemTouchHelper.SimpleCallback callback = new FollowCardCallback(0,ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, recyclerView,followCardAdapter,arrayListCards);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
