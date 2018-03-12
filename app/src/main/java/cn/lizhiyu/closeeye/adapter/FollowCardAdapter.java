@@ -27,7 +27,7 @@ public class FollowCardAdapter extends AbstractRecyclerAdapter<FollowCardItemMod
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position, FollowCardItemModel item)
     {
-        holder.imageView.setBackgroundResource(R.mipmap.choice_topview_bg);
+        holder.imageView.setBackgroundResource(R.mipmap.sister);
     }
 
     @Override

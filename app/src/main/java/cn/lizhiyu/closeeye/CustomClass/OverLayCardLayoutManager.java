@@ -1,7 +1,9 @@
 package cn.lizhiyu.closeeye.CustomClass;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 
 import cn.lizhiyu.closeeye.model.CardConfig;
 
@@ -11,12 +13,6 @@ import cn.lizhiyu.closeeye.model.CardConfig;
 
 public class OverLayCardLayoutManager extends RecyclerView.LayoutManager
 {
-    int MAX_SHOW_COUNT = 6;
-
-    float SCALE_GAP = 0.05f;
-
-    int TRANS_Y_GAP = 7;
-
     public OverLayCardLayoutManager()
     {
 
@@ -24,13 +20,12 @@ public class OverLayCardLayoutManager extends RecyclerView.LayoutManager
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-        return null;
+        return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state)
     {
-
         detachAndScrapAttachedViews(recycler);
         int itemCount = getItemCount();
         if (itemCount < 1) {

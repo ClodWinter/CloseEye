@@ -80,41 +80,54 @@ public class FollowFragment extends Fragment {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_follow,null);
+                             Bundle savedInstanceState)
+    {
 
-        zyTabsView = (ZYTabsView)rootView.findViewById(R.id.follow_tabs);
+        if (rootView == null)
+        {
+            rootView = inflater.inflate(R.layout.fragment_follow,null);
 
-        viewPager = rootView.findViewById(R.id.follow_viewPager);
+            zyTabsView = (ZYTabsView)rootView.findViewById(R.id.follow_tabs);
 
-        zyTabsView.setOnTabsItemClickListener(new ZYTabsView.OnTabsItemClickListener() {
-            @Override
-            public void onClick(View view, int position)
+            viewPager = rootView.findViewById(R.id.follow_viewPager);
+
+            zyTabsView.setOnTabsItemClickListener(new ZYTabsView.OnTabsItemClickListener() {
+                @Override
+                public void onClick(View view, int position)
+                {
+                    viewPager.setCurrentItem(position);
+                }
+            });
+
+            viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position)
+                {
+                    zyTabsView.setCurrentTab(position,true);
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+
+                }
+            });
+
+            requestData();
+        }
+        else
+        {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+
+            if (parent != null)
             {
-                viewPager.setCurrentItem(position);
+                parent.removeView(rootView);
             }
-        });
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position)
-            {
-                zyTabsView.setCurrentTab(position,true);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        requestData();
+        }
 
         return rootView;
     }

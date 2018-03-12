@@ -81,35 +81,46 @@ public class FollowNearFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        CardConfig.initConfig(getContext());
-
-        for (int i = 0; i < 10; i++)
+        if (rootView == null)
         {
-            FollowCardItemModel model = new FollowCardItemModel();
+            CardConfig.initConfig(getContext());
 
-            model.setResouce(R.mipmap.choice_topview_bg);
+            for (int i = 0; i < 10; i++)
+            {
+                FollowCardItemModel model = new FollowCardItemModel();
 
-            arrayListCards.add(model);
+                model.setResouce(R.mipmap.choice_topview_bg);
+
+                arrayListCards.add(model);
+            }
+
+            rootView = inflater.inflate(R.layout.fragment_follow_near, container, false);
+
+            recyclerView = rootView.findViewById(R.id.follow_near_recycler);
+
+            OverLayCardLayoutManager overLayCardLayoutManager = new OverLayCardLayoutManager();
+
+            FollowCardAdapter followCardAdapter = new FollowCardAdapter(arrayListCards);
+
+            recyclerView.setLayoutManager(overLayCardLayoutManager);
+
+            recyclerView.setAdapter(followCardAdapter);
+
+            ItemTouchHelper.SimpleCallback callback = new FollowCardCallback(0,ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, recyclerView,followCardAdapter,arrayListCards);
+
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+
+            itemTouchHelper.attachToRecyclerView(recyclerView);
         }
+        else
+        {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
 
-        rootView = inflater.inflate(R.layout.fragment_follow_near, container, false);
-
-        recyclerView = rootView.findViewById(R.id.follow_near_recycler);
-
-        OverLayCardLayoutManager overLayCardLayoutManager = new OverLayCardLayoutManager();
-
-        FollowCardAdapter followCardAdapter = new FollowCardAdapter(arrayListCards);
-
-        recyclerView.setLayoutManager(overLayCardLayoutManager);
-
-        recyclerView.setAdapter(followCardAdapter);
-
-        ItemTouchHelper.SimpleCallback callback = new FollowCardCallback(0,ItemTouchHelper.DOWN | ItemTouchHelper.UP | ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, recyclerView,followCardAdapter,arrayListCards);
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
-
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+            if (parent != null)
+            {
+                parent.removeView(rootView);
+            }
+        }
 
         return rootView;
     }

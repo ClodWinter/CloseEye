@@ -3,8 +3,12 @@ package cn.lizhiyu.closeeye.CustomClass;
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import cn.lizhiyu.closeeye.model.CardConfig;
+
+import java.util.Collections;
 import java.util.List;
 
 import cn.lizhiyu.closeeye.model.FollowCardItemModel;
@@ -20,19 +24,15 @@ public class FollowCardCallback extends ItemTouchHelper.SimpleCallback
     protected List mDatas;
     protected RecyclerView.Adapter mAdapter;
 
-    //屏幕上最多同时显示几个Item
-    public static int MAX_SHOW_COUNT;
-    //每一级Scale相差0.05f，translationY相差7dp左右
-    public static float SCALE_GAP;
-    public static int TRANS_Y_GAP;
-
-
+    private int mHorizontalDeviation;
 
     public FollowCardCallback(int dragDirs, int swipeDirs,RecyclerView rv, RecyclerView.Adapter adapter, List datas) {
         super(dragDirs, swipeDirs);
         mRv = rv;
         mAdapter = adapter;
         mDatas = datas;
+
+        mHorizontalDeviation = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, mRv.getContext().getResources().getDisplayMetrics());
     }
 
 
@@ -43,8 +43,53 @@ public class FollowCardCallback extends ItemTouchHelper.SimpleCallback
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-        return false;
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target)
+    {
+        int fromPosition = viewHolder.getAdapterPosition();//得到拖动ViewHolder的position
+        int toPosition = target.getAdapterPosition();//得到目标ViewHolder的position
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(mDatas, i, i + 1);
+            }
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
+                Collections.swap(mDatas, i, i - 1);
+            }
+        }
+        mAdapter.notifyItemMoved(fromPosition, toPosition);
+        return true;
+    }
+
+    @Override
+    public float getSwipeEscapeVelocity(float defaultValue) {
+        View topView = mRv.getChildAt(mRv.getChildCount() - 1);
+        if (isTopViewCenterInHorizontal(topView)) {
+            return Float.MAX_VALUE;
+        }
+        return super.getSwipeEscapeVelocity(defaultValue);
+    }
+
+    @Override
+    public float getSwipeVelocityThreshold(float defaultValue) {
+
+        View topView = mRv.getChildAt(mRv.getChildCount() - 1);
+        if (isTopViewCenterInHorizontal(topView)) {
+            return Float.MAX_VALUE;
+        }
+        return super.getSwipeVelocityThreshold(defaultValue);
+    }
+
+    /**
+     * 返回TopView此时在水平方向上是否是居中的
+     *
+     * @return
+     */
+    public boolean isTopViewCenterInHorizontal(View topView) {
+        Log.d("TAG", "getSwipeThreshold() called with: viewHolder.itemView.getX() = [" + topView.getX() + "]");
+        Log.d("TAG", "getSwipeThreshold() called with:  viewHolder.itemView.getWidth() / 2  = [" + topView.getWidth() / 2 + "]");
+        Log.d("TAG", "getSwipeThreshold() called with:  mRv.getX() = [" + mRv.getX() + "]");
+        Log.d("TAG", "getSwipeThreshold() called with:  mRv.getWidth() / 2 = [" + mRv.getWidth() / 2 + "]");
+        return Math.abs(mRv.getWidth() / 2 - topView.getX() - (topView.getWidth() / 2)) < mHorizontalDeviation;
     }
 
     @Override
@@ -72,11 +117,11 @@ public class FollowCardCallback extends ItemTouchHelper.SimpleCallback
             //第几层,举例子，count =7， 最后一个TopView（6）是第0层，
             int level = childCount - i - 1;
             if (level > 0) {
-                child.setScaleX((float) (1 - SCALE_GAP * level + fraction * SCALE_GAP));
+                child.setScaleX((float) (1 - CardConfig.SCALE_GAP * level + fraction * CardConfig.SCALE_GAP));
 
-                if (level < MAX_SHOW_COUNT - 1) {
-                    child.setScaleY((float) (1 - SCALE_GAP * level + fraction * SCALE_GAP));
-                    child.setTranslationY((float) (TRANS_Y_GAP * level - fraction * TRANS_Y_GAP));
+                if (level < CardConfig.MAX_SHOW_COUNT - 1) {
+                    child.setScaleY((float) (1 - CardConfig.SCALE_GAP * level + fraction * CardConfig.SCALE_GAP));
+                    child.setTranslationY((float) (CardConfig.TRANS_Y_GAP * level - fraction * CardConfig.TRANS_Y_GAP));
                 }
             }
         }
