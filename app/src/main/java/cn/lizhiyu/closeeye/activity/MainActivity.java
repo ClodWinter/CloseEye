@@ -1,8 +1,6 @@
 package cn.lizhiyu.closeeye.activity;
 
 import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -23,7 +21,7 @@ import java.util.List;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.fragment.ChoiceFragment;
 import cn.lizhiyu.closeeye.fragment.DiscoveryFragment;
-import cn.lizhiyu.closeeye.fragment.FollowDynamicFragment;
+import cn.lizhiyu.closeeye.fragment.FollowPairingFragment;
 import cn.lizhiyu.closeeye.fragment.FollowFragment;
 import cn.lizhiyu.closeeye.fragment.FollowNearFragment;
 import cn.lizhiyu.closeeye.fragment.MineFragment;
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         ,FollowFragment.OnFragmentInteractionListener
         ,MineFragment.OnFragmentInteractionListener
         ,FollowNearFragment.OnFragmentInteractionListener
-        ,FollowDynamicFragment.OnFragmentInteractionListener{
+        ,FollowPairingFragment.OnFragmentInteractionListener{
 
     private BottomNavigationBar bottomNav;
 

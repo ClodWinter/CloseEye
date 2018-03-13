@@ -4,21 +4,28 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
+import cn.lizhiyu.closeeye.CustomClass.PairingItemDeco;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.adapter.PairingAdapter;
+import cn.lizhiyu.closeeye.model.PairingItemModel;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FollowDynamicFragment.OnFragmentInteractionListener} interface
+ * {@link FollowPairingFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FollowDynamicFragment#newInstance} factory method to
+ * Use the {@link FollowPairingFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FollowDynamicFragment extends Fragment {
+public class FollowPairingFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -28,9 +35,15 @@ public class FollowDynamicFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private View rootView;
+
+    private ArrayList arrayListPairing = new ArrayList();
+
+    private RecyclerView recyclerView;
+
     private OnFragmentInteractionListener mListener;
 
-    public FollowDynamicFragment() {
+    public FollowPairingFragment() {
         // Required empty public constructor
     }
 
@@ -40,11 +53,11 @@ public class FollowDynamicFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FollowDynamicFragment.
+     * @return A new instance of fragment FollowPairingFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static FollowDynamicFragment newInstance(String param1, String param2) {
-        FollowDynamicFragment fragment = new FollowDynamicFragment();
+    public static FollowPairingFragment newInstance(String param1, String param2) {
+        FollowPairingFragment fragment = new FollowPairingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -65,7 +78,46 @@ public class FollowDynamicFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follow_dynamic, container, false);
+        if (rootView == null)
+        {
+            requestData();
+
+            rootView = inflater.inflate(R.layout.fragment_follow_pairing,null);
+
+            recyclerView = rootView.findViewById(R.id.follow_pairing_recycler);
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
+
+            PairingAdapter adapter = new PairingAdapter(arrayListPairing);
+
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            recyclerView.setAdapter(adapter);
+
+            recyclerView.addItemDecoration(new PairingItemDeco(getContext(),PairingItemDeco.VERTICAL_LIST));
+        }
+        else
+        {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+
+            if (parent != null)
+            {
+                parent.removeView(rootView);
+            }
+        }
+
+
+        return rootView;
+    }
+
+    public void requestData()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            PairingItemModel model = new PairingItemModel();
+
+            arrayListPairing.add(model);
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

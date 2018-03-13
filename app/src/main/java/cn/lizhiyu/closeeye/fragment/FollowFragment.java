@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.support.v4.app.Fragment;
@@ -138,7 +137,7 @@ public class FollowFragment extends Fragment {
 
         FollowNearFragment followNearFragment = new FollowNearFragment();
 
-        FollowDynamicFragment followDynamicFragment = new FollowDynamicFragment();
+        FollowPairingFragment followDynamicFragment = new FollowPairingFragment();
 
         arrayFragments.add(followNearFragment);
 
