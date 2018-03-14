@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
 
     <ImageView
         android:layout_width="70dp"
@@ -9,9 +11,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="5dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:id="@+id/pairingitem_icon"
-        android:src="@mipmap/choice_topview_bg"
         />
 
     <TextView
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="浮生若梦"
         android:id="@+id/pairingitem_name"
+        android:textColor="#3b3b3b"
         android:layout_alignTop="@+id/pairingitem_icon"
         android:layout_toRightOf="@+id/pairingitem_icon"
         android:layout_marginLeft="10dp"
@@ -28,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pairingitem_place"
+        android:textColor="#c3c3c3"
         android:text="福建,福州"
         android:layout_alignTop="@id/pairingitem_icon"
         android:layout_alignParentRight="true"
@@ -52,6 +55,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/pairingitem_signature"
         android:text="该用户很懒，没有留下签名。"
+        android:textColor="#c3c3c3"
         android:layout_alignLeft="@id/pairingitem_name"
         android:layout_alignBottom="@id/pairingitem_icon"
         />

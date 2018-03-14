@@ -19,6 +19,7 @@ import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.FollowCardAdapter;
 import cn.lizhiyu.closeeye.model.CardConfig;
 import cn.lizhiyu.closeeye.model.FollowCardItemModel;
+import cn.lizhiyu.closeeye.model.PairingItemModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -85,14 +86,7 @@ public class FollowNearFragment extends Fragment {
         {
             CardConfig.initConfig(getContext());
 
-            for (int i = 0; i < 10; i++)
-            {
-                FollowCardItemModel model = new FollowCardItemModel();
-
-                model.setResouce(R.mipmap.choice_topview_bg);
-
-                arrayListCards.add(model);
-            }
+            requestData();
 
             rootView = inflater.inflate(R.layout.fragment_follow_near, container, false);
 
@@ -123,6 +117,70 @@ public class FollowNearFragment extends Fragment {
         }
 
         return rootView;
+    }
+
+    public PairingItemModel createPairingItemModel(String name, int icon, String sex, String signature, String age, String place)
+    {
+        PairingItemModel model = new PairingItemModel();
+
+        model.userName = name;
+
+        model.icon = icon;
+
+        model.sex = sex;
+
+        model.signature = signature;
+
+        model.age = age;
+
+        model.place = place;
+
+        return model;
+    }
+
+    public void requestData()
+    {
+        arrayListCards.add(createPairingItemModel("草莓味小仙女",R.mipmap.beauty_0,"女","小哥哥，快来找我啊","24", "福建福州"));
+
+        arrayListCards.add(createPairingItemModel("樱桃小丸子",R.mipmap.beauty_1,"女","期待爱情","25","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("笑着流泪",R.mipmap.beauty_2,"女","早起的鸟儿有虫吃,早安.","23","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("梦里花落知多少",R.mipmap.beauty_3,"女","做不到别随便承诺","27","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("我喜欢雨",R.mipmap.beauty_4,"女","活得漂亮~","26","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("悲欢离合",R.mipmap.beauty_5,"女","如人饮水冷暖自知","26","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("爱情没有对错",R.mipmap.beauty_6,"女","且行且珍惜","22","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("邂逅Moment",R.mipmap.beauty_7,"女","谁想去看电影?","18","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("向日葵的忧伤",R.mipmap.beauty_8,"女","明天会更好~","19","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("雨后彩虹",R.mipmap.beauty_9,"女","No zuo No Die,You Can Try!","29","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("冷暖自知",R.mipmap.beauty_10,"女","没头像的别加我","28","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("忧伤的姐姐",R.mipmap.beauty_11,"女","我决定放弃治疗.","24","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("卑微的承诺",R.mipmap.beauty_12,"女","世界那么大，我想去看看。","23","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("迷恋高跟鞋",R.mipmap.beauty_13,"女","承诺都是骗人的","31","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("开心就好",R.mipmap.beauty_14,"女","时间会冲淡一切。","30","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("有文化的深井冰",R.mipmap.beauty_15,"女","本地的一起出来玩呀！","32","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("爱做梦的女孩",R.mipmap.beauty_16,"女","不问成绩的话，我们还是亲戚。","20","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("愿时光温柔以待",R.mipmap.beauty_17,"女","空有一身撩妹本事，可惜我是个女的","21","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("春风十里",R.mipmap.beauty_18,"女","不约，别来找骂!","19","福建福州"));
+
+        arrayListCards.add(createPairingItemModel("带刺的玫瑰",R.mipmap.beauty_19,"女","初心易得 始终难求","30","福建福州"));
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

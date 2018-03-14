@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#f5b8c3"
+    >
+    
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:src="@drawable/sex_girl"
+        android:id="@+id/tags_sex_icon"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="2dp"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tags_sex_title"
+        android:text="24"
+        android:textColor="@color/white"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textSize="10dp"
+        android:layout_toRightOf="@+id/tags_sex_icon"
+        />
+
+</RelativeLayout>

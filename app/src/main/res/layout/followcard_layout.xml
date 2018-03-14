@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:id="@+id/followcard_imageview"/>
 
     <LinearLayout
@@ -27,6 +27,7 @@
             android:layout_height="25dp"
             android:text="姐姐"
             android:textSize="19dp"
+            android:id="@+id/followcard_name"
             android:layout_marginTop="2dp"
             android:gravity="center_vertical"
             android:layout_marginLeft="10dp"
@@ -47,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="话唠/爱睡觉"
+            android:id="@+id/followcard_sign"
             android:textSize="14dp"
             android:layout_marginTop="4dp"
             android:layout_marginLeft="10dp"

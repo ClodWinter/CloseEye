@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import cn.lizhiyu.closeeye.model.FollowCardItemModel;
+import cn.lizhiyu.closeeye.model.PairingItemModel;
 
 /**
  * Created by king on 2018/3/9.
@@ -96,7 +97,7 @@ public class FollowCardCallback extends ItemTouchHelper.SimpleCallback
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction)
     {
         //★实现循环的要点
-        FollowCardItemModel remove = (FollowCardItemModel) mDatas.remove(viewHolder.getLayoutPosition());
+        PairingItemModel remove = (PairingItemModel) mDatas.remove(viewHolder.getLayoutPosition());
         mDatas.add(0, remove);
         mAdapter.notifyDataSetChanged();
     }
