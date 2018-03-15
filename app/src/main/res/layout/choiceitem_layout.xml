@@ -24,6 +24,7 @@
         android:layout_marginTop="60dp"
         android:text="闭眼啊闭眼啊"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/choieitem_content"
         app:layout_constraintStart_toStartOf="@id/choieitem_content"
         app:layout_constraintTop_toTopOf="@id/choieitem_content" />
@@ -42,9 +43,17 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:id="@+id/choiceitem_line"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/choiceitem_cover"
         app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/choiceitem_line"
+        android:background="@color/black"
+        android:alpha="0.3"/>
 
 
 </android.support.constraint.ConstraintLayout>
