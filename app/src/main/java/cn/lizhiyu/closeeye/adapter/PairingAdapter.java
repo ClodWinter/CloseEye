@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dyhdyh.adapters.AbstractRecyclerAdapter;
@@ -23,6 +25,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.lizhiyu.closeeye.CustomView.TagsView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.model.PairingItemModel;
 
@@ -52,6 +55,40 @@ public class PairingAdapter extends AbstractRecyclerAdapter<PairingItemModel, Pa
         holder.textViewPlace.setText(item.place);
 
         holder.textViewSign.setText(item.signature);
+
+        for (int i = 0; i < 3; i++)
+        {
+            TagsView tagsView = new TagsView(viewGroup.getContext(),null);
+
+            tagsView.setId(i+200);
+
+            if (i == 0)
+            {
+                tagsView.setData(item.sex,item.sex.equals("女")?0:1,"#fbb2c3");
+            }else
+            {
+                tagsView.setData("瞎逼逼" +i,-1,"#d1a384");
+            }
+
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            layoutParams.leftMargin = i==0?3:6;
+
+            layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
+
+            if (holder.tagsView.getChildCount()>0)
+            {
+                TagsView view = (TagsView) holder.tagsView.getChildAt(holder.tagsView.getChildCount()-1);
+
+                layoutParams.addRule(RelativeLayout.RIGHT_OF,view.getId());
+
+                layoutParams.leftMargin = 6;
+            }
+
+            tagsView.setLayoutParams(layoutParams);
+
+            holder.tagsView.addView(tagsView);
+        }
     }
 
     @Override
@@ -77,6 +114,8 @@ public class PairingAdapter extends AbstractRecyclerAdapter<PairingItemModel, Pa
 
         TextView textViewSign;
 
+        RelativeLayout tagsView;
+
         public ItemViewHolder(View itemView)
         {
             super(itemView);
@@ -88,6 +127,8 @@ public class PairingAdapter extends AbstractRecyclerAdapter<PairingItemModel, Pa
             textViewPlace = itemView.findViewById(R.id.pairingitem_place);
 
             textViewSign = itemView.findViewById(R.id.pairingitem_signature);
+
+            tagsView = itemView.findViewById(R.id.pairingitem_tags);
         }
     }
 }

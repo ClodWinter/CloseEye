@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.dyhdyh.adapters.AbstractRecyclerAdapter;
@@ -18,6 +20,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.lizhiyu.closeeye.CustomView.TagsView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.model.FollowCardItemModel;
 import cn.lizhiyu.closeeye.model.PairingItemModel;
@@ -25,6 +28,8 @@ import cn.lizhiyu.closeeye.model.PairingItemModel;
 public class FollowCardAdapter extends AbstractRecyclerAdapter<PairingItemModel, FollowCardAdapter.ItemViewHolder> {
 
     private ArrayList datas;
+
+    private ViewGroup viewGroup;
 
     public FollowCardAdapter(ArrayList<PairingItemModel> data)
     {
@@ -40,6 +45,42 @@ public class FollowCardAdapter extends AbstractRecyclerAdapter<PairingItemModel,
         holder.textViewName.setText(item.userName);
 
         holder.textViewSign.setText(item.signature.length()>0?item.signature:"");
+
+        for (int i = 0; i < 3; i++)
+        {
+            TagsView tagsView = new TagsView(viewGroup.getContext(),null);
+
+            tagsView.setId(i+200);
+
+            if (i == 0)
+            {
+                tagsView.setData(item.sex,item.sex.equals("女")?0:1,"#fbb2c3");
+            }else
+            {
+                tagsView.setData("瞎逼逼" +i,-1,"#d1a384");
+            }
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            layoutParams.leftMargin = i==0?3:6;
+
+            layoutParams.topMargin = 16;
+
+//            layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
+//
+//            if (holder.tagsView.getChildCount()>0)
+//            {
+//                TagsView view = (TagsView) holder.tagsView.getChildAt(holder.tagsView.getChildCount()-1);
+//
+//                layoutParams.addRule(RelativeLayout.RIGHT_OF,view.getId());
+//
+//                layoutParams.leftMargin = 6;
+//            }
+
+            tagsView.setLayoutParams(layoutParams);
+
+            holder.tagsView.addView(tagsView);
+        }
     }
 
     public static Drawable resizeImage(Bitmap bitmap, int w, int h)
@@ -65,6 +106,8 @@ public class FollowCardAdapter extends AbstractRecyclerAdapter<PairingItemModel,
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+        viewGroup = parent;
+
         return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.followcard_layout, parent, false));
     }
 
@@ -76,6 +119,8 @@ public class FollowCardAdapter extends AbstractRecyclerAdapter<PairingItemModel,
 
         TextView textViewSign;
 
+        LinearLayout tagsView;
+
         public ItemViewHolder(View itemView)
         {
             super(itemView);
@@ -85,6 +130,8 @@ public class FollowCardAdapter extends AbstractRecyclerAdapter<PairingItemModel,
             textViewName = itemView.findViewById(R.id.followcard_name);
 
             textViewSign = itemView.findViewById(R.id.followcard_sign);
+
+            tagsView = itemView.findViewById(R.id.follow_card_tags);
         }
     }
 
