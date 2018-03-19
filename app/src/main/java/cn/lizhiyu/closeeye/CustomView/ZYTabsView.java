@@ -2,7 +2,6 @@ package cn.lizhiyu.closeeye.CustomView;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -18,9 +17,9 @@ import android.widget.TextView;
 
 public class ZYTabsView extends LinearLayout
 {
-    private String selectedTextColor = "#ffffff";
+    private int selectedTextColor = 0xff313131;
 
-    private String normalTextColor = "#ffb780";
+    private int normalTextColor = 0xff949494;
 
     private int indicatorColor = 0xffffbf23;
 
@@ -171,9 +170,9 @@ public class ZYTabsView extends LinearLayout
         for (int i = 0; i < childCount; i++) {
             TextView childView = (TextView) mTabsContainer.getChildAt(i);
             if (i == position) {
-                childView.setTextColor(Color.parseColor(selectedTextColor));
+                childView.setTextColor(selectedTextColor);
             } else {
-                childView.setTextColor(Color.parseColor(normalTextColor));
+                childView.setTextColor(normalTextColor);
             }
         }
         // 指示器的移动

@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId "cn.lizhiyu.closeeye"
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -53,8 +53,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
     testCompile 'junit:junit:4.12'
-    //完整版引入
-    compile 'com.shuyu:GSYVideoPlayer:4.1.0'
 }
 
 MobSDK {

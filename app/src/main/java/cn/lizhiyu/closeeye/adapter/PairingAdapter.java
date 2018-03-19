@@ -64,7 +64,7 @@ public class PairingAdapter extends AbstractRecyclerAdapter<PairingItemModel, Pa
 
             if (i == 0)
             {
-                tagsView.setData(item.age,item.sex.equals("女")?0:1,"#fbb2c3");
+                tagsView.setData(item.sex,item.sex.equals("女")?0:1,"#fbb2c3");
             }else
             {
                 tagsView.setData("瞎逼逼" +i,-1,"#d1a384");
