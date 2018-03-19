@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="那些喝断片的深夜，你做了什么"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="18dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="#广告 / 精选"
+        android:textSize="14dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        >
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp">
+
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unlike"
+                android:id="@+id/choice_detail_recycler_btnLike"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="885"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/choice_detail_recycler_btnLike"
+                android:layout_alignTop="@id/choice_detail_recycler_btnLike"
+                android:layout_marginTop="2dp"
+                android:id="@+id/choice_detail_recycler_titleLike"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp">
+
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/detail_share"
+                android:id="@+id/choice_detail_recycler_btnShare"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="885"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/choice_detail_recycler_btnShare"
+                android:layout_alignTop="@id/choice_detail_recycler_btnShare"
+                android:layout_marginTop="2dp"
+                android:id="@+id/choice_detail_recycler_titleShare"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp">
+
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/detail_comment"
+                android:id="@+id/choice_detail_recycler_btnComment"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="885"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/choice_detail_recycler_btnComment"
+                android:layout_alignTop="@id/choice_detail_recycler_btnComment"
+                android:layout_marginTop="2dp"
+                android:id="@+id/choice_detail_recycler_titleComment"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp">
+
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/detail_download"
+                android:id="@+id/choice_detail_recycler_btnDownload"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="885"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/choice_detail_recycler_btnDownload"
+                android:layout_alignTop="@id/choice_detail_recycler_btnDownload"
+                android:layout_marginTop="2dp"
+                android:id="@+id/choice_detail_recycler_titleDownLoad"
+                />
+
+        </RelativeLayout>
+        
+        
+    </LinearLayout>
+
+</LinearLayout>
