@@ -67,10 +67,10 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
         View headView = LayoutInflater.from(this).inflate(R.layout.choice_recyclerhead_layout,null);
 
-        recyclerView.addHeaderView(headView);
-
         recyclerView.setAdapter(detailRecyclerAdapter);
 
         recyclerView.setLayoutManager(layoutManager);
+
+        recyclerView.addHeaderView(headView);
     }
 }

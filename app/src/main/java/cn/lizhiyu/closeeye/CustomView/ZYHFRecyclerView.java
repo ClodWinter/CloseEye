@@ -29,24 +29,10 @@ public class ZYHFRecyclerView extends RecyclerView
 
     public void addHeaderView(View v) {
         mHeaderViewInfos.add(v);
-        // Wrap the adapter if it wasn't already wrapped.
-        if (mAdapter != null) {
-            if (!(mAdapter instanceof ZYHFRecyclerAdapter))
-            {
-                mAdapter = new ZYHFRecyclerAdapter(mHeaderViewInfos, mFooterViewInfos, mAdapter);
-            }
-        }
     }
 
     public void addFooterView(View v) {
         mFooterViewInfos.add(v);
-        // Wrap the adapter if it wasn't already wrapped.
-        if (mAdapter != null) {
-            if (!(mAdapter instanceof ZYHFRecyclerAdapter))
-            {
-                mAdapter = new ZYHFRecyclerAdapter(mHeaderViewInfos, mFooterViewInfos, mAdapter);
-            }
-        }
     }
 
 
@@ -54,11 +40,8 @@ public class ZYHFRecyclerView extends RecyclerView
     @Override
     public void setAdapter(Adapter adapter)
     {
-        if (mHeaderViewInfos.size() > 0|| mFooterViewInfos.size() > 0) {
-            mAdapter = new ZYHFRecyclerAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
-        } else {
-            mAdapter = adapter;
-        }
+        mAdapter = new ZYHFRecyclerAdapter(mHeaderViewInfos, mFooterViewInfos, adapter);
+
         super.setAdapter(mAdapter);
     }
 }
