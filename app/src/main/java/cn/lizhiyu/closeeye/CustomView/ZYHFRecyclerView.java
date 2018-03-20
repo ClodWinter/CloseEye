@@ -49,6 +49,8 @@ public class ZYHFRecyclerView extends RecyclerView
         }
     }
 
+
+
     @Override
     public void setAdapter(Adapter adapter)
     {

@@ -4,7 +4,9 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -22,7 +24,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
     private ChoiceDetailRecyclerAdapter detailRecyclerAdapter;
 
-    private ArrayList arrayListRecomend;
+    private ArrayList arrayListRecomend = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +63,11 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
         detailRecyclerAdapter = new ChoiceDetailRecyclerAdapter(arrayListRecomend);
 
-        RecyclerView.LayoutManager layoutManager = new RecyclerView.LayoutManager() {
-            @Override
-            public RecyclerView.LayoutParams generateDefaultLayoutParams() {
-                return null;
-            }
-        };
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+        View headView = LayoutInflater.from(this).inflate(R.layout.choice_recyclerhead_layout,null);
+
+        recyclerView.addHeaderView(headView);
 
         recyclerView.setAdapter(detailRecyclerAdapter);
 
