@@ -14,12 +14,12 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/choice_detail_recycler"
         android:background="@color/blue">
 
-    </android.support.v7.widget.RecyclerView>
+    </cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView>
 
 </LinearLayout>
