@@ -1,10 +1,12 @@
 package cn.lizhiyu.closeeye.model;
 
+import java.io.Serializable;
+
 /**
  * Created by king on 2018/2/13.
  */
 
-public class VideoModel
+public class VideoModel implements Serializable
 {
     private String videoUrls;
 

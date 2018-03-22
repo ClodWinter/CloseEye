@@ -83,7 +83,22 @@ public class ZYHFRecyclerAdapter extends RecyclerView.Adapter
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position)
     {
-
+        //也要划分三个区域
+        int numHeaders = mHeaderViewInfos.size();
+        if (position < numHeaders) {//是头部
+            return;
+        }
+        //adapter body
+        final int adjPosition = position - numHeaders;
+        int adapterCount = 0;
+        if (mAdapter != null) {
+            adapterCount = mAdapter.getItemCount();
+            if (adjPosition < adapterCount) {
+                mAdapter.onBindViewHolder(holder, adjPosition);
+                return;
+            }
+        }
+        //footer
     }
 
     @Override
@@ -99,8 +114,6 @@ public class ZYHFRecyclerAdapter extends RecyclerView.Adapter
 
     protected static class ItemViewHolder extends RecyclerView.ViewHolder
     {
-
-
         public ItemViewHolder(View itemView)
         {
             super(itemView);

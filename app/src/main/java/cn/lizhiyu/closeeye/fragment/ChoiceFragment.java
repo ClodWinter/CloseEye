@@ -330,7 +330,15 @@ public class ChoiceFragment extends Fragment{
                 {
                     Log.d("lzyssg", "onItemClick: "+i+"uuu"+l);
 
+                    VideoModel model = (VideoModel) arrayChoice.get(i);
+
                     Intent intent = new Intent(getActivity(), ChoiceDetailActivity.class);
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("model", model);
+
+                    intent.putExtra("intentData",bundle);
 
                     startActivity(intent);
 

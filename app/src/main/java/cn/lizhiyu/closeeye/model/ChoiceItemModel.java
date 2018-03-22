@@ -1,10 +1,14 @@
 package cn.lizhiyu.closeeye.model;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by lizhiyu on 2017/5/4.
  */
 
-public class ChoiceItemModel
+public class ChoiceItemModel implements Serializable
 {
     public String title;
 

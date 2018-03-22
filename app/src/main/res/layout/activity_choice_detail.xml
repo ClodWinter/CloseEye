@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="cn.lizhiyu.closeeye.activity.ChoiceDetailActivity">
+
+    <ImageSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/choice_detail_bg"
+        android:scaleType="fitXY"
+        />
+
     
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
+        android:id="@+id/choice_detail_videolayer"
         android:background="@color/black">
 
     </RelativeLayout>
-
+    
     <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/choice_detail_recycler"
-        android:background="@color/blue">
+        android:layout_below="@+id/choice_detail_videolayer"
+        >
 
     </cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView>
 
-</LinearLayout>
+</RelativeLayout>

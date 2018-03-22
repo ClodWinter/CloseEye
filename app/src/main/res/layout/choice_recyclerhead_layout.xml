@@ -6,7 +6,7 @@
     >
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="那些喝断片的深夜，你做了什么"
         android:layout_marginTop="5dp"
@@ -28,7 +28,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         >
-        
+
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -132,8 +132,100 @@
                 />
 
         </RelativeLayout>
-        
-        
+
+
     </LinearLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f0f0f0"
+            android:layout_alignParentTop="true"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f0f0f0"
+            android:layout_alignParentBottom="true"
+            />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp">
+
+        <ImageView
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:src="@mipmap/beauty_3"
+            android:id="@+id/detail_headitem_icon"
+            android:layout_marginLeft="15dp"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:id="@+id/detail_headitem_title"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@+id/detail_headitem_icon"
+            android:layout_marginLeft="15dp"
+            android:layout_alignTop="@id/detail_headitem_icon"
+            android:text="浮生又若梦"
+            />
+
+        <Button
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:id="@+id/detail_headitem_collect"
+            android:text="+ 关注"
+            android:textSize="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_headitem_desc"
+            android:textColor="#dad6d7"
+            android:textSize="10dp"
+            android:layout_toRightOf="@+id/detail_headitem_icon"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@id/detail_headitem_icon"
+            android:layout_marginRight="15dp"
+            android:text="爱好运动、书籍、旅游，喜欢我的快快关注我吧~"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#f0f0f0"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="16dp"
+        android:layout_marginLeft="15dp"
+        android:text="相关推荐"/>
 
 </LinearLayout>
