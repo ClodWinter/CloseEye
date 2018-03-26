@@ -210,7 +210,7 @@ public class ChoiceFragment extends Fragment{
 
         param.put("apikey","IdFJsLGzIdTvxCAs362MupngfDRXQACCk71LxXBOSDHbzG9Wv5AHN0qEYhWQh9HV");
 
-        param.put("catid","173");
+        param.put("kw","美女");
 
         param.put("pageToken",""+page);
 
