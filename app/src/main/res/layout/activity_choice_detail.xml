@@ -14,14 +14,12 @@
         android:scaleType="fitXY"
         />
 
-    
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:id="@+id/choice_detail_videolayer"
-        android:background="@color/black">
 
-    </RelativeLayout>
+    <cn.jzvd.JZVideoPlayerStandard
+        android:id="@+id/choice_detail_videolayer"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"/>
+
     
     <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
         android:layout_width="match_parent"

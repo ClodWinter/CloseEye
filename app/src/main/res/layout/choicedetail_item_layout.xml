@@ -15,6 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/choicedetail_item_icon"
             android:src="@mipmap/beauty_1"
             android:scaleType="fitXY"
             />
@@ -23,6 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/black"
+            android:id="@+id/choicedetail_item_playTime"
             android:textStyle="bold"
             android:textSize="15dp"
             android:layout_alignParentBottom="true"
@@ -39,6 +41,7 @@
         android:textColor="@color/white"
         android:textSize="16dp"
         android:text="滑雪微电影:一个人的冰川"
+        android:id="@+id/choicedetail_item_title"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/choicedetail_item_iconLayout"
         android:layout_marginRight="15dp"
@@ -68,6 +71,7 @@
         android:layout_height="24dp"
         android:background="@drawable/detail_share"
         android:layout_alignBottom="@id/choicedetail_item_tag"
+        android:id="@+id/choicedetail_item_shareBtn"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         />

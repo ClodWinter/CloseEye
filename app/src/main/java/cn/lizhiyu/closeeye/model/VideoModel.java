@@ -1,6 +1,7 @@
 package cn.lizhiyu.closeeye.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by king on 2018/2/13.
@@ -8,53 +9,53 @@ import java.io.Serializable;
 
 public class VideoModel implements Serializable
 {
-    private String videoUrls;
+    public ArrayList videoUrls;
 
-    private String posterId;
+    public String posterId;
 
-    private String publishDateStr;
+    public String publishDateStr;
 
-    private String mediaType;
+    public String mediaType;
 
-    private String favoriteCount;
+    public String favoriteCount;
 
-    private String memberOnly;
+    public String memberOnly;
 
-    private String danmakuCount;
+    public String danmakuCount;
 
-    private String likeCount;
+    public String likeCount;
 
-    private String durationMin;
+    public String durationMin;
 
-    private String ifFree;
+    public String ifFree;
 
-    private String coverUrl;
+    public String coverUrl;
 
-    private String description;
+    public String description;
 
-    private String url;
+    public String url;
 
-    private String publishDate;
+    public String publishDate;
 
-    private String commentCount;
+    public String commentCount;
 
-    private String catPathKey;
+    public String catPathKey;
 
-    private String posterScreenName;
+    public String posterScreenName;
 
     public String dislikeCount;
 
-    private String title;
+    public String title;
 
-    private String fileOptions;
+    public String fileOptions;
 
-    private String viewCount;
+    public String viewCount;
 
-    public String getVideoUrls() {
+    public ArrayList getVideoUrls() {
         return videoUrls;
     }
 
-    public void setVideoUrls(String videoUrls) {
+    public void setVideoUrls(ArrayList videoUrls) {
         this.videoUrls = videoUrls;
     }
 

@@ -20,7 +20,7 @@ public class ZYHFRecyclerView extends RecyclerView
 
     private ArrayList<View> mFooterViewInfos=new ArrayList<>();
 
-    private Adapter mAdapter;
+    public Adapter mAdapter;
 
     public ZYHFRecyclerView(Context context, @Nullable AttributeSet attrs)
     {
