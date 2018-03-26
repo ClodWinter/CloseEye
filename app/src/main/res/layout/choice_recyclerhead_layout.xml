@@ -138,8 +138,7 @@
     
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
+        android:layout_height="60dp"
         >
 
         <ImageView
@@ -148,6 +147,15 @@
             android:background="#f0f0f0"
             android:layout_alignParentTop="true"
             />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/choicedetail_head_tagslayout"
+            >
+
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="match_parent"
@@ -170,7 +178,7 @@
             android:src="@mipmap/beauty_3"
             android:id="@+id/detail_headitem_icon"
             android:layout_marginLeft="15dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:layout_centerVertical="true"
             />
 

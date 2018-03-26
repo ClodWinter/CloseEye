@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,10 @@ import android.view.WindowManager;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -33,12 +36,14 @@ import java.util.Map;
 import cn.jzvd.JZVideoPlayerStandard;
 import cn.lizhiyu.closeeye.Common.Define;
 import cn.lizhiyu.closeeye.CustomClass.CommonTool;
+import cn.lizhiyu.closeeye.CustomView.ChoiceDetailHeadTagView;
 import cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.ChoiceDetailRecyclerAdapter;
 import cn.lizhiyu.closeeye.model.ChoiceItemModel;
 import cn.lizhiyu.closeeye.model.VideoModel;
 import cn.lizhiyu.closeeye.request.BaseHttpRequest;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class ChoiceDetailActivity extends AppCompatActivity
 {
@@ -49,6 +54,8 @@ public class ChoiceDetailActivity extends AppCompatActivity
     private ArrayList arrayListRecomend;
 
     private VideoModel model;
+
+    private RelativeLayout relativeLayoutTags;
 
     private JZVideoPlayerStandard jzVideoPlayerStandard;
 
@@ -66,7 +73,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
                     detailRecyclerAdapter.notifyDataSetChanged();
 
-//                    recyclerView.mAdapter.notifyDataSetChanged();
+                    createTags();
 
                     break;
                 }
@@ -134,6 +141,12 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
         headView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+        ImageView imageViewCollectIcon = headView.findViewById(R.id.detail_headitem_icon);
+
+        relativeLayoutTags = headView.findViewById(R.id.choicedetail_head_tagslayout);
+
+        Glide.with(this).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(this)).into(imageViewCollectIcon);
+
         recyclerView.addHeaderView(headView);
 
         recyclerView.setAdapter(detailRecyclerAdapter);
@@ -153,6 +166,41 @@ public class ChoiceDetailActivity extends AppCompatActivity
             Picasso.with(this).load(model.getCoverUrl()).into(jzVideoPlayerStandard.thumbImageView);
 
             jzVideoPlayerStandard.startButton.performClick();
+        }
+    }
+
+    public void createTags()
+    {
+        if (arrayListRecomend.size()>=10)
+        {
+            for (int i = 7; i < 10; i++)
+            {
+                VideoModel model = (VideoModel) arrayListRecomend.get(i);
+
+                ChoiceDetailHeadTagView tagView = new ChoiceDetailHeadTagView(this,null);
+
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpTodx(120),dpTodx(50));
+
+                tagView.setId(300+i);
+
+                layoutParams.leftMargin = 10;
+
+                if (relativeLayoutTags.getChildCount()>0)
+                {
+                    ChoiceDetailHeadTagView temp = (ChoiceDetailHeadTagView) relativeLayoutTags.getChildAt(relativeLayoutTags.getChildCount()-1);
+
+                    layoutParams.addRule(RelativeLayout.RIGHT_OF,temp.getId());
+
+                }
+
+                layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
+
+                tagView.setLayoutParams(layoutParams);
+
+                tagView.setData(model);
+
+                relativeLayoutTags.addView(tagView);
+            }
         }
     }
 
@@ -203,6 +251,15 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
         thread.start();
 
+    }
+
+    /**
+     * 单位dp转单位px
+     */
+    public int dpTodx(int dp){
+
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dp,getResources().getDisplayMetrics());
     }
 
     @Override
