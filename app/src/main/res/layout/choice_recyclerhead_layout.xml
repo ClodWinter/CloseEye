@@ -197,13 +197,15 @@
         <Button
             android:layout_width="50dp"
             android:layout_height="25dp"
+            android:background="@drawable/choicedetail_head_collect_shape"
             android:id="@+id/detail_headitem_collect"
-            android:text="+ 关注"
+            android:text="+关注"
             android:textSize="10dp"
             android:layout_marginRight="15dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:gravity="center"
+            android:padding="5dp"
             />
 
         <TextView

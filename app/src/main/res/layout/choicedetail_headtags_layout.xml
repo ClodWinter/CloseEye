@@ -4,11 +4,11 @@
     android:layout_height="50dp"
     android:id="@+id/choicedetail_tag_layout">
 
-    <Button
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@mipmap/choice_topview_bg"
-        android:id="@+id/choicedetail_tag_button"
+        android:id="@+id/choicedetail_tag_bg"
         android:stateListAnimator="@null"
         />
 

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -173,13 +174,21 @@ public class ChoiceDetailActivity extends AppCompatActivity
     {
         if (arrayListRecomend.size()>=10)
         {
+            WindowManager manager = this.getWindowManager();
+            DisplayMetrics outMetrics = new DisplayMetrics();
+            manager.getDefaultDisplay().getMetrics(outMetrics);
+            int width = outMetrics.widthPixels;
+            int height = outMetrics.heightPixels;
+
+            int tagWidth = (width - 60)/3;
+
             for (int i = 7; i < 10; i++)
             {
                 VideoModel model = (VideoModel) arrayListRecomend.get(i);
 
                 ChoiceDetailHeadTagView tagView = new ChoiceDetailHeadTagView(this,null);
 
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dpTodx(120),dpTodx(50));
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(tagWidth,dpTodx(50));
 
                 tagView.setId(300+i);
 
@@ -190,6 +199,8 @@ public class ChoiceDetailActivity extends AppCompatActivity
                     ChoiceDetailHeadTagView temp = (ChoiceDetailHeadTagView) relativeLayoutTags.getChildAt(relativeLayoutTags.getChildCount()-1);
 
                     layoutParams.addRule(RelativeLayout.RIGHT_OF,temp.getId());
+
+                    layoutParams.leftMargin = 20;
 
                 }
 
