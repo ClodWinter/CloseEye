@@ -7,11 +7,12 @@
     android:orientation="vertical"
     tools:context="cn.lizhiyu.closeeye.activity.ChoiceDetailActivity">
 
-    <ImageSwitcher
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/choice_detail_bg"
-        android:scaleType="fitXY"
+        android:background="@mipmap/choicedetail_bg"
+        android:scaleType="centerCrop"
         />
 
 

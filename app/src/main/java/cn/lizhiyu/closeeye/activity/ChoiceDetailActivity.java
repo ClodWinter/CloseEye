@@ -19,13 +19,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
+import com.mob.MobSDK;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -44,6 +47,8 @@ import cn.lizhiyu.closeeye.adapter.ChoiceDetailRecyclerAdapter;
 import cn.lizhiyu.closeeye.model.ChoiceItemModel;
 import cn.lizhiyu.closeeye.model.VideoModel;
 import cn.lizhiyu.closeeye.request.BaseHttpRequest;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class ChoiceDetailActivity extends AppCompatActivity
@@ -128,27 +133,15 @@ public class ChoiceDetailActivity extends AppCompatActivity
     {
         arrayListRecomend = new ArrayList();
 
-        ImageSwitcher imageView = (ImageSwitcher)findViewById(R.id.choice_detail_bg);
+        ImageView imageView = (ImageView)findViewById(R.id.choice_detail_bg);
 
-        CommonTool.setViewBlur(this,model.getCoverUrl(),R.mipmap.ic_launcher, imageView);
+        Glide.with(this).load(R.mipmap.choicedetail_bg).bitmapTransform(new BlurTransformation(this, 24)).into(imageView);
 
         recyclerView = (ZYHFRecyclerView) findViewById(R.id.choice_detail_recycler);
 
         detailRecyclerAdapter = new ChoiceDetailRecyclerAdapter(arrayListRecomend,this);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
-        View headView = LayoutInflater.from(this).inflate(R.layout.choice_recyclerhead_layout,null);
-
-        headView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        ImageView imageViewCollectIcon = headView.findViewById(R.id.detail_headitem_icon);
-
-        relativeLayoutTags = headView.findViewById(R.id.choicedetail_head_tagslayout);
-
-        Glide.with(this).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(this)).into(imageViewCollectIcon);
-
-        recyclerView.addHeaderView(headView);
 
         recyclerView.setAdapter(detailRecyclerAdapter);
 
@@ -168,6 +161,60 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
             jzVideoPlayerStandard.startButton.performClick();
         }
+
+        createHeadView();
+    }
+
+    public void createHeadView()
+    {
+        View headView = LayoutInflater.from(this).inflate(R.layout.choice_recyclerhead_layout,null);
+
+        headView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        ImageView imageViewCollectIcon = headView.findViewById(R.id.detail_headitem_icon);
+
+        Glide.with(this).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(this)).into(imageViewCollectIcon);
+
+        relativeLayoutTags = headView.findViewById(R.id.choicedetail_head_tagslayout);
+
+        recyclerView.addHeaderView(headView);
+
+        final Button buttonLike = headView.findViewById(R.id.choice_detail_recycler_btnLike);
+
+        buttonLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Toast.makeText(ChoiceDetailActivity.this,"收藏成功",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        final Button buttonShare = headView.findViewById(R.id.choice_detail_recycler_btnShare);
+
+        buttonShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                OnekeyShare oks = new OnekeyShare();
+                //关闭sso授权
+                oks.disableSSOWhenAuthorize();
+
+                // title标题，微信、QQ和QQ空间等平台使用
+                oks.setTitle("这个新闻真好");
+                // titleUrl QQ和QQ空间跳转链接
+                oks.setTitleUrl("http://sharesdk.cn");
+                // text是分享文本，所有平台都需要这个字段
+                oks.setText("我是分享文本");
+                // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+                oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+                // url在微信、微博，Facebook等平台中使用
+                oks.setUrl("http://sharesdk.cn");
+                // comment是我对这条分享的评论，仅在人人网使用
+                oks.setComment("我是测试评论文本");
+                // 启动分享GUI
+                oks.show(ChoiceDetailActivity.this);
+            }
+        });
     }
 
     public void createTags()
