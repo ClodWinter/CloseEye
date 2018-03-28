@@ -173,7 +173,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
         ImageView imageViewCollectIcon = headView.findViewById(R.id.detail_headitem_icon);
 
-        Glide.with(this).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(this)).into(imageViewCollectIcon);
+        Glide.with(this).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(this)).crossFade(1000).into(imageViewCollectIcon);
 
         relativeLayoutTags = headView.findViewById(R.id.choicedetail_head_tagslayout);
 

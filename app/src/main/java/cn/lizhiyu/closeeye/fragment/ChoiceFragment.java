@@ -88,6 +88,8 @@ public class ChoiceFragment extends Fragment{
 
     private ListView listView;
 
+    private View emptyView;
+
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler()
     {
@@ -286,6 +288,8 @@ public class ChoiceFragment extends Fragment{
             arrayChoice = new ArrayList();
 
             rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
+
+            emptyView = (View)inflater.inflate(R.layout.empty_loading_layout,null);
 
             nestedScrollView = (NestedScrollView)rootView.findViewById(R.id.choice_scrollview);
 

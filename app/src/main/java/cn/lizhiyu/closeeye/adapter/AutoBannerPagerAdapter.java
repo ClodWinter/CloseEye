@@ -59,7 +59,7 @@ public class AutoBannerPagerAdapter extends PagerAdapter
     {
         ImageView imageView = new ImageView(mContext);
 
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         imageView.setImageResource((Integer) datas.get(position % datas.size()));
 

@@ -3,7 +3,7 @@ apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.3'
 
     packagingOptions {
         exclude 'android/databinding/DataBinderMapper.java'
