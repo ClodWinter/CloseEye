@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         }
 
         setContentView(R.layout.activity_main);
-        
+
         frameLayout = (FrameLayout)findViewById(R.id.home_frameLayout);
 
         this.createBottomNav();

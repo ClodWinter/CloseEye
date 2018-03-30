@@ -40,13 +40,14 @@
                     android:background="@color/white"
                     >
 
-                    <cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager
+                    <FrameLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/choice_autonBanner"
+                        android:id="@+id/choice_bannerAd"
+                        android:background="@color/red"
                         >
 
-                    </cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager>
+                    </FrameLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"

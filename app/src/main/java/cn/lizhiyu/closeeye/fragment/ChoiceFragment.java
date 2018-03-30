@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,6 +29,10 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.qq.e.ads.banner.ADSize;
+import com.qq.e.ads.banner.AbstractBannerADListener;
+import com.qq.e.ads.banner.BannerView;
+import com.qq.e.comm.util.AdError;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -74,21 +79,19 @@ public class ChoiceFragment extends Fragment{
 
     private ArrayList arrayChoice;
 
-    private ArrayList arrayBanner;
-
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private AutoBannerViewPager autoBannerViewPager;
-
     private ChoiceArrayAdapter choiceArrayAdapter;
-
-    private AutoBannerPagerAdapter autoBannerPagerAdapter;
 
     private OnFragmentInteractionListener mListener;
 
     private ListView listView;
 
     private View emptyView;
+
+    private BannerView bannerView;
+
+    private FrameLayout bannerLayout;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler()
@@ -100,52 +103,11 @@ public class ChoiceFragment extends Fragment{
             {
                 case 200:
                 {
-                    autoBannerPagerAdapter.notifyDataSetChanged();
-
                     choiceArrayAdapter.notifyDataSetChanged();
 
-                    indictorLayout.removeAllViews();
+                    createBannerAd();
 
-                    for (int i = 0; i < arrayBanner.size(); i++)
-                    {
-                        ImageView imageView = new ImageView(getActivity());
-
-                        imageView.setImageResource(i==0?R.drawable.banner_shape_select:R.drawable.banner_shape_normal);
-
-                        indictorLayout.addView(imageView);
-
-                        LinearLayout.LayoutParams layoutParams=
-                                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                                        ViewGroup.LayoutParams.WRAP_CONTENT);
-
-                        layoutParams.leftMargin = 10;
-
-                        imageView.setLayoutParams(layoutParams);
-
-                    }
-
-                    autoBannerViewPager.callBack = new AutoBannerViewPager.scrollCallBack() {
-                        @Override
-                        public void scroll(int page)
-                        {
-                            Log.d("tttttttt", "scroll: "+page);
-
-                            for (int i = 0; i < indictorLayout.getChildCount(); i++)
-                            {
-                                ImageView imageView = (ImageView) indictorLayout.getChildAt(i);
-
-                                imageView.setImageDrawable(null);
-
-                                if (i == page)
-                                {
-                                    imageView.setBackgroundResource(R.drawable.banner_shape_select);
-                                }
-                                else {
-                                    imageView.setBackgroundResource(R.drawable.banner_shape_normal);
-                                }
-                            }
-                        }
-                    };
+                    bannerView.loadAD();
 
                     break;
                 }
@@ -174,7 +136,6 @@ public class ChoiceFragment extends Fragment{
 
     public ChoiceFragment()
     {
-
     }
 
     // TODO: Rename and change types and number of parameters
@@ -238,21 +199,9 @@ public class ChoiceFragment extends Fragment{
                                 if (!isLoadmore)
                                 {
                                     arrayChoice.clear();
-
-                                    arrayBanner.clear();
                                 }
 
                                 arrayChoice.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),VideoModel.class));
-
-                                arrayBanner.clear();
-
-                                arrayBanner.add(R.mipmap.choice_topview_bg);
-
-                                arrayBanner.add(R.mipmap.choiceitem_cover);
-
-                                arrayBanner.add(R.mipmap.launch);
-
-                                arrayBanner.add(R.mipmap.mine_headbg);
 
                                 message.what = 200;
 
@@ -283,8 +232,6 @@ public class ChoiceFragment extends Fragment{
     {
         if (rootView == null)
         {
-            arrayBanner = new ArrayList();
-
             arrayChoice = new ArrayList();
 
             rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
@@ -354,20 +301,6 @@ public class ChoiceFragment extends Fragment{
 
             listView.setAdapter(choiceArrayAdapter);
 
-            autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
-
-            autoBannerPagerAdapter.updateDatas(arrayBanner);
-
-            autoBannerViewPager = (AutoBannerViewPager) rootView.findViewById(R.id.choice_autonBanner);
-
-            autoBannerViewPager.setAdapter(autoBannerPagerAdapter);
-
-            autoBannerViewPager.setShowTime(5000);
-
-            autoBannerViewPager.setDirection(AutoBannerViewPager.Direction.Left);
-
-            autoBannerViewPager.start();
-
             indictorLayout = (LinearLayout) rootView.findViewById(R.id.banner_indicator_layout);
 
             swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.choice_swipe);
@@ -427,6 +360,36 @@ public class ChoiceFragment extends Fragment{
         }
 
         return rootView;
+    }
+
+    public void createBannerAd()
+    {
+        bannerLayout = rootView.findViewById(R.id.choice_bannerAd);
+
+        bannerView = new BannerView(this.getActivity(), ADSize.BANNER,"1101152570","9079537218417626401");
+
+        bannerView.setBackgroundColor(123456);
+
+        bannerView.setRefresh(30);
+
+        bannerView.setADListener(new AbstractBannerADListener() {
+            @Override
+            public void onNoAD(AdError adError) {
+                Log.i(
+                        "AD_DEMO",
+                        String.format("Banner onNoAD，eCode = %d, eMsg = %s", adError.getErrorCode(),
+                                adError.getErrorMsg()));
+            }
+
+            @Override
+            public void onADReceiv() {
+                Log.i("AD_DEMO", "onADReceiv: ");
+            }
+        });
+
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+
+        bannerLayout.addView(bannerView,layoutParams);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
