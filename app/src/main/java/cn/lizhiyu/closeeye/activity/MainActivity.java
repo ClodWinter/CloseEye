@@ -1,5 +1,8 @@
 package cn.lizhiyu.closeeye.activity;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
 import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.net.Uri;
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
 
+
         setContentView(R.layout.activity_main);
 
         frameLayout = (FrameLayout)findViewById(R.id.home_frameLayout);
@@ -75,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         JPushInterface.init(this);
     }
+
 
     private void createBottomNav()
     {
@@ -114,6 +119,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         listFragments.add(fragmentMine);
     }
+
+
 
     private void setDefaultFragment()
     {
