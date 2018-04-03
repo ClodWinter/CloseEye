@@ -186,6 +186,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 Toast.makeText(ChoiceDetailActivity.this,"收藏成功",Toast.LENGTH_LONG).show();
+                buttonLike.setBackgroundResource(R.drawable.liked);
             }
         });
 

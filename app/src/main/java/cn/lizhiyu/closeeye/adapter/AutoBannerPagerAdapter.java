@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.qq.e.ads.nativ.NativeExpressADView;
+
 import java.util.ArrayList;
 
 /**
@@ -57,11 +60,17 @@ public class AutoBannerPagerAdapter extends PagerAdapter
     @Override
     public Object instantiateItem(ViewGroup container, int position)
     {
+//        NativeExpressADView view = (NativeExpressADView) datas.get(position % datas.size());
+//
+//        container.addView(view);
+//
+//        view.render();
+
         ImageView imageView = new ImageView(mContext);
 
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-        imageView.setImageResource((Integer) datas.get(position % datas.size()));
+        imageView.setBackgroundResource((Integer) datas.get(position%datas.size()));
 
         container.addView(imageView);
 

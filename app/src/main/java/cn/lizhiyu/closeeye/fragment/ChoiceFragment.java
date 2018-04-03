@@ -32,6 +32,10 @@ import com.alibaba.fastjson.TypeReference;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
+import com.qq.e.ads.cfg.VideoOption;
+import com.qq.e.ads.nativ.NativeExpressAD;
+import com.qq.e.ads.nativ.NativeExpressADView;
+import com.qq.e.comm.constants.Constants;
 import com.qq.e.comm.util.AdError;
 
 import org.json.JSONArray;
@@ -45,6 +49,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import cn.jiguang.net.HttpRequest;
+import cn.lizhiyu.closeeye.Common.Define;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
 import cn.lizhiyu.closeeye.activity.ChoiceDetailActivity;
@@ -63,7 +68,7 @@ import cn.lizhiyu.closeeye.request.BaseHttpRequest;
  * Use the {@link ChoiceFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ChoiceFragment extends Fragment{
+public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeExpressADListener{
 
     private View rootView;
 
@@ -89,9 +94,15 @@ public class ChoiceFragment extends Fragment{
 
     private View emptyView;
 
-    private BannerView bannerView;
+    private ArrayList arrayBanner;
 
-    private FrameLayout bannerLayout;
+    private NativeExpressAD nativeExpressAD;
+
+    private NativeExpressADView nativeExpressADView;
+
+    private AutoBannerPagerAdapter autoBannerPagerAdapter;
+
+    private AutoBannerViewPager autoBannerViewPager;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler()
@@ -106,8 +117,6 @@ public class ChoiceFragment extends Fragment{
                     choiceArrayAdapter.notifyDataSetChanged();
 
                     createBannerAd();
-
-                    bannerView.loadAD();
 
                     break;
                 }
@@ -199,6 +208,8 @@ public class ChoiceFragment extends Fragment{
                                 if (!isLoadmore)
                                 {
                                     arrayChoice.clear();
+
+                                    arrayBanner.clear();
                                 }
 
                                 arrayChoice.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),VideoModel.class));
@@ -233,6 +244,8 @@ public class ChoiceFragment extends Fragment{
         if (rootView == null)
         {
             arrayChoice = new ArrayList();
+
+            arrayBanner = new ArrayList();
 
             rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
 
@@ -301,6 +314,16 @@ public class ChoiceFragment extends Fragment{
 
             listView.setAdapter(choiceArrayAdapter);
 
+            autoBannerPagerAdapter = new AutoBannerPagerAdapter(getActivity().getApplicationContext());
+
+            autoBannerPagerAdapter.updateDatas(arrayBanner);
+
+            autoBannerViewPager = (AutoBannerViewPager)rootView.findViewById(R.id.choice_bannerAuto);
+
+            autoBannerViewPager.setAdapter(autoBannerPagerAdapter);
+
+            autoBannerViewPager.setShowTime(5000);
+
             indictorLayout = (LinearLayout) rootView.findViewById(R.id.banner_indicator_layout);
 
             swipeRefreshLayout = (SwipeRefreshLayout)rootView.findViewById(R.id.choice_swipe);
@@ -364,32 +387,7 @@ public class ChoiceFragment extends Fragment{
 
     public void createBannerAd()
     {
-        bannerLayout = rootView.findViewById(R.id.choice_bannerAd);
-
-        bannerView = new BannerView(this.getActivity(), ADSize.BANNER,"1101152570","9079537218417626401");
-
-        bannerView.setBackgroundColor(123456);
-
-        bannerView.setRefresh(30);
-
-        bannerView.setADListener(new AbstractBannerADListener() {
-            @Override
-            public void onNoAD(AdError adError) {
-                Log.i(
-                        "AD_DEMO",
-                        String.format("Banner onNoAD，eCode = %d, eMsg = %s", adError.getErrorCode(),
-                                adError.getErrorMsg()));
-            }
-
-            @Override
-            public void onADReceiv() {
-                Log.i("AD_DEMO", "onADReceiv: ");
-            }
-        });
-
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-        bannerLayout.addView(bannerView,layoutParams);
+        loadNativeAd();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -443,5 +441,137 @@ public class ChoiceFragment extends Fragment{
         void onFragmentInteraction(Uri uri);
     }
 
+    private void loadNativeAd()
+    {
+        try {
 
+            /**
+             *  如果选择支持视频的模版样式，请使用{@link Constants#NativeExpressSupportVideoPosID}
+             */
+            nativeExpressAD = new NativeExpressAD(getActivity(), getMyADSize(), Define.APPID, Define.NativeExpressPosID, this); // 这里的Context必须为Activity
+            nativeExpressAD.setVideoOption(new VideoOption.Builder()
+                    .setAutoPlayPolicy(VideoOption.AutoPlayPolicy.WIFI) // 设置什么网络环境下可以自动播放视频
+                    .setAutoPlayMuted(true) // 设置自动播放视频时，是否静音
+                    .build()); // setVideoOption是可选的，开发者可根据需要选择是否配置
+            nativeExpressAD.loadAD(5);
+        } catch (NumberFormatException e) {
+            Log.w("lzyssg", "ad size invalid.");
+        }
+    }
+
+    private com.qq.e.ads.nativ.ADSize getMyADSize() {
+        int w =  com.qq.e.ads.nativ.ADSize.FULL_WIDTH;
+        int h =  com.qq.e.ads.nativ.ADSize.AUTO_HEIGHT;
+        return new com.qq.e.ads.nativ.ADSize(w, h);
+    }
+
+    @Override
+    public void onNoAD(AdError adError) {
+
+    }
+
+    @Override
+    public void onADLoaded(List<NativeExpressADView> list)
+    {
+        arrayBanner.clear();
+
+//        arrayBanner.addAll(list);
+
+        arrayBanner.add(R.mipmap.choice_banner_0);
+
+        arrayBanner.add(R.mipmap.choice_banner_1);
+
+        arrayBanner.add(R.mipmap.choice_banner_2);
+
+        arrayBanner.add(R.mipmap.choice_banner_3);
+
+        arrayBanner.add(R.mipmap.choice_banner_4);
+
+        autoBannerPagerAdapter.notifyDataSetChanged();
+
+        autoBannerViewPager.start();
+
+        indictorLayout.removeAllViews();
+
+        for (int i = 0; i < arrayBanner.size(); i++)
+        {
+            ImageView imageView = new ImageView(getActivity());
+
+            imageView.setImageResource(i==0?R.drawable.banner_shape_select:R.drawable.banner_shape_normal);
+
+            indictorLayout.addView(imageView);
+
+            LinearLayout.LayoutParams layoutParams=
+                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+
+            layoutParams.leftMargin = 10;
+
+            imageView.setLayoutParams(layoutParams);
+
+        }
+
+        autoBannerViewPager.callBack = new AutoBannerViewPager.scrollCallBack() {
+            @Override
+            public void scroll(int page)
+            {
+                Log.d("tttttttt", "scroll: "+page);
+
+                for (int i = 0; i < indictorLayout.getChildCount(); i++)
+                {
+                    ImageView imageView = (ImageView) indictorLayout.getChildAt(i);
+
+                    imageView.setImageDrawable(null);
+
+                    if (i == page)
+                    {
+                        imageView.setBackgroundResource(R.drawable.banner_shape_select);
+                    }
+                    else {
+                        imageView.setBackgroundResource(R.drawable.banner_shape_normal);
+                    }
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onRenderFail(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onRenderSuccess(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onADExposure(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onADClicked(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onADClosed(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onADLeftApplication(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onADOpenOverlay(NativeExpressADView nativeExpressADView) {
+
+    }
+
+    @Override
+    public void onADCloseOverlay(NativeExpressADView nativeExpressADView) {
+
+    }
 }

@@ -138,7 +138,7 @@ public class SplashActivity extends Activity implements SplashADListener{
     @Override
     public void onADTick(long l)
     {
-        CountDownTimer timer = new CountDownTimer(l,1000) {
+        final CountDownTimer timer = new CountDownTimer(l,1000) {
             @Override
             public void onTick(long t)
             {
@@ -148,9 +148,7 @@ public class SplashActivity extends Activity implements SplashADListener{
             @Override
             public void onFinish()
             {
-                Intent intent = new Intent(SplashActivity.this,MainActivity.class);
 
-                startActivity(intent);
             }
         }.start();
     }
