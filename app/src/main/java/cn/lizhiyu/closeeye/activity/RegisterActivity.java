@@ -10,13 +10,12 @@ import android.view.WindowManager;
 
 import cn.lizhiyu.closeeye.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 

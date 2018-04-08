@@ -5,25 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:background="#fafafa">
+    android:background="@mipmap/login_register_bg">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="闭眼"
-        android:textSize="36dp"
+        android:textSize="30dp"
         android:textStyle="bold"
-        android:textColor="#42241d"
+        android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         />
     
     <RelativeLayout
         android:layout_width="250dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="170dp"
         >
         
         <ImageView
@@ -39,10 +39,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="请输入账号/手机号"
+            android:textSize="17dp"
             android:id="@+id/login_account_edittext"
             android:layout_toRightOf="@+id/login_account_icon"
-            android:textColor="@color/black"
-            android:textColorHint="#a3a3a3"
+            android:textColor="#919191"
+            android:textColorHint="@color/white"
             android:layout_marginLeft="4dp"
             />
         
@@ -59,7 +60,7 @@
         android:layout_width="250dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="230dp"
         >
 
         <ImageView
@@ -77,8 +78,9 @@
             android:hint="请输入密码"
             android:id="@+id/login_pass_edittext"
             android:layout_toRightOf="@+id/login_pass_icon"
-            android:textColor="@color/black"
-            android:textColorHint="#a3a3a3"
+            android:textColor="#919191"
+            android:textSize="17dp"
+            android:textColorHint="@color/white"
             android:layout_marginLeft="4dp"
             />
 
@@ -95,7 +97,7 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="300dp"
         >
 
         <ImageView
@@ -117,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="立即注册 >"
-            android:textColor="#9b9995"
+            android:textColor="@color/white"
             android:textSize="12dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="30dp"
@@ -135,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="忘记密码 >"
-            android:textColor="#9b9995"
+            android:textColor="@color/white"
             android:textSize="12dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
@@ -153,7 +155,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="1dp"
-            android:background="#e5e5e5"
+            android:background="@color/white"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             />
@@ -163,14 +165,14 @@
             android:layout_height="wrap_content"
             android:text="使用社交账号登录"
             android:layout_centerHorizontal="true"
-            android:textColor="#dadada"
+            android:textColor="@color/white"
             android:layout_marginTop="10dp"
             />
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="1dp"
-            android:background="#e5e5e5"
+            android:background="@color/white"
             android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"
