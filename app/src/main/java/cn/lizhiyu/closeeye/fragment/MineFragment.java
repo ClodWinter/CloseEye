@@ -2,6 +2,7 @@ package cn.lizhiyu.closeeye.fragment;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,12 +13,14 @@ import android.view.LayoutInflater;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.activity.LoginActivity;
 import cn.lizhiyu.closeeye.adapter.MineArrayAdapter;
 import cn.lizhiyu.closeeye.adapter.MineMessageAdapter;
 import cn.lizhiyu.closeeye.adapter.MineNumerAdapter;
@@ -220,6 +223,27 @@ public class MineFragment extends Fragment
         listView.setDivider(null);
 
         View viewHead = inflater.inflate(R.layout.layout_minehead,container,false);
+
+        Button buttonLogin = viewHead.findViewById(R.id.mine_button_login);
+
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+                startActivity(intent);
+            }
+        });
+
+        Button buttonRegister = viewHead.findViewById(R.id.mine_button_register);
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         listView.addHeaderView(viewHead);
 

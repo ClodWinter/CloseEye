@@ -42,6 +42,14 @@ public class SplashActivity extends Activity implements SplashADListener{
 
         skipView = findViewById(R.id.skip_view);
 
+        skipView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                skip();
+            }
+        });
+
         container = findViewById(R.id.splash_container);
 
         // 如果targetSDKVersion >= 23，就要申请好权限。如果您的App没有适配到Android6.0（即targetSDKVersion < 23），那么只需要在这里直接调用fetchSplashAD接口。
@@ -112,15 +120,15 @@ public class SplashActivity extends Activity implements SplashADListener{
     {
         Log.d("lzyssg", "onADDismissed: ");
 
-        Intent intent = new Intent(SplashActivity.this,MainActivity.class);
-
-        startActivity(intent);
+        skip();
     }
 
     @Override
     public void onNoAD(AdError adError)
     {
         Log.d("lzyssg", "adError: ");
+
+        skip();
     }
 
     @Override
@@ -151,5 +159,12 @@ public class SplashActivity extends Activity implements SplashADListener{
 
             }
         }.start();
+    }
+
+    private void skip()
+    {
+        Intent intent = new Intent(SplashActivity.this,MainActivity.class);
+
+        startActivity(intent);
     }
 }

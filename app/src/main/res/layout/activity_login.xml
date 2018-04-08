@@ -19,11 +19,20 @@
         android:layout_marginTop="80dp"
         />
     
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/activity_login_close"
+        android:background="@drawable/login_register_close"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        />
+    
     <RelativeLayout
         android:layout_width="250dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="260dp"
         >
         
         <ImageView
@@ -43,7 +52,9 @@
             android:layout_toRightOf="@+id/login_account_icon"
             android:textColor="@color/black"
             android:textColorHint="#a3a3a3"
+            android:background="@null"
             android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
             />
         
         <ImageView
@@ -59,7 +70,7 @@
         android:layout_width="250dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="320dp"
         >
 
         <ImageView
@@ -76,10 +87,12 @@
             android:layout_height="wrap_content"
             android:hint="请输入密码"
             android:id="@+id/login_pass_edittext"
+            android:background="@null"
             android:layout_toRightOf="@+id/login_pass_icon"
             android:textColor="@color/black"
             android:textColorHint="#a3a3a3"
             android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
             />
 
         <ImageView
@@ -95,7 +108,7 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="330dp"
+        android:layout_marginTop="390dp"
         >
 
         <ImageView
