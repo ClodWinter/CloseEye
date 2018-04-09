@@ -1,5 +1,4 @@
 package cn.lizhiyu.closeeye.activity;
-
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
