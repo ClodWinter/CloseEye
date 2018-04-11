@@ -21,6 +21,7 @@ import java.util.List;
 
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.activity.LoginActivity;
+import cn.lizhiyu.closeeye.activity.RegisterActivity;
 import cn.lizhiyu.closeeye.adapter.MineArrayAdapter;
 import cn.lizhiyu.closeeye.adapter.MineMessageAdapter;
 import cn.lizhiyu.closeeye.adapter.MineNumerAdapter;
@@ -240,8 +241,11 @@ public class MineFragment extends Fragment
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), RegisterActivity.class);
 
+                startActivity(intent);
             }
         });
 

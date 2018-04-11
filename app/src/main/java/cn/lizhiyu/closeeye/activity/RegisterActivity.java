@@ -14,7 +14,6 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
 
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -30,5 +29,8 @@ public class RegisterActivity extends AppCompatActivity {
             window.setStatusBarColor(Color.TRANSPARENT);
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
+
+        setContentView(R.layout.activity_register);
     }
+
 }

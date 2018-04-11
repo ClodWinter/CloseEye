@@ -32,7 +32,7 @@
         android:layout_width="250dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="200dp"
         >
         
         <ImageView
@@ -71,7 +71,7 @@
         android:layout_width="250dp"
         android:layout_height="46dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="260dp"
         >
 
         <ImageView
@@ -110,7 +110,7 @@
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="330dp"
         >
 
         <ImageView
@@ -163,6 +163,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
         >
         
         <ImageView
