@@ -8,12 +8,12 @@
     android:background="@mipmap/login_register_bg">
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:id="@+id/activity_login_close"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:id="@+id/activity_register_close"
         android:background="@drawable/login_register_close"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="20dp"
         />
 
     <RelativeLayout
@@ -93,6 +93,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/register_getValiCode"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:text="获取验证码"/>

@@ -14,7 +14,10 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,7 @@ import cn.lizhiyu.closeeye.adapter.MineNumerAdapter;
 import cn.lizhiyu.closeeye.model.MineItemModel;
 import cn.lizhiyu.closeeye.model.MineMessageModel;
 import cn.lizhiyu.closeeye.model.MineRecylerModel;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -224,6 +228,10 @@ public class MineFragment extends Fragment
         listView.setDivider(null);
 
         View viewHead = inflater.inflate(R.layout.layout_minehead,container,false);
+
+        ImageView imageViewUserIcon = viewHead.findViewById(R.id.mine_user_icon);
+
+        Glide.with(getActivity()).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(getActivity())).crossFade(1000).into(imageViewUserIcon);
 
         Button buttonLogin = viewHead.findViewById(R.id.mine_button_login);
 
