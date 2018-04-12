@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import cn.lizhiyu.closeeye.R;
 
@@ -31,6 +32,17 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_register);
+
+        TextView textView = (TextView) findViewById(R.id.register_hasAccount);
+
+        textView.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 
 }
