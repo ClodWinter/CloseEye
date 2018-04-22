@@ -58,6 +58,15 @@ public class SplashActivity extends Activity implements SplashADListener{
 
         setContentView(R.layout.activity_splash);
 
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
+                .methodCount(0)         // (Optional) How many method line to show. Default 2
+                .methodOffset(7)        // (Optional) Hides internal method calls up to offset. Default 5
+                .tag("lzyssg")   // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .build();
+
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
+
         skipView = findViewById(R.id.skip_view);
 
         skipView.setOnClickListener(new View.OnClickListener() {

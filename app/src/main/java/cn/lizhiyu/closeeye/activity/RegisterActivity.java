@@ -4,15 +4,30 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
+import cn.lizhiyu.closeeye.Common.CommonTool;
+
+import org.w3c.dom.Text;
+
+import cn.lizhiyu.closeeye.Common.CommonTool;
 import cn.lizhiyu.closeeye.R;
 import cn.smssdk.EventHandler;
 import cn.smssdk.SMSSDK;
+
+import static cn.lizhiyu.closeeye.R.*;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -35,14 +50,14 @@ public class RegisterActivity extends AppCompatActivity {
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
 
-        setContentView(R.layout.activity_register);
+        setContentView(layout.activity_register);
 
         createView();
     }
 
     private void createView()
     {
-        ImageView imageViewClose = (ImageView) findViewById(R.id.activity_register_close);
+        ImageView imageViewClose = (ImageView) findViewById(id.activity_register_close);
 
         imageViewClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        TextView textView = (TextView) findViewById(R.id.register_hasAccount);
+        TextView textView = (TextView) findViewById(id.register_hasAccount);
 
         textView.setOnClickListener(new View.OnClickListener()
         {
@@ -65,12 +80,46 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        TextView textViewGetCode = (TextView) findViewById(R.id.register_getValiCode);
+        final EditText editTextAccount = (EditText) findViewById(id.register_account_edittext);
+
+        final EditText editTextPass = (EditText) findViewById(id.register_pass_edittext);
+
+        final EditText editTextCode = (EditText) findViewById(id.register_vali_edittext);
+
+        final EditText editTextPassAgain = (EditText) findViewById(id.register_again_pass_edittext);
+
+        final ImageView imageViewAction = (ImageView) findViewById(id.register_button);
+
+        TextView textViewGetCode = (TextView) findViewById(id.register_getValiCode);
+
+
+        imageViewAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+
+            }
+        });
 
         textViewGetCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
+
+                if (editTextAccount.getText().length() == 0)
+                {
+                    Toast.makeText(RegisterActivity.this,"手机号码不能为空",Toast.LENGTH_LONG).show();
+
+                    return;
+                }
+
+                if (!CommonTool.isMobile(editTextAccount.getText().toString()))
+                {
+                    Toast.makeText(RegisterActivity.this,"手机号码格式不正确",Toast.LENGTH_LONG).show();
+
+                    return;
+                }
+
                 // 注册一个事件回调，用于处理发送验证码操作的结果
                 SMSSDK.registerEventHandler(new EventHandler() {
                     public void afterEvent(int event, int result, Object data) {
@@ -83,8 +132,60 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 });
+
+                // 触发操作
+                SMSSDK.getVerificationCode("86", editTextAccount.getText().toString());
+
+                Toast.makeText(RegisterActivity.this,"验证码已发送，请注意查收。",Toast.LENGTH_LONG).show();
             }
         });
+
+        final Button buttonCheck = (Button) findViewById(id.register_check);
+
+        buttonCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                buttonCheck.setSelected(!buttonCheck.isSelected());
+
+                if (buttonCheck.isSelected())
+                {
+                    buttonCheck.setBackgroundResource(drawable.check_box);
+                }else
+                {
+                    buttonCheck.setBackgroundResource(drawable.uncheck_box);
+                }
+            }
+        });
+
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after)
+            {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (editTextAccount.getText().length()>0 && editTextCode.getText().length()>0 && editTextPass.getText().length()>0 && editTextPassAgain.getText().length()>0)
+                {
+                    imageViewAction.setBackgroundColor(Color.parseColor("#f34649"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        editTextAccount.addTextChangedListener(textWatcher);
+
+        editTextCode.addTextChangedListener(textWatcher);
+
+        editTextPass.addTextChangedListener(textWatcher);
+
+        editTextPassAgain.addTextChangedListener(textWatcher);
     }
 
 }

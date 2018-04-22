@@ -1,6 +1,7 @@
 package cn.lizhiyu.closeeye.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.media.Image;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.load.engine.Resource;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -52,7 +54,15 @@ public class ChoiceArrayAdapter extends ArrayAdapter
 
         VideoModel model = (VideoModel)listData.get(position);
 
-        Picasso.with(getContext()).load(model.getCoverUrl()).into(imageView);
+//        Picasso.with(getContext()).load(model.getCoverUrl()).into(imageView);
+
+        int temp = position%20;
+
+        Resources resources = parent.getResources();
+
+        int rid = resources.getIdentifier("choice_item_"+temp,"mipmap","cn.lizhiyu.closeeye");
+
+        imageView.setImageResource(rid);
 
         TextView textViewTitle = (TextView)view.findViewById(R.id.choiceitem_text);
 
