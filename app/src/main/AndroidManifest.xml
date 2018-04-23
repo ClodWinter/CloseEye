@@ -153,7 +153,8 @@
         <activity android:name=".activity.DiscDetailActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.RegisterActivity"></activity>
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ForgetPassActivity"></activity>
     </application>
 
 </manifest>

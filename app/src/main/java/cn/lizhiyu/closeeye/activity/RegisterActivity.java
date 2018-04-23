@@ -2,6 +2,7 @@ package cn.lizhiyu.closeeye.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -90,7 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         final ImageView imageViewAction = (ImageView) findViewById(id.register_button);
 
-        TextView textViewGetCode = (TextView) findViewById(id.register_getValiCode);
+        final TextView textViewGetCode = (TextView) findViewById(id.register_getValiCode);
 
 
         imageViewAction.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +138,24 @@ public class RegisterActivity extends AppCompatActivity {
                 SMSSDK.getVerificationCode("86", editTextAccount.getText().toString());
 
                 Toast.makeText(RegisterActivity.this,"验证码已发送，请注意查收。",Toast.LENGTH_LONG).show();
+
+                textViewGetCode.setClickable(false);
+
+                final CountDownTimer timer = new CountDownTimer(60000,1000) {
+                    @Override
+                    public void onTick(long t)
+                    {
+                        textViewGetCode.setText(t/1000+" 后重发");
+                    }
+
+                    @Override
+                    public void onFinish()
+                    {
+                        textViewGetCode.setText("获取验证码");
+
+                        textViewGetCode.setClickable(true);
+                    }
+                }.start();
             }
         });
 
