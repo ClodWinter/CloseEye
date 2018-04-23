@@ -16,19 +16,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.auth.TwitterHandle;
+
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
 
 import cn.lizhiyu.closeeye.Common.CommonTool;
 import cn.lizhiyu.closeeye.R;
+import cn.sharesdk.facebook.Facebook;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.wechat.friends.Wechat;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements PlatformActionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -150,7 +154,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
+                Intent intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
 
+                startActivity(intent);
             }
         });
 
@@ -168,37 +174,25 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                Platform wechat = ShareSDK.getPlatform( Wechat.NAME);
-//回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
-                wechat.setPlatformActionListener(new PlatformActionListener() {
+                Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
 
-                    @Override
-                    public void onError(Platform arg0, int arg1, Throwable arg2) {
-                        // TODO Auto-generated method stub
-                        arg2.printStackTrace();
-                    }
+                wechat.setPlatformActionListener(LoginActivity.this);
 
-                    @Override
-                    public void onComplete(Platform arg0, int arg1, HashMap<String, Object> arg2) {
-                        // TODO Auto-generated method stub
-                        //输出所有授权信息
-                        arg0.getDb().exportData();
-                    }
-
-                    @Override
-                    public void onCancel(Platform arg0, int arg1) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-                wechat.showUser(null);//执行登录，登录后在回调里面获取用户资料
-//weibo.showUser(“3189087725”);//获取账号为“3189087725”的资料
+                wechat.authorize();
             }
         });
 
         buttonQQ.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                Platform qq = ShareSDK.getPlatform(QQ.NAME);
+
+                qq.removeAccount(true);
+
+                qq.setPlatformActionListener(LoginActivity.this);
+
+                qq.authorize();
 
             }
         });
@@ -208,45 +202,51 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 Platform weibo = ShareSDK.getPlatform( SinaWeibo.NAME);
-//回调信息，可以在这里获取基本的授权返回的信息，但是注意如果做提示和UI操作要传到主线程handler里去执行
-                weibo.setPlatformActionListener(new PlatformActionListener() {
 
-                    @Override
-                    public void onError(Platform arg0, int arg1, Throwable arg2) {
-                        // TODO Auto-generated method stub
-                        arg2.printStackTrace();
-                    }
+                weibo.setPlatformActionListener(LoginActivity.this);
 
-                    @Override
-                    public void onComplete(Platform arg0, int arg1, HashMap<String, Object> arg2) {
-                        // TODO Auto-generated method stub
-                        //输出所有授权信息
-                        arg0.getDb().exportData();
-                    }
-
-                    @Override
-                    public void onCancel(Platform arg0, int arg1) {
-                        // TODO Auto-generated method stub
-
-                    }
-                });
-                weibo.showUser(null);//执行登录，登录后在回调里面获取用户资料
-//weibo.showUser(“3189087725”);//获取账号为“3189087725”的资料
+                weibo.authorize();
             }
         });
 
         buttonWeFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
+                Platform facebook = ShareSDK.getPlatform(Facebook.NAME);
 
+                facebook.setPlatformActionListener(LoginActivity.this);
+
+                facebook.authorize();
             }
         });
 
         buttonTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-
+            public void onClick(View view)
+            {
+//                Platform twitter = ShareSDK.getPlatform(Twitter.Name);
+//
+//                twitter.setPlatformActionListener(LoginActivity.this);
+//
+//                twitter.authorize();
             }
         });
+    }
+
+    @Override
+    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+
+    }
+
+    @Override
+    public void onError(Platform platform, int i, Throwable throwable) {
+
+    }
+
+    @Override
+    public void onCancel(Platform platform, int i)
+    {
+
     }
 }
