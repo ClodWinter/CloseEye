@@ -139,7 +139,7 @@
             android:name="JPUSH_APPKEY"
             android:value="06860b1099814a492a57faf5" />
 
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activity.LuanchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -150,11 +150,34 @@
             android:name=".activity.ChoiceDetailActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <!--
+            如果集成QQ分享，或者使用QQ客户端来进行QQ空间的
+            分享，须要在此处添加一个对ACTION_VIEW事件的过滤器，
+            其中的scheme是“tencent”前缀再开发者应用的加上appId。
+            如果此过滤器不设置，则分享结束以后不能得到正确的回调
+            -->
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.DiscDetailActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.ForgetPasswordActivity"></activity>
+        <activity android:name=".activity.ForgetPasswordActivity" />
+        <activity android:name=".activity.SplashActivity" />
+        <activity android:name=".activity.FeedbackActivity"></activity>
     </application>
 
 </manifest>

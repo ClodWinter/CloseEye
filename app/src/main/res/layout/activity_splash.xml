@@ -25,7 +25,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/choicedetail_head_collect_shape"
-        android:layout_margin="16dp"
+        android:layout_margin="20dp"
         android:gravity="center"
         android:text=" 跳过 "
         android:textColor="@android:color/white"

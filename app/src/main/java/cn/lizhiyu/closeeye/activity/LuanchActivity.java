@@ -1,5 +1,8 @@
 package cn.lizhiyu.closeeye.activity;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +13,7 @@ import android.view.WindowManager;
 
 import cn.lizhiyu.closeeye.R;
 
-public class ForgetPasswordActivity extends AppCompatActivity {
+public class LuanchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +35,28 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
 
-//        setContentView(R.layout.activity_forget_password);
+        setContentView(R.layout.activity_luanch);
+
+        //步骤1：创建一个SharedPreferences接口对象
+        SharedPreferences read = getSharedPreferences("lock", MODE_PRIVATE);
+        //步骤2：获取文件中的值
+        Boolean isFirstInstall = read.getBoolean("isFirstInstall",false);
+
+        if (!isFirstInstall)
+        {
+            Intent intent = new Intent(LuanchActivity.this, MainActivity.class);
+
+            startActivity(intent);
+
+            ((Activity)this).overridePendingTransition(0, 0);
+        }
+        else
+        {
+            Intent intent = new Intent(LuanchActivity.this, SplashActivity.class);
+
+            startActivity(intent);
+
+            ((Activity)this).overridePendingTransition(0, 0);
+        }
     }
 }

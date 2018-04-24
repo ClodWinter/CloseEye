@@ -30,6 +30,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.twitter.Twitter;
 import cn.sharesdk.wechat.friends.Wechat;
 
 public class LoginActivity extends AppCompatActivity implements PlatformActionListener{
@@ -225,11 +226,11 @@ public class LoginActivity extends AppCompatActivity implements PlatformActionLi
             @Override
             public void onClick(View view)
             {
-//                Platform twitter = ShareSDK.getPlatform(Twitter.Name);
-//
-//                twitter.setPlatformActionListener(LoginActivity.this);
-//
-//                twitter.authorize();
+                Platform twitter = ShareSDK.getPlatform(Twitter.NAME);
+
+                twitter.setPlatformActionListener(LoginActivity.this);
+
+                twitter.authorize();
             }
         });
     }

@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="230dp"/>
 
-    
+
     <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
