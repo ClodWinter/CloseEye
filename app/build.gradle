@@ -92,6 +92,7 @@ MobSDK {
             Twitter {
                 appKey ""
                 appSecret ""
+                shareByAppClient true
                     }
         }
     }

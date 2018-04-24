@@ -13,16 +13,19 @@ import android.view.LayoutInflater;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.activity.FeedbackActivity;
 import cn.lizhiyu.closeeye.activity.LoginActivity;
 import cn.lizhiyu.closeeye.activity.RegisterActivity;
 import cn.lizhiyu.closeeye.adapter.MineArrayAdapter;
@@ -67,6 +70,8 @@ public class MineFragment extends Fragment
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private View rootView;
 
     public MineFragment() {
         // Required empty public constructor
@@ -213,73 +218,100 @@ public class MineFragment extends Fragment
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_mine, container, false);
+                             Bundle savedInstanceState)
+    {
+        if (rootView == null)
+        {
+            // Inflate the layout for this fragment
+            rootView =  inflater.inflate(R.layout.fragment_mine, container, false);
 
-        initData();
+            initData();
 
-        listView = (ListView)view.findViewById(R.id.mine_listView);
+            listView = (ListView)rootView.findViewById(R.id.mine_listView);
 
-        MineArrayAdapter arrayAdapter = new MineArrayAdapter(getActivity(),R.layout.mineitem_layout,listModel);
+            MineArrayAdapter arrayAdapter = new MineArrayAdapter(getActivity(),R.layout.mineitem_layout,listModel);
 
-        listView.setAdapter(arrayAdapter);
+            listView.setAdapter(arrayAdapter);
 
-        listView.setDivider(null);
+            listView.setDivider(null);
 
-        View viewHead = inflater.inflate(R.layout.layout_minehead,container,false);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                {
+                    Logger.d("===="+position);
 
-        ImageView imageViewUserIcon = viewHead.findViewById(R.id.mine_user_icon);
+                    Intent intent = new Intent(getActivity(), FeedbackActivity.class);
 
-        Glide.with(getActivity()).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(getActivity())).crossFade(1000).into(imageViewUserIcon);
+                    startActivity(intent);
+                }
+            });
 
-        Button buttonLogin = viewHead.findViewById(R.id.mine_button_login);
+            View viewHead = inflater.inflate(R.layout.layout_minehead,container,false);
 
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
+            ImageView imageViewUserIcon = viewHead.findViewById(R.id.mine_user_icon);
+
+            Glide.with(getActivity()).load(R.mipmap.beauty_0).bitmapTransform(new CropCircleTransformation(getActivity())).crossFade(1000).into(imageViewUserIcon);
+
+            Button buttonLogin = viewHead.findViewById(R.id.mine_button_login);
+
+            buttonLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+
+                    startActivity(intent);
+                }
+            });
+
+            Button buttonRegister = viewHead.findViewById(R.id.mine_button_register);
+
+            buttonRegister.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v)
+                {
+                    Intent intent = new Intent(getActivity(), RegisterActivity.class);
+
+                    startActivity(intent);
+                }
+            });
+
+            listView.addHeaderView(viewHead);
+
+            recyclerViewNumer = (RecyclerView)viewHead.findViewById(R.id.head_recyclerHeadCount);
+
+            rLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+
+            recyclerAdapterNumer = new MineNumerAdapter(getMineHeadRecyclerList());
+
+            recyclerViewNumer.setAdapter(recyclerAdapterNumer);
+
+            recyclerViewNumer.setLayoutManager(rLayoutManager);
+
+            recyclerViewMessage = (RecyclerView)viewHead.findViewById(R.id.head_recyclerHeadMessage);
+
+            rLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+
+            recyclerAdapterMessage = new MineMessageAdapter(getMineHeadMessageList());
+
+            recyclerViewMessage.setAdapter(recyclerAdapterMessage);
+
+            recyclerViewMessage.setLayoutManager(rLayoutManager);
+
+        }
+        else
+        {
+            ViewGroup parent = (ViewGroup) rootView.getParent();
+
+            if (parent != null)
             {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-
-                startActivity(intent);
+                parent.removeView(rootView);
             }
-        });
+        }
 
-        Button buttonRegister = viewHead.findViewById(R.id.mine_button_register);
+        return rootView;
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(getActivity(), RegisterActivity.class);
-
-                startActivity(intent);
-            }
-        });
-
-        listView.addHeaderView(viewHead);
-
-        recyclerViewNumer = (RecyclerView)viewHead.findViewById(R.id.head_recyclerHeadCount);
-
-        rLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-
-        recyclerAdapterNumer = new MineNumerAdapter(getMineHeadRecyclerList());
-
-        recyclerViewNumer.setAdapter(recyclerAdapterNumer);
-
-        recyclerViewNumer.setLayoutManager(rLayoutManager);
-
-        recyclerViewMessage = (RecyclerView)viewHead.findViewById(R.id.head_recyclerHeadMessage);
-
-        rLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-
-        recyclerAdapterMessage = new MineMessageAdapter(getMineHeadMessageList());
-
-        recyclerViewMessage.setAdapter(recyclerAdapterMessage);
-
-        recyclerViewMessage.setLayoutManager(rLayoutManager);
-
-        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

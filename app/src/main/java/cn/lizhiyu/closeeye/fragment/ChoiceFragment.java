@@ -132,6 +132,8 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
 
             }
 
+            refreshBanner();
+
             swipeRefreshLayout.setRefreshing(false);
 
             if (isLoadmore)
@@ -465,18 +467,8 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
         return new com.qq.e.ads.nativ.ADSize(w, h);
     }
 
-    @Override
-    public void onNoAD(AdError adError) {
-
-    }
-
-    @Override
-    public void onADLoaded(List<NativeExpressADView> list)
+    private void refreshBanner()
     {
-        arrayBanner.clear();
-
-//        arrayBanner.addAll(list);
-
         arrayBanner.add(R.mipmap.choice_banner_0);
 
         arrayBanner.add(R.mipmap.choice_banner_1);
@@ -533,6 +525,19 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
                 }
             }
         };
+    }
+
+    @Override
+    public void onNoAD(AdError adError) {
+
+    }
+
+    @Override
+    public void onADLoaded(List<NativeExpressADView> list)
+    {
+        arrayBanner.clear();
+
+//        arrayBanner.addAll(list);
     }
 
     @Override
