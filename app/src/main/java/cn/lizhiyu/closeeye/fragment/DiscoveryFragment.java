@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import cn.lizhiyu.closeeye.Animations.DiscListHeadTrans;
+import cn.lizhiyu.closeeye.Common.ACache;
+import cn.lizhiyu.closeeye.Common.Define;
 import cn.lizhiyu.closeeye.CustomView.DiscHeadItemView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
@@ -174,6 +176,15 @@ public class DiscoveryFragment extends Fragment {
                 method.invoke(win,R.color.darkgray);
             } catch(Exception e) {
                 Log.v("ff", "statusBarIconDark,e=" + e);
+            }
+
+            ACache aCache = ACache.get(getActivity());
+
+            ArrayList temp = (ArrayList) aCache.getAsObject(Define.DiscRequestUrl);
+
+            if (temp != null)
+            {
+                arrayDisc.addAll(temp);
             }
 
             rootView = (View)inflater.inflate(R.layout.fragment_discovery,container,false);
@@ -335,7 +346,7 @@ public class DiscoveryFragment extends Fragment {
             public void run()
             {
                 try {
-                    request.sendGetRequest("http://120.76.205.241:8000/post/duowan?", param, new BaseHttpRequest.HttpRequestCallBack() {
+                    request.sendGetRequest(Define.DiscRequestUrl, param, getActivity(), new BaseHttpRequest.HttpRequestCallBack() {
                         @Override
                         public void onRespose(String response, int httpTag)
                         {
@@ -366,6 +377,10 @@ public class DiscoveryFragment extends Fragment {
                                 arrayListBanner.add(R.mipmap.mine_headbg);
 
                                 arrayDisc.addAll(JSON.parseArray(jsonArray.toJSONString(), DiscItemModel.class));
+
+                                ACache aCache = ACache.get(getActivity());
+
+                                aCache.put(Define.DiscRequestUrl,arrayDisc);
 
                                 message.what = 200;
                             }else

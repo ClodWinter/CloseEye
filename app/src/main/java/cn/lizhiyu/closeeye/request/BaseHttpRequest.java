@@ -1,5 +1,6 @@
 package cn.lizhiyu.closeeye.request;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
@@ -19,6 +20,8 @@ import java.net.URLEncoder;
 import java.util.Map;
 import java.util.Set;
 
+import cn.lizhiyu.closeeye.Common.ACache;
+
 /**
  * Created by king on 2018/2/12.
  */
@@ -30,7 +33,7 @@ public class BaseHttpRequest
         public void onRespose(String response,int httpTag);
     }
 
-    public void sendGetRequest(String url,Map<String,String> paramsMap, HttpRequestCallBack callBack) throws IOException
+    public void sendGetRequest(String url, Map<String,String> paramsMap, Context context, HttpRequestCallBack callBack) throws IOException
     {
         try {
             StringBuilder tempParams = new StringBuilder();
@@ -66,6 +69,13 @@ public class BaseHttpRequest
             if (urlConn.getResponseCode() == 200) {
                 // 获取返回的数据
                 String result = streamToString(urlConn.getInputStream());
+
+                if (context != null)
+                {
+                    ACache aCache = ACache.get(context);
+
+                    aCache.put(url+paramsMap.toString(),result);
+                }
 
 //                Map map = JSON.parseObject(result);
 

@@ -49,6 +49,7 @@ import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import cn.jiguang.net.HttpRequest;
+import cn.lizhiyu.closeeye.Common.ACache;
 import cn.lizhiyu.closeeye.Common.Define;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.ViewPager.AutoBannerViewPager;
@@ -176,8 +177,6 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
 
     public void requestChoiceData(int page)
     {
-        Log.d("lzyssg", "requestChoiceData: "+page);
-
         final BaseHttpRequest request = new BaseHttpRequest();
 
         final Map<String,String> param = new HashMap<>();
@@ -193,7 +192,7 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
             public void run()
             {
                 try {
-                    request.sendGetRequest("http://120.76.205.241:8000/video/duowan?", param, new BaseHttpRequest.HttpRequestCallBack() {
+                    request.sendGetRequest(Define.ChoiceRequestUrl, param, getActivity(),new BaseHttpRequest.HttpRequestCallBack() {
                         @Override
                         public void onRespose(String response, int httpTag)
                         {
@@ -215,6 +214,10 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
                                 }
 
                                 arrayChoice.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),VideoModel.class));
+
+                                ACache aCache = ACache.get(getActivity());
+
+                                aCache.put(Define.ChoiceRequestUrl,arrayChoice);
 
                                 message.what = 200;
 
@@ -248,6 +251,15 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
             arrayChoice = new ArrayList();
 
             arrayBanner = new ArrayList();
+
+            ACache aCache = ACache.get(getActivity());
+
+            ArrayList temp = (ArrayList) aCache.getAsObject(Define.ChoiceRequestUrl);
+
+            if (temp!=null)
+            {
+                arrayChoice.addAll(temp);
+            }
 
             rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
 

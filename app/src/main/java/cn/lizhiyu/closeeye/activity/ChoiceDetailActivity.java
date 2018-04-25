@@ -280,7 +280,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
             public void run()
             {
                 try {
-                    baseHttpRequest.sendGetRequest("http://120.76.205.241:8000/video/duowan?", params, new BaseHttpRequest.HttpRequestCallBack() {
+                    baseHttpRequest.sendGetRequest("http://120.76.205.241:8000/video/duowan?", params, ChoiceDetailActivity.this, new BaseHttpRequest.HttpRequestCallBack() {
                         @Override
                         public void onRespose(String response, int httpTag)
                         {

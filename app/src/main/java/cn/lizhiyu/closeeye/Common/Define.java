@@ -19,4 +19,7 @@ public class Define
     public static final String NativeExpressPosID = "7030020348049331"; //如果选择支持视频的模版样式，请使用NativeExpressSupportVideoPosID测试广告位拉取
     public static final String NativeExpressSupportVideoPosID = "2000629911207832"; //支持视频模版样式的广告位
     public static final String CONTENT_AD_POS_ID = "6030826684185381";
+
+    public static final String ChoiceRequestUrl = "http://120.76.205.241:8000/video/duowan?";
+    public static final String DiscRequestUrl = "http://120.76.205.241:8000/post/duowan?";
 }
