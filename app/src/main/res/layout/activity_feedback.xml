@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FeedbackActivity"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="意见类型"
+        android:textColor="#919191"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/feedback_type_action"
+        android:text="浏览/访问"
+        android:background="@color/gray"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="反馈内容"
+        android:textColor="#919191"
+        android:layout_below="@+id/feedback_type_action"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/feedback_content_title"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:hint="感谢您帮助东西南北不断成长"
+        android:textColorHint="@color/gray"
+        android:layout_below="@+id/feedback_content_title"
+        />
+
+
+</RelativeLayout>

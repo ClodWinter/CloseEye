@@ -28,6 +28,7 @@ import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.activity.FeedbackActivity;
 import cn.lizhiyu.closeeye.activity.LoginActivity;
 import cn.lizhiyu.closeeye.activity.RegisterActivity;
+import cn.lizhiyu.closeeye.activity.SettingActivity;
 import cn.lizhiyu.closeeye.adapter.MineArrayAdapter;
 import cn.lizhiyu.closeeye.adapter.MineMessageAdapter;
 import cn.lizhiyu.closeeye.adapter.MineNumerAdapter;
@@ -239,11 +240,46 @@ public class MineFragment extends Fragment
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id)
                 {
-                    Logger.d("===="+position);
+                   switch (position)
+                   {
+                       case 0:
+                       {
+                           break;
+                       }
 
-                    Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+                       case 1:
+                       {
 
-                    startActivity(intent);
+                           break;
+                       }
+
+                       case 2:
+                       {
+                           Intent intent = new Intent(getActivity(), FeedbackActivity.class);
+
+                           startActivity(intent);
+
+                           break;
+                       }
+
+                       case 3:
+                       {
+
+                           break;
+                       }
+
+                       case 4:
+                       {
+                           Intent intent = new Intent(getActivity(), SettingActivity.class);
+
+                           startActivity(intent);
+
+                           break;
+                       }
+
+                       default:
+                           break;
+                   }
                 }
             });
 

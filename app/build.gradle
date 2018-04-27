@@ -93,7 +93,7 @@ MobSDK {
                 appKey ""
                 appSecret ""
                 shareByAppClient true
-                    }
+            }
         }
     }
 
