@@ -8,19 +8,28 @@
     android:background="@color/white"
     >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="意见类型"
-        android:textColor="#919191"
-        android:layout_marginTop="20dp"
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:id="@+id/activity_forget_close"
+        android:background="@drawable/feedback_close"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:text="意见类型"
+        android:textColor="#919191"
+        android:layout_marginTop="65dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="95dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_alignParentLeft="true"
@@ -50,9 +59,111 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:hint="感谢您帮助东西南北不断成长"
+        android:background="@drawable/follow_card_shape"
         android:textColorHint="@color/gray"
+        android:singleLine="false"
+        android:scrollbars="vertical"
+        android:maxLines="20"
+        android:id="@+id/feedback_content_text"
         android:layout_below="@+id/feedback_content_title"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="联系方式"
+        android:textColor="#919191"
+        android:layout_below="@+id/feedback_content_text"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/feedback_contact_title"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_tel"
+        android:layout_below="@+id/feedback_contact_title"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textColorHint="#919191"
+        android:textSize="14dp"
+        android:hint="手机号码"
+        android:background="@drawable/follow_card_shape"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_qq"
+        android:layout_below="@+id/feedback_tel"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textColorHint="#919191"
+        android:textSize="14dp"
+        android:hint="QQ号码"
+        android:background="@drawable/follow_card_shape"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/feedback_email"
+        android:layout_below="@+id/feedback_qq"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textColorHint="#919191"
+        android:textSize="14dp"
+        android:hint="邮箱地址"
+        android:background="@drawable/follow_card_shape"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/feedback_email"
+        android:textColor="@color/gray"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:text="选填。若反馈需要回复，请至少选择填写一种联系方式。"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#a3a3a3"
+            android:id="@+id/register_button"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="提交"
+            />
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
