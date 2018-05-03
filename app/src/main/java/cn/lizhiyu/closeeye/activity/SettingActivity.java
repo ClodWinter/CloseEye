@@ -51,19 +51,19 @@ public class SettingActivity extends AppCompatActivity {
 
         createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
 
-        createSettingModel("在2G/3G/4G流量下播放视频","为节省流量费用，建议关闭","",1);
+        createSettingModel("在2G/3G/4G流量下播放视频","为节省流量费用，建议关闭","",2);
 
-        createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
+        createSettingModel("绑定手机","","未绑定",3);
 
-        createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
+        createSettingModel("是否自动播放视频","","",4);
 
-        createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
+        createSettingModel("给予好评","","",5);
 
-        createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
+        createSettingModel("检查更新","","",6);
 
-        createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
+        createSettingModel("清除缓存","","",7);
 
-        createSettingModel("推送设置","关注推送、每日精选推送、签到提醒等","",1);
+        createSettingModel("字体大小","","",8);
     }
 
     private SettingModel createSettingModel(String title, String content, String desc, int tag)
@@ -92,5 +92,12 @@ public class SettingActivity extends AppCompatActivity {
         recyclerView.setAdapter(settingRecyclerAdapter);
 
         recyclerView.setLayoutManager(rLayoutManager);
+
+        recyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
