@@ -178,7 +178,8 @@
         <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.SplashActivity" />
         <activity android:name=".activity.FeedbackActivity" />
-        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.UserInfoAactivity"></activity>
     </application>
 
 </manifest>

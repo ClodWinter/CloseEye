@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 
+import cn.lizhiyu.closeeye.CustomClass.ZYRecyclerItemClickListener;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.SettingRecyclerAdapter;
 import cn.lizhiyu.closeeye.model.SettingModel;
@@ -93,11 +96,18 @@ public class SettingActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(rLayoutManager);
 
-        recyclerView.setOnClickListener(new View.OnClickListener() {
+        recyclerView.addOnItemTouchListener(new ZYRecyclerItemClickListener(this, new ZYRecyclerItemClickListener.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onItemClick(View view, int position)
+            {
+                Logger.d("====="+position);
             }
-        });
+
+            @Override
+            public void onLongClick(View view, int posotion)
+            {
+                Logger.d("====="+posotion);
+            }
+        }));
     }
 }

@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CloseEye.iml" filepath="$PROJECT_DIR$/CloseEye.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/CloseEye-app.iml" filepath="$PROJECT_DIR$/app/CloseEye-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/GitHub-CloseEye.iml" filepath="$PROJECT_DIR$/GitHub-CloseEye.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
