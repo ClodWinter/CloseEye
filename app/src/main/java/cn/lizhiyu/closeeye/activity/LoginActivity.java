@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidquery.auth.TwitterHandle;
+import com.orhanobut.logger.Logger;
 
 import org.w3c.dom.Text;
 
@@ -236,8 +237,9 @@ public class LoginActivity extends AppCompatActivity implements PlatformActionLi
     }
 
     @Override
-    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-
+    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap)
+    {
+        Logger.d(hashMap);
     }
 
     @Override

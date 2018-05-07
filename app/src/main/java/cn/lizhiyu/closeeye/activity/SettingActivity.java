@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.SettingRecyclerAdapter;
 import cn.lizhiyu.closeeye.model.SettingModel;
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -165,9 +167,11 @@ public class SettingActivity extends AppCompatActivity {
 
         View viewLogout = LayoutInflater.from(this).inflate(R.layout.setting_logout,null);
 
-        viewLogout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        viewLogout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 160));
 
         ImageView imageViewBg = viewLogout.findViewById(R.id.setting_logout_bg);
+
+        Glide.with(this).load(R.mipmap.logout_bg).bitmapTransform(new RoundedCornersTransformation(this,30,0,RoundedCornersTransformation.CornerType.ALL)).into(imageViewBg);
 
         imageViewBg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,6 +180,6 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        recyclerView.addHeaderView(viewLogout);
+        recyclerView.addFooterView(viewLogout);
     }
 }

@@ -41,7 +41,7 @@ public class ChoiceDetailRecyclerAdapter extends AbstractRecyclerAdapter<VideoMo
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position, VideoModel item)
     {
-        Glide.with(context).load(item.coverUrl).bitmapTransform(new RoundedCornersTransformation(context,24,0,RoundedCornersTransformation.CornerType.ALL)).into(holder.imageView);
+        Glide.with(context).load(item.coverUrl).bitmapTransform(new RoundedCornersTransformation(context,10,0,RoundedCornersTransformation.CornerType.ALL)).into(holder.imageView);
 
         holder.textViewTitle.setText(item.title);
 
