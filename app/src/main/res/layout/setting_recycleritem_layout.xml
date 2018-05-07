@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:id="@+id/setting_item_desc"
+            android:id="@+id/setting_item_content"
             android:textColor="#919191"
             android:textSize="14dp"
             android:text="关注推送、每日精选推送、签到提醒等"
@@ -41,15 +41,8 @@
         android:src="@drawable/chevron_right"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:id="@+id/setting_rightIcon"
         android:layout_marginRight="5dp"
-        />
-
-    <Switch
-        android:layout_width="44dp"
-        android:layout_height="15dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="15dp"
         />
 
     <ImageView
@@ -58,6 +51,26 @@
         android:layout_marginLeft="15dp"
         android:layout_alignParentBottom="true"
         android:background="@color/smssdk_line_light_gray"
+        />
+
+    <Switch
+        android:layout_width="44dp"
+        android:layout_height="15dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:id="@+id/setting_switch"
+        android:theme="@style/mySwitch"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/setting_desc"
+        android:textColor="@color/smssdk_line_light_gray"
+        android:text="80MB"
+        android:layout_toLeftOf="@id/setting_rightIcon"
         />
     
 </RelativeLayout>
