@@ -155,12 +155,18 @@ public class ChoiceDetailActivity extends AppCompatActivity
         {
             String url = (String) model.videoUrls.get(0);
 
-            jzVideoPlayerStandard.setUp(url,JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL,"");
+            jzVideoPlayerStandard.setUp("",JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL,"");
 
             Picasso.with(this).load(model.getCoverUrl()).into(jzVideoPlayerStandard.thumbImageView);
 
             jzVideoPlayerStandard.startButton.performClick();
         }
+
+        jzVideoPlayerStandard.setUp("http://upos-hz-mirrorcos.acgvideo.com/upgcxcode/86/16/38511686/38511686-1-32.flv?um_deadline=1525750162&platform=pc&rate=302600&oi=2018260062&um_sign=75e1ddcac04dabd8d6b25982c2d2cd0a&gen=playurl&os=cos&trid=1d878ee89ab54f1cb5822e0b8d04a9d5",JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL,"");
+
+        Picasso.with(this).load(model.getCoverUrl()).into(jzVideoPlayerStandard.thumbImageView);
+
+        jzVideoPlayerStandard.startButton.performClick();
 
         createHeadView();
     }
@@ -204,7 +210,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
                 oks.setTitle("这个新闻真好");
                 // titleUrl QQ和QQ空间跳转链接
                 oks.setTitleUrl("http://sharesdk.cn");
-                // text是分享文本，所有平台都需要这个字段
+                // text是分享文本，所有平台都需要这个字段//
                 oks.setText("我是分享文本");
                 // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
                 oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片

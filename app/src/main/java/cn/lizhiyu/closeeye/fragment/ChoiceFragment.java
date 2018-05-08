@@ -386,6 +386,60 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
 
             this.requestChoiceData(0);
 
+            getActivity().overridePendingTransition(R.xml.choice_animation_in,R.xml.choice_animation_none);
+
+            autoBannerViewPager.setOnTouchListener(new View.OnTouchListener()
+            {
+                int flage = 0;
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event)
+                {
+                    VideoModel model = new VideoModel();
+
+                    Intent intent = new Intent(getActivity(), ChoiceDetailActivity.class);
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("model", model);
+
+                    intent.putExtra("intentData",bundle);
+
+                    startActivity(intent);
+
+                    switch (event.getAction()){
+                        case MotionEvent.ACTION_DOWN:
+                            flage = 0 ;
+                            break ;
+                        case MotionEvent.ACTION_MOVE:
+                            flage = 1 ;
+                            break ;
+                        case  MotionEvent.ACTION_UP :
+                            if (flage == 0) {
+//                                int item = autoBannerViewPager.getCurrentItem();
+//                                if (item == 0) {
+//                                    Intent intent = new Intent(sa, NoNetWork.class);
+//                                    sa.startActivity(intent);
+//                                } else if (item == 1) {
+//                                    Intent intent = new Intent(sa, NoNetWork.class);
+//                                    sa.startActivity(intent);
+//                                } else if (item == 2) {
+//                                    Intent intent = new Intent(sa, NoNetWork.class);
+//                                    sa.startActivity(intent);
+//                                }else if (item == 3) {
+//                                    Intent intent = new Intent(sa, NoNetWork.class);
+//                                    sa.startActivity(intent);
+//                                }
+                            }
+                            break ;
+
+
+                    }
+
+                    return false;
+                }
+            });
+
         }else
         {
             ViewGroup parent = (ViewGroup) rootView.getParent();
