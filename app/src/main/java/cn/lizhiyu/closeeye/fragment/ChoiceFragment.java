@@ -181,9 +181,9 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
 
         final Map<String,String> param = new HashMap<>();
 
-        param.put("apikey","IdFJsLGzIdTvxCAs362MupngfDRXQACCk71LxXBOSDHbzG9Wv5AHN0qEYhWQh9HV");
+        param.put("apikey",Define.apiKey);
 
-        param.put("kw","美女");
+        param.put("catid","1");
 
         param.put("pageToken",""+page);
 
@@ -258,7 +258,7 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
 
             if (temp!=null)
             {
-                arrayChoice.addAll(temp);
+//                arrayChoice.addAll(temp);
             }
 
             rootView = (View)inflater.inflate(R.layout.fragment_choice,container,false);
@@ -384,7 +384,7 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
 
             loadMoreView.setVisibility(View.GONE);
 
-            this.requestChoiceData(0);
+            this.requestChoiceData(1);
 
             getActivity().overridePendingTransition(R.xml.choice_animation_in,R.xml.choice_animation_none);
 

@@ -28,13 +28,15 @@ import cn.lizhiyu.closeeye.fragment.FollowPairingFragment;
 import cn.lizhiyu.closeeye.fragment.FollowFragment;
 import cn.lizhiyu.closeeye.fragment.FollowNearFragment;
 import cn.lizhiyu.closeeye.fragment.MineFragment;
+import cn.lizhiyu.closeeye.fragment.MovieFragment;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener,ChoiceFragment.OnFragmentInteractionListener
         ,DiscoveryFragment.OnFragmentInteractionListener
         ,FollowFragment.OnFragmentInteractionListener
         ,MineFragment.OnFragmentInteractionListener
         ,FollowNearFragment.OnFragmentInteractionListener
-        ,FollowPairingFragment.OnFragmentInteractionListener{
+        ,FollowPairingFragment.OnFragmentInteractionListener
+        ,MovieFragment.OnFragmentInteractionListener{
 
     private BottomNavigationBar bottomNav;
 
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         ChoiceFragment fragmentChoice = new ChoiceFragment();
 
-        DiscoveryFragment fragmentDisc = new DiscoveryFragment();
+        MovieFragment fragmentMovie = new MovieFragment();
 
         FollowFragment fragmentFollow = new FollowFragment();
 
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         listFragments.add(fragmentChoice);
 
-        listFragments.add(fragmentDisc);
+        listFragments.add(fragmentMovie);
 
         listFragments.add(fragmentFollow);
 

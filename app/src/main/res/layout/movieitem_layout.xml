@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:minHeight="200dp"
+    >
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/movieitem_bg"
+        android:background="@color/white"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="3"
+        android:shadowRadius="10"
+        />
+    
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="140dp"
+        android:background="@color/red"
+        android:layout_centerVertical="true"
+        android:id="@+id/movieitem_cover"
+        android:layout_marginLeft="34dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="现在去见你"
+        android:textColor="#1d1d1d"
+        android:textSize="20dp"
+        android:id="@+id/movieitem_title"
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@id/movieitem_cover"
+        android:layout_marginLeft="30dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:textColor="#727272"
+        android:id="@+id/movieitem_date"
+        android:text="2018"
+        android:layout_alignLeft="@id/movieitem_title"
+        android:layout_below="@id/movieitem_title"
+        android:layout_marginTop="10dp"
+        />
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e6e6e6"
+        android:layout_alignLeft="@id/movieitem_title"
+        android:layout_below="@id/movieitem_date"
+        android:layout_marginTop="15dp"
+        android:id="@+id/movieitem_line"
+        android:layout_marginRight="15dp"
+        />
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/movieitem_title"
+        android:layout_below="@id/movieitem_line"
+        android:layout_marginTop="15dp"
+        >
+        
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/doubanlabel"
+            android:id="@+id/douban_icon"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieitem_douban_score"
+            android:textColor="#1d1d1d"
+            android:text="8.5"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieitem_douban_disc"
+            android:textColor="#1d1d1d"
+            android:text="豆瓣评分"
+            android:textSize="12dp"
+            android:layout_below="@id/movieitem_douban_score"
+            android:layout_alignLeft="@id/douban_icon"
+            android:layout_marginTop="10dp"
+            />
+        
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/movieitem_title"
+        android:layout_below="@id/movieitem_line"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="15dp"
+        >
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/imdblabel"
+            android:id="@+id/imdb_icon"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieitem_imdb_score"
+            android:textColor="#1d1d1d"
+            android:text="8.5"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/movieitem_imdb_disc"
+            android:textColor="#1d1d1d"
+            android:text="IMDb评分"
+            android:textSize="12dp"
+            android:layout_below="@id/movieitem_imdb_score"
+            android:layout_alignLeft="@id/imdb_icon"
+            android:layout_marginTop="10dp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

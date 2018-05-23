@@ -277,7 +277,7 @@ public class ChoiceDetailActivity extends AppCompatActivity
 
         params.put("apikey","IdFJsLGzIdTvxCAs362MupngfDRXQACCk71LxXBOSDHbzG9Wv5AHN0qEYhWQh9HV");
 
-        params.put("kw","推荐");
+        params.put("catid","1");
 
         params.put("pageToken","0");
 
