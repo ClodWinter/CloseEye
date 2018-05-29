@@ -23,4 +23,5 @@ public class Define
     public static final String ChoiceRequestUrl = "http://120.76.205.241:8000/video/meipai?";
     public static final String DiscRequestUrl = "http://120.76.205.241:8000/post/duowan?";
 
+    public static final String MovieRequestUrl = "http://120.76.205.241:8000/movie/douban?";
 }

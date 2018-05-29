@@ -1,8 +1,11 @@
 package cn.lizhiyu.closeeye.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,13 +13,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import cn.lizhiyu.closeeye.Common.ACache;
+import cn.lizhiyu.closeeye.Common.Define;
 import cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView;
 import cn.lizhiyu.closeeye.CustomView.ZYTabsView;
 import cn.lizhiyu.closeeye.R;
 import cn.lizhiyu.closeeye.adapter.MovieAdapter;
+import cn.lizhiyu.closeeye.model.MovieItemModel;
+import cn.lizhiyu.closeeye.model.VideoModel;
+import cn.lizhiyu.closeeye.request.BaseHttpRequest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -40,11 +54,48 @@ public class MovieFragment extends Fragment {
 
     private MovieAdapter movieAdapter;
 
+    Boolean hasNext;
+
+    boolean isLoadmore;
+
     ZYHFRecyclerView zyhfRecyclerView;
 
     ArrayList arrayListMovie;
 
     private OnFragmentInteractionListener mListener;
+
+    @SuppressLint("HandlerLeak")
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg)
+        {
+            switch (msg.what)
+            {
+                case 200:
+                {
+                    movieAdapter.notifyDataSetChanged();
+
+                    break;
+                }
+
+                case -1:
+                {
+                    Toast.makeText(getActivity(),"请求失败,请稍后重试.",Toast.LENGTH_LONG).show();
+
+                    break;
+                }
+
+                default:
+
+            }
+
+            if (isLoadmore)
+            {
+
+            }
+        }
+    };
 
     public MovieFragment() {
         // Required empty public constructor
@@ -112,10 +163,71 @@ public class MovieFragment extends Fragment {
             }
         }
 
-
-
-
         return rootView;
+    }
+
+    public  void requestData(int page)
+    {
+        final BaseHttpRequest request = new BaseHttpRequest();
+
+        final Map<String,String> param = new HashMap<>();
+
+        param.put("apikey", Define.apiKey);
+
+        param.put("catid","4");
+
+        param.put("pageToken",""+page);
+
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run()
+            {
+                try {
+                    request.sendGetRequest(Define.MovieRequestUrl, param, getActivity(),new BaseHttpRequest.HttpRequestCallBack() {
+                        @Override
+                        public void onRespose(String response, int httpTag)
+                        {
+                            Message message = new Message();
+
+                            if (httpTag == 200)
+                            {
+                                com.alibaba.fastjson.JSONObject jsonObject = JSON.parseObject(response);
+
+                                com.alibaba.fastjson.JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                                hasNext = jsonObject.getBooleanValue("hasNext");
+
+                                if (!isLoadmore)
+                                {
+                                    arrayListMovie.clear();
+                                }
+
+                                arrayListMovie.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),MovieItemModel.class));
+
+                                ACache aCache = ACache.get(getActivity());
+
+                                aCache.put(Define.MovieRequestUrl,arrayListMovie);
+
+                                message.what = 200;
+
+                            }
+                            else
+                            {
+                                message.what = -1;
+
+                                hasNext = false;
+                            }
+
+                            handler.sendMessage(message);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
