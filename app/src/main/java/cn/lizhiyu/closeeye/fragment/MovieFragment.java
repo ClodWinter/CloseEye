@@ -3,19 +3,27 @@ package cn.lizhiyu.closeeye.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -62,9 +70,12 @@ public class MovieFragment extends Fragment {
 
     ArrayList arrayListMovie;
 
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private OnFragmentInteractionListener mListener;
 
-    @SuppressLint("HandlerLeak")
+    View loadMoreView;
+
     private Handler handler = new Handler()
     {
         @Override
@@ -89,6 +100,8 @@ public class MovieFragment extends Fragment {
                 default:
 
             }
+
+            swipeRefreshLayout.setRefreshing(false);
 
             if (isLoadmore)
             {
@@ -125,9 +138,14 @@ public class MovieFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+            Bundle bundle = getArguments();
+
+            arrayListMovie = bundle.getParcelableArrayList("MoiveArray");
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -136,11 +154,36 @@ public class MovieFragment extends Fragment {
         {
             rootView = inflater.inflate(R.layout.fragment_movie,null);
 
+            swipeRefreshLayout = rootView.findViewById(R.id.movie_swipe);
+
+            swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+
+            swipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
+
+            swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.yello);
+
+            swipeRefreshLayout.setProgressViewEndTarget(true,200);
+
+            swipeRefreshLayout.setOnRefreshListener(
+                    new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh()
+                {
+                    isLoadmore = false;
+
+                    requestData(1);
+                }
+            });
+
             arrayListMovie = new ArrayList();
 
-            for (int i = 0; i < 20; i++)
+            ACache aCache = ACache.get(getActivity());
+
+            JSONArray jsonArray = (JSONArray) aCache.getAsObject(Define.MovieRequestUrl);
+
+            if (jsonArray != null)
             {
-                arrayListMovie.add("1");
+                arrayListMovie.addAll((ArrayList)JSON.parseArray(JSON.toJSONString(jsonArray),MovieItemModel.class));
             }
 
             zyhfRecyclerView = rootView.findViewById(R.id.movie_recycler);
@@ -152,6 +195,40 @@ public class MovieFragment extends Fragment {
             zyhfRecyclerView.setAdapter(movieAdapter);
 
             zyhfRecyclerView.setLayoutManager(layoutManager);
+
+            loadMoreView = (View)View.inflate(getActivity(),R.layout.choice_footerlayout,null);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,150);
+
+            layoutParams.leftMargin = 10;
+
+            layoutParams.rightMargin = 10;
+
+            loadMoreView.setLayoutParams(layoutParams);
+
+            zyhfRecyclerView.addFooterView(loadMoreView);
+
+            loadMoreView.setVisibility(View.GONE);
+
+            zyhfRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState)
+                {
+                    super.onScrollStateChanged(recyclerView, newState);
+
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE)
+                    {
+                        loadMoreView.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+            });
+
+            requestData(1);
         }
         else
         {
@@ -206,7 +283,7 @@ public class MovieFragment extends Fragment {
 
                                 ACache aCache = ACache.get(getActivity());
 
-                                aCache.put(Define.MovieRequestUrl,arrayListMovie);
+                                aCache.put(Define.MovieRequestUrl,jsonArray);
 
                                 message.what = 200;
 

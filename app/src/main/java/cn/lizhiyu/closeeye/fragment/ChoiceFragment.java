@@ -306,7 +306,6 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
                 {
-                    Log.d("lzyssg", "onItemClick: "+i+"uuu"+l);
 
                     VideoModel model = (VideoModel) arrayChoice.get(i);
 
@@ -523,7 +522,6 @@ public class ChoiceFragment extends Fragment implements NativeExpressAD.NativeEx
                     .build()); // setVideoOption是可选的，开发者可根据需要选择是否配置
             nativeExpressAD.loadAD(5);
         } catch (NumberFormatException e) {
-            Log.w("lzyssg", "ad size invalid.");
         }
     }
 

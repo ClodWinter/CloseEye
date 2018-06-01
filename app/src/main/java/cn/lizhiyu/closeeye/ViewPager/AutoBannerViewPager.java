@@ -129,7 +129,6 @@ public class AutoBannerViewPager extends ViewPager
             @Override
             public void onPageScrollStateChanged(int state)
             {
-                Log.d("lzyssg", "onPageScrollStateChanged: ");
 
                 if (state == SCROLL_STATE_IDLE)
                 {

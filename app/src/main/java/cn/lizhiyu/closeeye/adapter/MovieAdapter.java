@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.model.MovieItemModel;
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter
@@ -43,6 +45,23 @@ public class MovieAdapter extends RecyclerView.Adapter
         ItemViewHolder itemViewHolder = (ItemViewHolder)holder;
 
         Glide.with(context).load("").bitmapTransform(new RoundedCornersTransformation(context,15,0,RoundedCornersTransformation.CornerType.ALL)).into(itemViewHolder.imageViewBg);
+
+        MovieItemModel model = (MovieItemModel) datas.get(position);
+
+        Glide.with(context).load(model.coverUrl).into(itemViewHolder.imageViewCover);
+
+        itemViewHolder.textViewTitle.setText(model.title);
+
+        itemViewHolder.textViewDate.setText(model.pressDate);
+
+        itemViewHolder.textViewIMDbScore.setText(Integer.toString(model.rating));
+
+        int min = 0;
+        int max = 3;
+        Random random = new Random();
+        int num = random.nextInt(max)%(max-min+1) + min;
+
+        itemViewHolder.textViewDoubanScore.setText(Integer.toString(num+model.rating));
     }
 
     @Override

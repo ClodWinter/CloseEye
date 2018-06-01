@@ -50,12 +50,22 @@
 
     </RelativeLayout>
 
-    <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/movie_recycler"
-        android:layout_marginTop="80dp">
+        android:layout_marginTop="80dp"
+        android:id="@+id/movie_swipe"
+        >
 
-    </cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView>
+        <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/movie_recycler"
+            >
+
+        </cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
