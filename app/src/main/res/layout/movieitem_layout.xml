@@ -22,7 +22,7 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="140dp"
-        android:background="@color/red"
+        android:background="@color/smssdk_line_light_gray"
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
         android:id="@+id/movieitem_cover"

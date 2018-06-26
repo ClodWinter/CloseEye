@@ -2,6 +2,7 @@ package cn.lizhiyu.closeeye.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,6 +37,9 @@ import cn.lizhiyu.closeeye.CustomClass.ZYRecyclerItemClickListener;
 import cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView;
 import cn.lizhiyu.closeeye.CustomView.ZYTabsView;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.activity.LoginActivity;
+import cn.lizhiyu.closeeye.activity.MovieDetailActivity;
+import cn.lizhiyu.closeeye.activity.RegisterActivity;
 import cn.lizhiyu.closeeye.adapter.MovieAdapter;
 import cn.lizhiyu.closeeye.model.MovieItemModel;
 import cn.lizhiyu.closeeye.model.VideoModel;
@@ -201,7 +205,9 @@ public class MovieFragment extends Fragment {
                 @Override
                 public void onItemClick(View view, int position)
                 {
-                    Logger.d(position);
+                    Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
+
+                    startActivity(intent);
                 }
 
                 @Override

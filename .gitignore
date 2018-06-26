@@ -7,7 +7,3 @@
 /build
 /captures
 .externalNativeBuild
-app/src/main/res/layout/activity_login.xml
-app/src/main/res/layout/activity_login.xml
-app/src/main/java/cn/lizhiyu/closeeye/activity/RegisterActivity.java
-app/src/main/res/layout/activity_register.xml

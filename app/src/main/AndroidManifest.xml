@@ -179,7 +179,8 @@
         <activity android:name=".activity.SplashActivity" />
         <activity android:name=".activity.FeedbackActivity" />
         <activity android:name=".activity.SettingActivity" />
-        <activity android:name=".activity.UserInfoAactivity"></activity>
+        <activity android:name=".activity.UserInfoAactivity" />
+        <activity android:name=".activity.MovieDetailActivity"></activity>
     </application>
 
 </manifest>
