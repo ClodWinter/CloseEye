@@ -205,7 +205,15 @@ public class MovieFragment extends Fragment {
                 @Override
                 public void onItemClick(View view, int position)
                 {
+                    MovieItemModel model = (MovieItemModel) arrayListMovie.get(position);
+
                     Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putSerializable("model",model);
+
+                    intent.putExtra("intentData",bundle);
 
                     startActivity(intent);
                 }

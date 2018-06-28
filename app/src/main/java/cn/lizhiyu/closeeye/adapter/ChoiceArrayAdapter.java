@@ -68,9 +68,9 @@ public class ChoiceArrayAdapter extends ArrayAdapter
 
         textViewTitle.setText(model.getTitle());
 
-        TextView textViewDesc = (TextView)view.findViewById(R.id.choiceitem_desctext);
+//        TextView textViewDesc = (TextView)view.findViewById(R.id.choiceitem_desctext);
 
-        textViewDesc.setText(model.getPosterScreenName()+" "+"/"+" "+model.getDurationMin());
+//        textViewDesc.setText(model.getPosterScreenName()+" "+"/"+" "+model.getDurationMin());
 
         return view;
     }

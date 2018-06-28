@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="202dp"
@@ -13,38 +13,40 @@
         android:layout_height="201dp"
         android:background="@mipmap/choiceitem_cover"
         android:scaleType="centerCrop"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        />
 
     <TextView
         android:id="@+id/choiceitem_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="闭眼啊闭眼啊"
+        android:layout_alignBottom="@id/choiceitem_cover"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="闭眼啊闭眼啊闭眼"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@id/choieitem_content"
-        app:layout_constraintStart_toStartOf="@id/choieitem_content"
-        app:layout_constraintTop_toTopOf="@id/choieitem_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/choiceitem_desctext"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/choiceitem_text"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         />
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/choiceitem_desctext"-->
+        <!--android:textColor="@color/white"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/choiceitem_text"-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--/>-->
     
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/choiceitem_cover"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_alignParentBottom="true"
+     />
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

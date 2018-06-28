@@ -91,10 +91,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         bottomNav.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
 
-        bottomNav.addItem(new BottomNavigationItem(R.mipmap.home,"首页").setActiveColorResource(R.color.f6683d))
-                .addItem(new BottomNavigationItem(R.mipmap.place,"地点").setActiveColorResource(R.color.f6683d))
-                .addItem(new BottomNavigationItem(R.mipmap.story,"故事").setActiveColorResource(R.color.f6683d))
-                .addItem(new BottomNavigationItem(R.mipmap.setting,"个人").setActiveColorResource(R.color.f6683d))
+        bottomNav.addItem(new BottomNavigationItem(R.mipmap.home,"首页").setActiveColorResource(R.color.maincolor))
+                .addItem(new BottomNavigationItem(R.mipmap.place,"地点").setActiveColorResource(R.color.maincolor))
+                .addItem(new BottomNavigationItem(R.mipmap.story,"故事").setActiveColorResource(R.color.maincolor))
+                .addItem(new BottomNavigationItem(R.mipmap.setting,"个人").setActiveColorResource(R.color.maincolor))
                 .setFirstSelectedPosition(0).initialise();
 
         bottomNav.setTabSelectedListener(this);

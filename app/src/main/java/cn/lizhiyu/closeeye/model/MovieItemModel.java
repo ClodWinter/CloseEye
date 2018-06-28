@@ -1,10 +1,11 @@
 package cn.lizhiyu.closeeye.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
-public class MovieItemModel
+public class MovieItemModel implements Serializable
 {
     public int ratingCount;
 
