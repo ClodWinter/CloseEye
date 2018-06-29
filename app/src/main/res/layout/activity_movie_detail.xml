@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eaeaea"
     >
 
 
@@ -22,14 +23,15 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             >
 
-            <cn.jzvd.JZVideoPlayerStandard
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_collapseMode="pin"
-                android:id="@+id/moviedetail_player"
-                app:layout_collapseParallaxMultiplier="0.5">
+            <ImageView
+                android:id="@+id/moviedetail_cover"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/retry_bg"
 
-            </cn.jzvd.JZVideoPlayerStandard>
+                app:layout_collapseMode="pin"
+                app:layout_collapseParallaxMultiplier="0.5" />
 
             <android.support.v7.widget.Toolbar
                 android:layout_width="match_parent"
@@ -54,6 +56,12 @@
         >
 
 
+        <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/moviedetail_recycler">
+
+        </cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView>
 
 
     </android.support.v4.widget.NestedScrollView>

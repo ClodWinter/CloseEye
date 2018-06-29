@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
@@ -62,22 +63,15 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
-        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) findViewById(R.id.moviedetail_player);
-
         String url = null;
 
-        if (movieItemModel.videoUrls != null && movieItemModel.videoUrls.size()>0)
+        if (movieItemModel.imageUrls.size()>0)
         {
-            url = (String) movieItemModel.videoUrls.get(0);
+            url = (String) movieItemModel.imageUrls.get(2);
         }
 
-        if (url != null && url.length()>0)
-        {
-            jzVideoPlayerStandard.setUp(url,JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL,"");
+        ImageView imageView = (ImageView) findViewById(R.id.moviedetail_cover);
 
-            Picasso.with(this).load(movieItemModel.getCoverUrl()).into(jzVideoPlayerStandard.thumbImageView);
-
-            jzVideoPlayerStandard.startButton.performClick();
-        }
+        Picasso.with(this).load(url).into(imageView);
     }
 }
