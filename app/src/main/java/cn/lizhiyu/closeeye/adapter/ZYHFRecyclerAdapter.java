@@ -68,12 +68,12 @@ public class ZYHFRecyclerAdapter extends RecyclerView.Adapter
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        if(viewType==SHOW_HEADER)
+        if(viewType==SHOW_HEADER && mHeaderViewInfos.size()>0)
         {
             return new ItemViewHolder(mHeaderViewInfos.get(0));
         }
 
-        if(viewType==SHOW_FOOTER){
+        if(viewType==SHOW_FOOTER && mFooterViewInfos.size()>0){
             return new ItemViewHolder(mFooterViewInfos.get(0));
         }
 

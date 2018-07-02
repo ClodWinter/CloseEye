@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,13 +14,20 @@ import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import cn.jzvd.JZVideoPlayerStandard;
+import cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView;
 import cn.lizhiyu.closeeye.R;
+import cn.lizhiyu.closeeye.adapter.MovieDetailAdapter;
+import cn.lizhiyu.closeeye.model.MovieDetailItemModel;
 import cn.lizhiyu.closeeye.model.MovieItemModel;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
-    public MovieItemModel movieItemModel;
+    private MovieItemModel movieItemModel;
+
+    private ArrayList arrayListItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,5 +81,32 @@ public class MovieDetailActivity extends AppCompatActivity {
         ImageView imageView = (ImageView) findViewById(R.id.moviedetail_cover);
 
         Picasso.with(this).load(url).into(imageView);
+
+        ZYHFRecyclerView zyhfRecyclerView = (ZYHFRecyclerView) findViewById(R.id.moviedetail_recycler);
+
+        arrayListItem = new ArrayList();
+
+        arrayListItem.add(createModel(1));
+
+        arrayListItem.add(createModel(2));
+
+        MovieDetailAdapter movieDetailAdapter = new MovieDetailAdapter(arrayListItem);
+
+        LinearLayoutManager rLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+
+        zyhfRecyclerView.setLayoutManager(rLayoutManager);
+
+        zyhfRecyclerView.setAdapter(movieDetailAdapter);
+    }
+
+    public MovieDetailItemModel createModel(int type)
+    {
+        MovieDetailItemModel model = new MovieDetailItemModel();
+
+        model.type = type;
+
+        model.movieItemModel = movieItemModel;
+
+        return model;
     }
 }
