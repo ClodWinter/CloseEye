@@ -71,6 +71,14 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                finish();
+            }
+        });
+
         String url = null;
 
         if (movieItemModel.imageUrls.size()>0)
@@ -86,9 +94,13 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         arrayListItem = new ArrayList();
 
+        arrayListItem.add(createModel(0));
+
         arrayListItem.add(createModel(1));
 
         arrayListItem.add(createModel(2));
+
+        arrayListItem.add(createModel(3));
 
         MovieDetailAdapter movieDetailAdapter = new MovieDetailAdapter(arrayListItem);
 

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="200dp">
+    android:layout_width="match_parent" android:layout_height="200dp"
+    android:background="@color/white"
+    >
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:id="@+id/movieitem_bg"
+        android:id="@+id/mdi_head_bg"
         android:background="@color/white"
         android:shadowColor="@color/black"
         android:shadowDx="1"
@@ -20,7 +22,7 @@
         android:background="@color/smssdk_line_light_gray"
         android:layout_centerVertical="true"
         android:scaleType="fitXY"
-        android:id="@+id/movieitem_cover"
+        android:id="@+id/mdi_head_cover"
         />
 
     <TextView
@@ -29,9 +31,9 @@
         android:text="现在去见你"
         android:textColor="#1d1d1d"
         android:textSize="20dp"
-        android:id="@+id/movieitem_title"
+        android:id="@+id/mdi_head_title"
         android:layout_marginTop="15dp"
-        android:layout_toRightOf="@id/movieitem_cover"
+        android:layout_toRightOf="@id/mdi_head_cover"
         android:layout_marginLeft="15dp"
         />
 
@@ -40,10 +42,10 @@
         android:layout_height="wrap_content"
         android:textSize="18dp"
         android:textColor="#727272"
-        android:id="@+id/movieitem_date"
+        android:id="@+id/mdi_head_type"
         android:text="剧情/奇幻"
-        android:layout_alignLeft="@id/movieitem_title"
-        android:layout_below="@id/movieitem_title"
+        android:layout_alignLeft="@id/mdi_head_title"
+        android:layout_below="@id/mdi_head_title"
         android:layout_marginTop="10dp"
         />
 
@@ -51,18 +53,18 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/white"
-        android:layout_alignLeft="@id/movieitem_title"
-        android:layout_below="@id/movieitem_date"
+        android:layout_alignLeft="@id/mdi_head_title"
+        android:layout_below="@id/mdi_head_type"
         android:layout_marginTop="15dp"
-        android:id="@+id/movieitem_line"
+        android:id="@+id/mdi_head_line"
         android:layout_marginRight="15dp"
         />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/movieitem_title"
-        android:layout_below="@id/movieitem_line"
+        android:layout_alignLeft="@id/mdi_head_title"
+        android:layout_below="@id/mdi_head_line"
         android:layout_marginTop="25dp"
         >
 
@@ -101,8 +103,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/movieitem_title"
-        android:layout_below="@id/movieitem_line"
+        android:layout_alignLeft="@id/mdi_head_title"
+        android:layout_below="@id/mdi_head_line"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="25dp"
         >

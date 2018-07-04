@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="240dp"
+
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/mdi_recomend_bg"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="相关推荐"
+        android:textColor="@color/black"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:id="@+id/mdi_recomend_toptitle"
+        />
+
+    <cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView
+        android:id="@+id/mdi_recomend_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/mdi_recomend_toptitle"
+        android:layout_alignLeft="@id/mdi_recomend_bg"
+        android:layout_alignRight="@id/mdi_recomend_bg"
+        android:layout_alignBottom="@id/mdi_recomend_bg"
+        android:layout_marginTop="4dp"
+        >
+
+    </cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView>
+
+</RelativeLayout>
