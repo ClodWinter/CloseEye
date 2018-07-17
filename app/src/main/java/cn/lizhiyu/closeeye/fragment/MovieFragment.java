@@ -33,6 +33,7 @@ import java.util.Map;
 
 import cn.lizhiyu.closeeye.Common.ACache;
 import cn.lizhiyu.closeeye.Common.Define;
+import cn.lizhiyu.closeeye.CustomClass.RecyclerItemDecoration;
 import cn.lizhiyu.closeeye.CustomClass.ZYRecyclerItemClickListener;
 import cn.lizhiyu.closeeye.CustomView.ZYHFRecyclerView;
 import cn.lizhiyu.closeeye.CustomView.ZYTabsView;
@@ -200,6 +201,8 @@ public class MovieFragment extends Fragment {
             zyhfRecyclerView.setAdapter(movieAdapter);
 
             zyhfRecyclerView.setLayoutManager(layoutManager);
+
+            zyhfRecyclerView.addItemDecoration(new RecyclerItemDecoration(30));
 
             zyhfRecyclerView.addOnItemTouchListener(new ZYRecyclerItemClickListener(getActivity(), new ZYRecyclerItemClickListener.OnItemClickListener() {
                 @Override
